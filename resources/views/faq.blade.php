@@ -2,28 +2,8 @@
 <html lang="en">
 @include("layout.header")
 <body>
-
+@section('title','FAQs')
 @include("layout.menu")
-
-<div class="innerpage_banner">
-	<div class="container">
-	    <div class="row">
-	      <div class="col-md-12">
-	        <h2>FAQs</h2>
-	        <div class="breadcrumb">
-	          <ul class="clearfix">
-	            <li class="ib bg">
-	              <a href="<?php echo BASEURL;?>">Home</a>
-	            </li>
-	            <li class="ib current-page">FAQs</li>
-	          </ul>
-	        </div>
-	      </div>
-	    </div>
-	</div>
-</div>
-
-
 
 <div class="faq-accodian ptb-50">
 	<div class="container">
@@ -240,7 +220,7 @@
 			<div class="col-lg-4 col-md-4">
 				<div class="guide-box">
 					<div class="gui-top-title">
-						<img src="images/guide-img1.png" alt="">
+						<img src="{{BASEURL}}images/guide-img1.png" alt="">
 						<h3>Campaign</h3>
 						<span>01</span>
 					</div>
@@ -254,7 +234,7 @@
 			<div class="col-lg-4 col-md-4">
 				<div class="guide-box">
 					<div class="gui-top-title">
-						<img src="images/guide-img2.png" alt="">
+						<img src="{{BASEURL}}images/guide-img2.png" alt="">
 						<h3>Guidelines</h3>
 						<span>02</span>
 					</div>
@@ -268,7 +248,7 @@
 			<div class="col-lg-4 col-md-4">
 				<div class="guide-box">
 					<div class="gui-top-title">
-						<img src="images/guide-img3.png" alt="">
+						<img src="{{BASEURL}}images/guide-img3.png" alt="">
 						<h3>Withdraw</h3>
 						<span>03</span>
 					</div>
@@ -291,7 +271,8 @@
 		<div class="row align-items-center">
 			<div class="col-lg-6 col-md-6">
 				<div class="work-img">
-					<img src="images/faqimg1.jpg" alt="">
+				<img src="{{BASEURL}}images/faqimg1.jpg" alt="">
+
 				</div>
 			</div>
 			<div class="col-md-6 col-lg-6">
@@ -311,7 +292,7 @@
 
 
 
-@include("layout.footer")
+
 
 <!--============================= Scripts =============================-->
 <a href="#" class="back-to-top" style="display: none;"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
@@ -336,39 +317,4 @@ jQuery(document).ready(function() {
 });
 </script> 
 
-
-
-<script>
-	$('.testimonial').owlCarousel({
-    loop:true,
-    margin:10,
-    nav:true,
-    autoplay:true,
-    responsive:{
-        0:{
-            items:1
-        },
-        600:{
-            items:1
-        },
-        1000:{
-            items:2
-        }
-    }
-})
-</script>
-
-
-<script src="js/menu.js"></script>
-<script type="text/javascript">
-	$("#cssmenu").menumaker({
-		title: "",
-		format: "multitoggle"
-	});
-</script>
-
-<script src="js/wow.js"></script>
-<script>new WOW().init();</script>
-
-</body>
-</html>
+@include("layout.footer")

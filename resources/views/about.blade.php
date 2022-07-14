@@ -2,33 +2,17 @@
 <html lang="en">
 @include("layout.header")
 <body>
-
+@section('title','About Us')
 @include("layout.menu")
 
-<div class="innerpage_banner">
-	<div class="container">
-	    <div class="row">
-	      <div class="col-md-12">
-	        <h2>About Us</h2>
-	        <div class="breadcrumb">
-	          <ul class="clearfix">
-	            <li class="ib bg">
-	              <a href="<?php echo BASEURL;?>">Home</a>
-	            </li>
-	            <li class="ib current-page">About Us</li>
-	          </ul>
-	        </div>
-	      </div>
-	    </div>
-	</div>
-</div>
+
 
 <div class="top-about ptb-50">
 	<div class="container">
 		<div class="row align-items-center">
 			<div class="col-lg-6 col-md-6 col-sm-12">
 				<div class="top-ab-img">
-					<img src="images/about.png" alt="">
+					<img src="{{BASEURL}}images/about.png" alt="">
 				</div>
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-12">
@@ -51,7 +35,7 @@
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-12 p-0">
 				<div class="snd-img">
-					<img src="images/about2.jpg" alt="">
+					<img src="{{BASEURL}}images/about2.jpg" alt="">
 					<a id="play-video" class="video-play-button" href="#">
 					  <span></span>
 					</a>
@@ -78,7 +62,7 @@
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 							tempor incididunt ut labore et dolore magna aliqua. </p>
 							<div class="testi-box-img">
-								<img src="images/client.jpg" alt="">
+								<img src="{{BASEURL}}images/client.jpg" alt="">
 								<div class="testi-client-title">
 									<h5>Michale Yeah</h5>
 									<p>Senior Designer</p>
@@ -91,7 +75,7 @@
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 							tempor incididunt ut labore et dolore magna aliqua. </p>
 							<div class="testi-box-img">
-								<img src="images/client1.jpg" alt="">
+								<img src="{{BASEURL}}images/client1.jpg" alt="">
 								<div class="testi-client-title">
 									<h5>David Jornas</h5>
 									<p>Senior Designer</p>
@@ -105,7 +89,7 @@
 	</div>
 </div>
 
-@include("layout.footer")
+
 <!--============================= Scripts =============================-->
 <a href="#" class="back-to-top" style="display: none;"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
@@ -129,39 +113,4 @@ jQuery(document).ready(function() {
 });
 </script> 
 
-
-
-<script>
-	$('.testimonial').owlCarousel({
-    loop:true,
-    margin:10,
-    nav:true,
-    autoplay:true,
-    responsive:{
-        0:{
-            items:1
-        },
-        600:{
-            items:1
-        },
-        1000:{
-            items:2
-        }
-    }
-})
-</script>
-
-
-<script src="js/menu.js"></script>
-<script type="text/javascript">
-	$("#cssmenu").menumaker({
-		title: "",
-		format: "multitoggle"
-	});
-</script>
-
-<script src="js/wow.js"></script>
-<script>new WOW().init();</script>
-
-</body>
-</html>
+@include("layout.footer")

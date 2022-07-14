@@ -28,15 +28,14 @@ class LoginRequest extends FormRequest
      */
     public function rules()
     {
-        $messages = [
-            'g-recaptcha-response.required' => 'You must check the reCAPTCHA.',
-            'g-recaptcha-response.captcha' => 'Captcha error! try again later or contact site admin.',
-        ];
+        // $messages = [
+        //     'g-recaptcha-response.required' => 'You must check the reCAPTCHA.',
+        //     'g-recaptcha-response.captcha' => 'Captcha error! try again later or contact site admin.',
+        // ];
         return [
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
-            'g-recaptcha-response' => ['required','captcha'
-        , $messages],
+            //'g-recaptcha-response' => ['required','captcha' , $messages],
         ];
     }
 

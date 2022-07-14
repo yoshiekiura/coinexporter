@@ -2,83 +2,99 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class EditprofileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    // User data Retrieve .
     public function index()
     {
-        return view('editprofile');
+        $id = Auth::user()->id;
+        $userData = User::where('id', $id)->first();
+        return view('editprofile', compact('userData'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    // Update user data .
     public function store(Request $request)
     {
-        //
+        $id = Auth::user()->id;
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $id,
+            // 'email' => 'required',
+            'country' => 'required'
+        ]);
+
+        if (!empty($request)) {
+            $userData = User::where('id', $id)->first();
+            $userData->name = $request->name;
+            $userData->email = $request->email;
+            $userData->country = $request->country;
+            if ($userData->save()) {
+                return redirect()->back()->with('success', 'Profile saved Successfully!');
+            } else {
+                return redirect()->back()->with('error', 'Profile Not Saved!');
+            }
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    // Update user profile image
+    public function imagestore(Request $request)
     {
-        //
+
+        $id = Auth::user()->id;
+        $filename = '';
+        if ($request->file('profileImage')) {
+            $file = $request->file('profileImage');
+            $filename = $id . "-" . $file->getClientOriginalName();
+
+            $file->move(public_path('images'), $filename);
+            if ($request->oldProfile != '' || $request->oldProfile != null) {
+                if (file_exists(public_path('images/' . $request->oldProfile))) {
+                    unlink(public_path('images/' . $request->oldProfile));
+                }
+            }
+            $userData = User::where('id', $id)->first();
+            $userData->profileImage = $filename;
+            if ($userData->save()) {
+                return redirect()->back()->with('success', 'Profile Image saved Successfully!');
+            } else {
+                return redirect()->back()->with('error', 'Profile Image Not Saved!');
+            }
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    // Change user password
+    public function changepassword(Request $request)
     {
-        //
+        // $request->validate([
+        //     'password' => 'required',
+        //     'newPassword' => 'required',
+        //     'ConfirmPassword' => 'required'
+        // ]);
+
+        $id = Auth::user()->id;
+        $userData = User::where('id', $id)->first();
+        if (Hash::check($request->oldPassword, $userData->password)) {
+            if ($request->newPassword == $request->ConfirmPassword) {
+                $userData->password = Hash::make($request->newPassword);
+                if ($userData->save()) {
+                    return redirect()->back()->with('success', 'Password Updated Successfully!');
+                } else {
+                    return redirect()->back()->with('error', 'Password Not Updated!');
+                }
+            } else {
+                return redirect()->back()->with('error', 'Confirm password does not match.');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Old Password Does not match.');
+        }
     }
 }

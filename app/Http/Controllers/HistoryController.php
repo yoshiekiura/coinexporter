@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\JobPaymentCheck;
 use Illuminate\Http\Request;
 
 class HistoryController extends Controller
@@ -11,9 +11,31 @@ class HistoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        return view('history');
+        
+        $JobPaymentChecks = JobPaymentCheck::select(
+
+            "job_payment_check.*", 
+
+            "job_payment_check.status as tvl_status",
+            
+            "job_spaces.*",
+            
+            "campaign_categories.*"
+
+        )
+
+        ->join("job_spaces", "job_spaces.id", "=", "job_payment_check.campaign_id")
+        
+        ->join("campaign_categories", "job_spaces.campaign_category_id", "=", "campaign_categories.id")
+        
+        ->orderBy("job_payment_check.id","desc")
+
+        ->where('job_spaces.id', $id)
+
+        ->get();
+        return view('history',compact('JobPaymentChecks'));
     }
 
     /**

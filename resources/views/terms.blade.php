@@ -2,26 +2,8 @@
 <html lang="en">
 @include("layout.header")
 <body>
-
+@section('title','Term & Conditions')
 @include("layout.menu")
-
-<div class="innerpage_banner">
-	<div class="container">
-	    <div class="row">
-	      <div class="col-md-12">
-	        <h2>Term & Consitions</h2>
-	        <div class="breadcrumb">
-	          <ul class="clearfix">
-	            <li class="ib bg">
-	              <a href="<?php echo BASEURL;?>">Home</a>
-	            </li>
-	            <li class="ib current-page">Term & Conditions</li>
-	          </ul>
-	        </div>
-	      </div>
-	    </div>
-	</div>
-</div>
 
 <div class="terms_condition">
   <div class="container">
@@ -168,17 +150,4 @@ jQuery(document).ready(function() {
 	})
 });
 </script> 
-
-<script src="js/menu.js"></script>
-<script type="text/javascript">
-	$("#cssmenu").menumaker({
-		title: "",
-		format: "multitoggle"
-	});
-</script>
-
-<script src="js/wow.js"></script>
-<script>new WOW().init();</script>
-
-</body>
-</html>
+@include("layouts.footer")

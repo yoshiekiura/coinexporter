@@ -45,15 +45,20 @@ class RegisteredUserController extends Controller
             
             
         ]);
-       
+        if(!empty($request->referral_code)){
+            $ref_code = $request->referral_code;
+            }else{
+                $ref_code ='NULL';
+            }
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'country' => $request->country,
+            'referral_code' => $ref_code,
             'terms' => $request->terms,
         ]);
-
+       
         event(new Registered($user));
 
       // Auth::login($user);

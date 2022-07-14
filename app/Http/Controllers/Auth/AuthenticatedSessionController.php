@@ -29,14 +29,25 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request)
     {
         //dd($request->all());
-        $request->authenticate();
+    //     $request->authenticate();
 
-        $request->session()->regenerate();
-        if($request->session()->regenerate() == 'true'){
-        return redirect()->intended(RouteServiceProvider::HOME)->with('success','You are Logged In Successfully!');
-        }else{
-            return redirect()->intended(RouteServiceProvider::HOME)->with('error','Oops! Something went wrong, your login Failed!');   
-        }    
+    //     $request->session()->regenerate();
+    //     if($request->session()->regenerate() == 'true'){
+    //    // return redirect()->intended(RouteServiceProvider::HOME)->with('success','You are Logged In Successfully!');
+    //     return response()->json(["status"=>true,"success"=>"You are Logged In Successfully!","redirect_location"=>url("/")]);  
+    //     }else{
+    //         return redirect()->intended(RouteServiceProvider::HOME)->with('error','Oops! Something went wrong, your login Failed!');   
+    //     }    
+
+        if (\Auth::attempt($request->only(["email", "password"], ($request->remember == 'on') ? true : false))) {
+            $request->session()->flash('success', 'You are Logged In Successfully!');
+            return response()->json(["status"=>true,"redirect_location"=>url("/")]);
+            
+        } else {
+            return response()->json([["Invalid credentials"]],422);
+            
+        }
+        
     }
 
     /**

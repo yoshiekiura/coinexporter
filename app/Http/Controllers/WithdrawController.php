@@ -2,28 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
+use App\Models\UserTransaction;
+use App\Models\JobDone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 class WithdrawController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return view('withdraw');
+      
+        $totalActualBalance = JobDone::where('user_id',Auth::user()->id)->where('status','Approved')->where('earning_status','Success')->sum('campaign_earnings');
+        $userTransaction = UserTransaction::latest()->where('user_id',Auth::user()->id)->get();
+        $withdrawalBalance = JobDone::where('user_id',Auth::user()->id)->where('status','Approved')->where('earning_status','On-Going')->sum('campaign_earnings');
+        
+        return view('withdraw',compact('totalActualBalance','userTransaction','withdrawalBalance'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    public function create(Request $request)
     {
-        //
+        $jobDone = JobDone::where('user_id',Auth::user()->id)->where('status','Approved')->where('earning_status','Success')->get();
+        if($jobDone){
+            foreach($jobDone as $val) {
+                $objJobdone = JobDone::where('id',$val->id)->first();
+                $objJobdone->earning_status = 'On-Going';
+                $objJobdone->save();
+            }
+        }
+        $objTransaction = new UserTransaction();
+        $objTransaction->user_id = Auth::user()->id;
+        $objTransaction->transaction_amount = $request->amt_to_withdraw;
+        $objTransaction->transaction_detail = '$'.$request->amt_to_withdraw .' has been withdrwan on'.date('d/m/Y');
+        $objTransaction->wallet_balance = '';
+        $objTransaction->status = 'Pending';
+        if($objTransaction->save()){
+            return response()->json(["status"=>true,"msg"=>"withdrawal completed successfully!"]);
+        }
+        else {
+             return response()->json(["status"=>false,"msg"=>"something went wrong"]);
+        }
     }
 
     /**

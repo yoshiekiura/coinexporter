@@ -32,6 +32,7 @@ class PasswordResetLinkController extends Controller
             'email' => ['required', 'email'],
         ]);
 
+        
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we
         // need to show to the user. Finally, we'll send out a proper response.
@@ -40,8 +41,13 @@ class PasswordResetLinkController extends Controller
         );
 
         return $status == Password::RESET_LINK_SENT
-                    ? back()->with('status', __($status))
+                    ? back()->with('success', 'We have emailed your password reset link!')
                     : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+                            ->with('error', 'We can not find a user with that email address!');
+                            
+        // return $status == Password::RESET_LINK_SENT
+        //     ? back()->with('status', __($status))
+        //     : back()->withInput($request->only('email'))
+        //             ->withErrors(['email' => __($status)]);
     }
 }

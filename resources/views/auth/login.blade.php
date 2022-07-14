@@ -12,7 +12,7 @@
 <br>
 Thank you.</p>
                    
-                        <a href="<?php echo BASEURL;?>" class="theme-btn mt-10"><i class="fas fa-home"></i>Go to  Home</a>
+            <a href="<?php echo BASEURL;?>" class="theme-btn mt-10"><i class="fas fa-home"></i>Go to  Home</a>
                        
         </div>
     </div>

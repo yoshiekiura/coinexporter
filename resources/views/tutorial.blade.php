@@ -2,28 +2,8 @@
 <html lang="en">
 @include("layout.header")
 <body>
-
+@section('title','Tutorials')
 @include("layout.menu")
-
-<div class="innerpage_banner">
-  <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h2>Tutorials</h2>
-          <div class="breadcrumb">
-            <ul class="clearfix">
-              <li class="ib bg">
-                <a href="<?php echo BASEURL;?>">Home</a>
-              </li>
-              <li class="ib current-page">Tutorials</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-  </div>
-</div>
-
-
 
 <div class="con-social-sec ptb-50">
   <div class="container">
@@ -82,7 +62,7 @@
       <div class="col-lg-4 col-md-4">
         <div class="blog-standard-item wow fadeInUp delay-0-2s animated" style="visibility: visible; animation-name: fadeInUp;">
           <div class="image video-blog">
-            <img src="images/blog-standard-2.jpg" alt="Blog Standard">
+            <img src="{{BASEURL}}images/blog-standard-2.jpg" alt="Blog Standard">
           </div>
           
          <div class="title-blog">
@@ -95,7 +75,7 @@
       <div class="col-lg-4 col-md-4">
         <div class="blog-standard-item wow fadeInUp delay-0-2s animated" style="visibility: visible; animation-name: fadeInUp;">
           <div class="image video-blog">
-            <img src="images/blog-standard-3.jpg" alt="Blog Standard">
+            <img src="{{BASEURL}}images/blog-standard-3.jpg" alt="Blog Standard">
           </div>
           
          <div class="title-blog">
@@ -108,7 +88,7 @@
       <div class="col-lg-4 col-md-4">
         <div class="blog-standard-item wow fadeInUp delay-0-2s animated" style="visibility: visible; animation-name: fadeInUp;">
           <div class="image video-blog">
-            <img src="images/blog-standard-1.jpg" alt="Blog Standard">
+            <img src="{{BASEURL}}images/blog-standard-1.jpg" alt="Blog Standard">
           </div>
           
          <div class="title-blog">
@@ -123,7 +103,6 @@
 
 
 
-@include("layout.footer")
 
 <!--============================= Scripts =============================-->
 <a href="#" class="back-to-top" style="display: none;"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
@@ -169,18 +148,6 @@ jQuery(document).ready(function() {
 })
 </script>
 
-
-
-
-<script src="js/menu.js"></script>
-<script type="text/javascript">
-  $("#cssmenu").menumaker({
-    title: "",
-    format: "multitoggle"
-  });
-</script>
-
-
 <script>
   // Get the HTML element you need.
 const imageOverlay = document.getElementById('image-overlay')
@@ -222,10 +189,4 @@ function play(e) {
   }
 }
 </script>
-<script src="js/wow.js"></script>
-<script>new WOW().init();</script>
-
-</body>
-</html>
-
-
+@include("layouts.footer")

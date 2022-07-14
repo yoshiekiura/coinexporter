@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Models\JobSpace;
-use App\Models\TvlCampaign;
+use App\Models\JobPaymentCheck;
 use App\Models\CampaignCategory;
-use App\Models\CampaignSubCategory;
+use App\Models\SocialPlatform;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,8 +19,42 @@ class MycampaignController extends Controller
      */
     public function index()
     {
+		// $tvl_admins = DB::select('select * from tvl_admins where user_type="Campaign Admin"');
+		 
+		 $tvl_admins = Admin::select(
+
+                            "admins.*"
+
+                        )
+
+                        ->where("user_type", "=", "Campaign Admin")
+						
+                        ->get();
+		
+		//$tvl_campaigns = DB::select('select *,tvl_campaigns.status as tvl_status,tvl_campaigns.created_at as created from ((tvl_campaigns inner join job_spaces on tvl_campaigns.campaign_id= job_spaces.id)inner join campaign_categories on job_spaces.campaign_category_id=campaign_categories.id) order by tvl_campaigns.id desc');
+		 $tvl_campaigns = JobPaymentCheck::select(
+
+                            "job_payment_check.*", 
+
+                            "job_payment_check.status as tvl_status",
+
+                            "job_payment_check.created_at as created",
+							
+							"job_spaces.*",
+							
+							"campaign_categories.*"
+
+                        )
+
+                        ->join("job_spaces", "job_spaces.id", "=", "job_payment_check.campaign_id")
+						
+						->join("campaign_categories", "job_spaces.campaign_category_id", "=", "campaign_categories.id")
+						
+						->orderBy("job_payment_check.id","desc")
+
+                        ->get();
        // $data['job_space'] = JobSpace::orderBy('id','desc')->paginate(5);
-        return view('mycampaign');
+        return view('mycampaign',compact('tvl_campaigns','tvl_admins'));
     }
 
     /**
@@ -54,27 +89,32 @@ class MycampaignController extends Controller
             'campaign_cost' => 'required',
             'promoters_needed' => 'required',
             'text_content' => '',
-            'colors' => ''
-
+            'colors' => '',
+            'transaction_amt' => 'required'
             ]);
           
             $objCat = CampaignCategory::where('id', '=', $request->campaign_type)->first();
             $cat_name = $objCat->campaign_category_name;
 
-            $objSubCat = CampaignSubCategory::where('id', '=', $request->social_platform)->first();
-            $sub_cat_name = $objSubCat->campaign_subcategory_name;
+            $objSubCat = SocialPlatform::where('id', '=', $request->social_platform)->first();
+            $sub_cat_name = $objSubCat->social_platform_name;
             
             $camp_name = $cat_name.' '.$sub_cat_name.' $'.$request->promoters_earn;
             $mycampaign = new JobSpace;
             $mycampaign->campaign_category_id = $request->campaign_type;
             $mycampaign->campaign_subcategory_id = $request->social_platform;
             $mycampaign->campaign_name = $camp_name;
-            // $mycampaign->country = $request->country;
+            $mycampaign->colors = $request->colors;
             $mycampaign->campaign_req = $request->campaign_desc;
             $mycampaign->campaign_proof = $request->campaign_proof_desc;
             $mycampaign->campaign_earning = $request->promoters_earn;
             $mycampaign->promoters_needed = $request->promoters_needed;
             $mycampaign->campaign_cost = $request->campaign_cost;
+            if(!empty($request->referral_code)){
+            $mycampaign->referral_code = $request->referral_code;
+            }else{
+                $mycampaign->referral_code = 'NULL';
+            }
             $mycampaign->file_type = $request->file_type;
                 $user_id =  Auth::user()->id;
                 $status='active';
@@ -82,19 +122,21 @@ class MycampaignController extends Controller
             $mycampaign->user_id = $user_id;
 
             //For Checkbox array list values
-            if(!empty($request->colors)){
-            $col= $request->colors;
-            $cols =implode(",", $col);
+            // if(!empty($request->colors)){
+            // $col= $request->colors;
+            // $cols =implode(",", $col);
           
            // dd($cols);
-            $mycampaign->colors=$cols;
+           // $mycampaign->colors=$cols;
 
             $country= $request->country;
-            $countries =implode(":", $country);
+			
+            $countries =implode(",", $country);
+			
             $mycampaign->country=$countries;
-        }else{
-            $mycampaign->colors = $request->colors;
-        }
+        // }else{
+        //     
+        // }
 
             if(!empty($request->text_content)){
                 $mycampaign->file_name = $request->text_content;
@@ -108,6 +150,7 @@ class MycampaignController extends Controller
                     $imgfile = $request->file('file_name');
                     $imgFilename=$imgfile->getClientOriginalName();
                     $imgfile->move($destinationPath,$imgfile->getClientOriginalName());
+                  //  dd($img);
                     $mycampaign->file_name = $imgFilename;
                 }
                  
@@ -122,27 +165,25 @@ class MycampaignController extends Controller
                     $mycampaign->file_name = $imgFilename;
                 }
                  
-                 else{ return redirect()->route('mycampaign')->with('error','Could not get file to upload!'); }
+                 else{ 
+                   // return redirect()->route('mycampaign')->with('error','Could not get file to upload!'); 
+                   $mycampaign->file_name = '';
+                }
              }
 
-            // $mycampaign->file_name = $request->file('file_name')->getClientOriginalName();
- 
-            // $mycampaign = $request->file('file_name')->store('public/uploads/upload_files');
-            $mycampaign->save();
-           // return back()->with('success','mycampaign has been created successfully!');
+           
              if( $mycampaign->save()){
                 $camp_id =$mycampaign->id;
-                $request->validate([
-                    'transaction_amt' => ''
-                    ]);
+               
                    
-                    $tvlcampaign = new TvlCampaign;
+                    $tvlcampaign = new JobPaymentCheck;
                     $tvlcampaign->campaign_id = $camp_id;
-                    $status=1;
+                    $status=1;//status 1 means Pending 
                     $tvlcampaign->status = $status;
                     $trans_amt= $request->transaction_amt;
                    // $trans_amtt =implode(",", $trans_amt);
-                    $tvlcampaign->tvl_amount = $trans_amt;
+                    $tvlcampaign->transaction_harsh = $trans_amt;
+                    $tvlcampaign->campaign_designation_id = $request->designation;
                     $tvlcampaign->save();
             return redirect()->route('mycampaign')->with('success','Mycampaign has been created successfully!');
              }else{

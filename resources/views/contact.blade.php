@@ -2,29 +2,8 @@
 <html lang="en">
 @include("layout.header")
 <body>
-
+@section('title','Contact Us')
 @include("layout.menu")
-
-<div class="innerpage_banner">
-	<div class="container">
-	    <div class="row">
-	      <div class="col-md-12">
-	        <h2>Contact Us</h2>
-	        <div class="breadcrumb">
-	          <ul class="clearfix">
-	            <li class="ib bg">
-	              <a href="<?php echo BASEURL;?>">Home</a>
-	            </li>
-	            <li class="ib current-page">Contact Us</li>
-	          </ul>
-	        </div>
-	      </div>
-	    </div>
-	</div>
-</div>
-
-
-
 
 <div class="con-social-sec ptb-50">
 	<div class="container">
@@ -62,7 +41,7 @@
 		<div class="row align-items-center">
 			<div class="col-md-4 col-lg-4">
 				<div class="cof-img">
-					<img src="images/contact-page.jpg" alt="">
+					<img src="{{BASEURL}}images/contact-page.jpg" alt="">
 					<div class="form-title">
 						<h4>Leave A <br/> Meassage</h4>
 						<a href="mailto:info@gmail.com">info@gmail.com</a>
@@ -99,7 +78,7 @@
 								</div>
 								<div class="col-lg-6 col-md-6">
 									<div class="captcha">
-										<img src="images/captcha.jpg" alt="">
+										<img src="{{BASEURL}}images/captcha.jpg" alt="">
 									</div>
 								</div>
 								<div class="col-lg-6 col-md-6">
@@ -272,7 +251,6 @@
 </div>
 
 
-@include("layout.footer")
 
 <!--============================= Scripts =============================-->
 <a href="#" class="back-to-top" style="display: none;"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
@@ -299,37 +277,4 @@ jQuery(document).ready(function() {
 
 
 
-<script>
-	$('.testimonial').owlCarousel({
-    loop:true,
-    margin:10,
-    nav:true,
-    autoplay:true,
-    responsive:{
-        0:{
-            items:1
-        },
-        600:{
-            items:1
-        },
-        1000:{
-            items:2
-        }
-    }
-})
-</script>
-
-
-<script src="js/menu.js"></script>
-<script type="text/javascript">
-	$("#cssmenu").menumaker({
-		title: "",
-		format: "multitoggle"
-	});
-</script>
-
-<script src="js/wow.js"></script>
-<script>new WOW().init();</script>
-
-</body>
-</html>
+@include("layout.footer")

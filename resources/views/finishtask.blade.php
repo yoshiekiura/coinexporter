@@ -1,36 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>CoinExporter</title>
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<meta name="format-detection" content="telephone=no">
-<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/fontawesome-all.css" rel="stylesheet">
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
-<link rel="stylesheet" href="css/animate.min.css" type="text/css" media="screen">
-<link rel="stylesheet" href="css/menu.css">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-<link rel="stylesheet" href="assets/owl.carousel.css">
-<script src="assets/owl.carousel.js"></script>
-
-
-</head>
-<body class="dashboard-pages">
 
 
 @include("layouts.header")
 
 <div class="welcome-dashboard">
 	<div class="container">
-    
+  @section('title', 'Finish Task')
   @include("layouts.menu")
     </div>
 </div>
@@ -48,7 +23,24 @@
         </div>
     </div>
 </div>
+<!--------alert message start------->
+<div class="container">
+    @include("layouts.alert")
 
+    @if (Session::has('success'))
+    <div class="alert success-alert" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{ Session::get('success') }}
+    </div>
+    @endif
+    @if ($message = Session::get('error'))
+    <div class=" alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>{{ $message }}</strong>
+    </div>
+    @endif
+</div>
+<!--------alert message end------->
 <div class="finish-table ptb-50">
     <div class="container">
         <div class="row">
@@ -68,7 +60,79 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
+									@foreach ($job_dones as $job_done)
+                  <tr>
+                    <td align="left">{{$job_done->campaign_id}} </td>
+                    <td>{{$job_done->campaign_name}}</td>
+										@if ($job_done->pof == "")
+                    <td><input id="upload" type="file" style="display: none;">
+									  <a href="#" role="button" class="click" data-bs-toggle="modal" data-bs-target="#uploadModal{{$job_done->jobdoneId}}">Click Here to Upload</a>
+                <!-- ========================== Click Here======================= -->
+                <div class="modal fade" id="uploadModal{{$job_done->jobdoneId}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="max-width: 514px;">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <!-- <h5 class="modal-title" id="exampleModalLabel">Upload Proof</h5> -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                  <form method="POST" action="{{ route('finishtask.update', ['id' => $job_done->jobdoneId]) }}">
+                  {{csrf_field()}}
+                  <div class="email-box-area">
+                  <input type="hidden" name="campainUserId" value="{{$job_done->user_id}}">
+                        <input type="hidden" name="campainId" value="{{$job_done->campaign_id}}">
+                       
+                    <input type="hidden" name="finishtask_id" value="{{$job_done->jobdoneId}}" >
+                      <p>PROOF BOX - Enter the proof in the box below</p>
+                      <h4 class="text-danger">* If a printscreen is asked, use theses free sites: <a href="https://snipboard.io/"> Snipboard</a> or <a href="https://prnt.sc/"> PRNT </a></h4>
+                      <textarea rows="5" onresize="0" name="proofInstructionbox" id="uploadtext"></textarea>
+                      <button type="submit" id="submit" onclick="uploadfn()">Upload</button>
+
+                  </div>
+
+                </form>
+                  </div>
+                </div>
+                </div>
+                </div>
+                  </td>
+										@else
+										<td><a href="#" role="button" class="click" data-bs-toggle="modal" data-bs-target="#proofModal{{$job_done->jobdoneId}}">Click to view(Uploaded)</a>
+                      <!-- ========================== Click Here======================= -->
+              <div class="modal fade" id="proofModal{{$job_done->jobdoneId}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="max-width: 514px;">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Uploaded Proof</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <input type="hidden" name="campainId" value="{{$job_done->campaign_id}}">
+                    <input type="hidden" name="id" value="{{$job_done->jobdoneId}}">
+                    <textarea rows="5" style="width: 100%;border-radius: 6px;border: 2px dashed #d5d5d5;padding: 10px 10px;" placeholder="Uploaded Proof">{{$job_done->pof}}</textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                  </td>
+										@endif
+										<td>${{$job_done->campaign_earning}}</td>
+                    @if ($job_done->tvl_status == "Pending")
+                    <td style="color: #ff7600;font-weight: 500;">Pending</td>
+										@elseif ($job_done->tvl_status == "Published")
+										<td style="color: #1dbb00;font-weight: 500;">Published </td>
+										@elseif ($job_done->tvl_status == "Rejected")
+										<td style="color: #e11010;font-weight: 500;">Rejected</td>
+										@else
+										<td></td>
+											@endif
+                    <td>{{date("d-M-Y", strtotime($job_done->created))}}</td>
+                    <td><a href="#" class="click" data-bs-toggle="modal" data-bs-target="#clickexampleModal">Click Here</a></td>
+                 
+                  </tr>
+                   
+									  @endforeach
+                           <!--   <tr>
                                 <td align="left">Fsgdh3987dhsd </td>
                                 <td>Write reviews and post</td>
                                 <td>Uploaded</td>
@@ -94,7 +158,7 @@
                                 <td><a href="#" style="color: #ff2300;font-weight: 500;" data-bs-toggle="modal" data-bs-target="#cancelledexampleModal">Cancelled <span class="small-content">(Click to view reason)</span></a></td>
                                 <td>16 June,2022</td>
                                 <td><a href="#" class="click" data-bs-toggle="modal" data-bs-target="#clickexampleModal">Click Here</a></td>
-                              </tr>
+                              </tr>-->
                             </tbody>
                         </table>
                      </div>
@@ -111,15 +175,7 @@
 
 
 
-<div class="dashboard-footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                &copy; 2009 - 2022 Coin Exporter, All Rights Reserved 
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 <!--============================= cancelled =============================-->
@@ -131,7 +187,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body can-modal">
-        <img src="images/modal-bg.png" alt="">
+        <img src="{{BASEURL}}images/modal-bg.png" alt="">
         <h5 class="modal-title" id="exampleModalLabel">Reson</h5>
         <p>Your cryptocurrency telegram group is full of bots and inactive</p>
       </div>
@@ -162,7 +218,14 @@
 <!--============================= Scripts =============================-->
 <a href="#" class="back-to-top" style="display: none;"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
-<script>            
+<script>
+
+// $("#submit").click(function()
+// {
+//   var message = $('#uploadtext').val();
+//   alert(message);
+
+// });
 jQuery(document).ready(function() {
 	var offset = 220;
 	var duration = 500;
@@ -181,21 +244,10 @@ jQuery(document).ready(function() {
 	})
 });
 </script> 
+<!-- <script>
+function uploadfn() {
+  alert("I am an alert box!");
+}
+</script> -->
 
-
-
-<script src="js/menu.js"></script>
-<script type="text/javascript">
-	$("#cssmenu").menumaker({
-		title: "",
-		format: "multitoggle"
-	});
-</script>
-
-
-
-<script src="js/wow.js"></script>
-<script>new WOW().init();</script>
-
-</body>
-</html>
+@include("layouts.footer")

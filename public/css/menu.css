@@ -352,7 +352,7 @@ height: 35px;
 
 
 @media only screen and (min-width:1401px) and (max-width:1500px) {
-#cssmenu > ul > li > a {padding: 15px 6px;font-size: 16px;}
+#cssmenu > ul > li > a {padding: 15px 15px;font-size: 16px;}
 
 
 
@@ -366,23 +366,21 @@ height: 35px;
 
 }
 @media only screen and (min-width:1200px) and (max-width:1300px) {
-#cssmenu > ul > li > a {padding:15px 7px;font-size: 14px;}
-.head-btn a {
-  padding: 8px 10px;}
+#cssmenu > ul > li > a {padding:15px 4px;font-size: 14px;}
+
 
 
 
 }
 @media only screen and (min-width:992px) and (max-width:1199px) {
-#cssmenu > ul > li > a {padding: 12px 0px;font-size: 11px;margin: 0 5px;}
+#cssmenu > ul > li > a {padding: 12px 0px;font-size: 9px;margin: 0 5px;}
 #cssmenu > ul > li:after {height: 20px;top: 8px;}
-.head-btn a {
-  padding: 8px 12px;}
+
 
 
 }
 @media only screen and (min-width:768px) and (max-width:991px) {
-#cssmenu > ul > li > a {padding: 8px 0px;font-size: 9px;margin: 0px 0px;}
+#cssmenu > ul > li > a {padding: 8px 2px;font-size: 8px;margin: 0px 0px;}
 .head-btn a {margin-left: 5px;font-size: 12px;padding: 5px 6px;}
 
 

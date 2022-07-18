@@ -12,6 +12,9 @@
 #forgot-modal {
   display: none;
 }
+input[type="checkbox"][readonly] {
+  pointer-events: none;
+}
 </style>
 <header class="header-sticky">
     <div class="container">
@@ -19,8 +22,8 @@
             <div class="col-lg-12">
                 <div class="head-bar">
                     <div class="logo">
-                        <a href="#"><img src="<?php echo BASEURL; ?>images/coin-exporter.png" alt="" /></a>
-                        <a href="#"><img src="<?php echo BASEURL; ?>images/coin-exporterwh.png" alt="" /></a>
+                        <a href="<?php echo BASEURL; ?>"><img src="<?php echo BASEURL; ?>images/coin-exporter.png" alt="" /></a>
+                        <a href="<?php echo BASEURL; ?>"><img src="<?php echo BASEURL; ?>images/coin-exporterwh.png" alt="" /></a>
                     </div>
                     <div class="menu">
                         <nav id="cssmenu" class="head_btm_menu">
@@ -28,10 +31,10 @@
 
                             <ul>
                                
-                                    <li class="{{$_SERVER['REQUEST_URI'] == '/' ? 'active' : ''}}"><a href="{{route('index')}}">Home</a></li>
+                                    <li class="{{ Request::routeIs('index') ? 'active' : '' }}"><a href="{{route('index')}}">Home</a></li>
                               
                                
-                                    <li class="{{$_SERVER['REQUEST_URI'] == '/about' ? 'active' : ''}}"><a href="{{route('about')}}">About</a></li>
+                                    <li class="{{ Request::routeIs('about') ? 'active' : '' }}"><a href="{{route('about')}}">About</a></li>
                                
                                 <li><a href="#">Utilities</a>
 
@@ -65,14 +68,14 @@
                                         <li><a href="{{route('tokenomic')}}">Tokenomics</a></li>
                                         <li><a href="{{route('investor')}}">Investors</a></li>
                                         <li><a href="{{route('roadmap')}}">Roadmap</a></li>
-                                        <li><a href="#">Whitepaper</a></li>
+                                        <li><a  href="../pdf/Coinexporter_Whitepaper.pdf" target="_blank">Whitepaper</a></li>
                                         <li><a href="{{route('team')}}">Team</a></li>
                                     </ul>
                                 </li>
                              
-                                    <li class="{{$_SERVER['REQUEST_URI'] == '/faq' ? 'active' : ''}}"><a href="{{route('faq')}}">FAQ</a></li>
+                                    <li class="{{ Request::routeIs('faq') ? 'active' : '' }}"><a href="{{route('faq')}}">FAQ</a></li>
                               
-                                    <li class="{{$_SERVER['REQUEST_URI'] == '/contact' ? 'active' : ''}}"><a href="{{route('contact')}}">Contact</a></li>
+                                    <li class="{{ Request::routeIs('contact') ? 'active' : '' }}"><a href="{{route('contact')}}">Contact</a></li>
                                
                         </nav>
                     </div>
@@ -212,14 +215,14 @@
                     <ul>
                         <li>
                             <i class="far fa-envelope"></i>
-                            <input type="email" class="form-control" name="email" value="karthik@gmail.com" required autofocus placeholder="Email">
+                            <input type="email" class="form-control" name="email"  required autofocus value="karthik@gmail.com" placeholder="Email">
                             @error('email')
                             <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
                         </li>
                         <li>
                             <i class="far fa-lock"></i>
-                            <input class="form-control" type="password" name="password" value="karthik" required autocomplete="current-password" placeholder="Password">
+                            <input class="form-control" type="password" name="password" value="karthik123" required autocomplete="current-password" placeholder="Password">
                             @error('password')
                             <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
@@ -292,7 +295,6 @@
                     Forgot your password? 
                         <span>No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.</span>
                     </h4>
-                    <div id="errors-list"></div>
                     <ul>
                         <li>
                             <i class="far fa-envelope"></i>
@@ -335,6 +337,7 @@
                         Create Your account
                         <span>Setup a new account in a minute.</span>
                     </h4>
+                    <div id="reg-errors-list"></div>                   
                     <ul>
                         <li>
                             <i class="far fa-user"></i>
@@ -354,6 +357,13 @@
                             <i class="far fa-lock"></i>
                             <input class="form-control err" type="password" name="password" required autocomplete="new-password" placeholder="Password">
                             @error('password')
+                            <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @enderror
+                        </li>
+                        <li>
+                            <i class="far fa-lock"></i>
+                            <input class="form-control err" type="password" name="password_confirmation"  autocomplete="new-password" placeholder="Confirm Password">
+                            @error('password_confirmation')
                             <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
                         </li>
@@ -387,8 +397,8 @@
                         <li>
                             <div class="row">
                                 <div class="col-12 chkboxmain err">
-                                    <input id="Option6" name="terms" type="checkbox" checked>
-                                    <label class="checkbox" for="Option6"> I read and agreed to the CoinExporter privacy and terms and conditions.</label>
+                                    <input id="Option6" name="terms" type="checkbox" checked onclick="return false">
+                                    <label class="checkbox" for="Option6"> I read and agreed to the CoinExporter privacy and <a href="{{route('terms')}}" target="_blank">terms and conditions.</a> </label>
                                     @error('terms')
                                     <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
@@ -497,7 +507,7 @@
         });
     });
 </script>
-<!--========LogIn Through Ajax Call====-->
+<!--========SignIn Through Ajax Call====-->
 
 <script>
     $(function() {
@@ -516,7 +526,7 @@
             }).fail(function(response) {
                 // handle error and show in html
                 $(e).find("[type='submit']").html("Sign In");
-        $(".alerts").remove();
+                 $(".alerts").remove();
                 var erroJson = JSON.parse(response.responseText);
                 for (var err in erroJson) {
                     for (var errstr of erroJson[err])
@@ -526,8 +536,37 @@
             });
             return false;
         });
+
+        $(document).on("submit", "#regForm", function() {
+            var e = this;
+            // change Signup button text before ajax
+            $(this).find("[type='submit']").html("Registering...");
+
+            $.post($(this).attr('action'), $(this).serialize(), function(data) {
+
+                $(e).find("[type='submit']").html("Register Now");
+                if (data.status) { // If success then redirect to Signup url
+                    window.location = data.redirect_location;
+                }
+            }).fail(function(response) {
+                // handle error and show in html
+                $(e).find("[type='submit']").html("Register Now");
+                $(".alerts").remove();
+                var erroJson = JSON.parse(response.responseText);
+               
+                for (var err in erroJson) {
+                    for (var errstr of erroJson[err])
+                        $("#reg-errors-list").append("<div class='alerts alert-danger'>" + errstr + "</div>");
+                }
+
+            });
+            return false;
+        });
     });
 </script>
+
+
+
  <script type="text/javascript">
 
 function signinModal(){

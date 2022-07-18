@@ -271,8 +271,7 @@
 		<div class="row align-items-center">
 			<div class="col-lg-6 col-md-6">
 				<div class="work-img">
-				<img src="{{BASEURL}}images/faqimg1.jpg" alt="">
-
+				<img src="{{BASEURL}}images/faqimg1.png" alt="">
 				</div>
 			</div>
 			<div class="col-md-6 col-lg-6">

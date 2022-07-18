@@ -26,8 +26,8 @@
                 <ul>
                     
                     <li><a href="{{ BASEURL }}">Home</a></li>   
-                    <li><a href="#"  data-bs-toggle="modal" data-bs-target="#register-modal">Register</a></li>   
-                    <li><a href="#">Forgot Password</a></li>   
+                    <!-- <li><a href="#"  data-bs-toggle="modal" data-bs-target="#register-modal">Register</a></li>   
+                    <li><a href="#">Forgot Password</a></li>    -->
                     <li><a href="{{ BASEURL }}terms">Terms</a></li>    
                     <li><a href="{{ BASEURL }}faq">FAQ</a></li>    
                     <li><a href="{{ BASEURL }}tutorial">Tutorials</a></li>   

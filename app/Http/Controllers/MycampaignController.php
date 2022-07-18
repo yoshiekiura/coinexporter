@@ -115,6 +115,12 @@ class MycampaignController extends Controller
             }else{
                 $mycampaign->referral_code = 'NULL';
             }
+            if(!empty($request->featured_campaign)){
+                $mycampaign->is_featured = $request->featured_campaign;
+                }else{
+                    $mycampaign->is_featured = 0;
+                }
+               //dd ($request->featured_campaign);
             $mycampaign->file_type = $request->file_type;
                 $user_id =  Auth::user()->id;
                 $status='active';

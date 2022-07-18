@@ -8,7 +8,7 @@ use App\Models\JobDone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator; 
-
+use DB;
 class DashboardController extends Controller
 {
     /**
@@ -18,54 +18,40 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
+        $job_spaces = JobSpace::select("job_spaces.*","job_spaces.status as sts");
+        if($request->jobname) {
+            $job_spaces->where('campaign_name', 'like', '%' . $request->jobname . '%');
+        }
+        if($request->selpayment) {
+            $job_spaces->where('campaign_earning',$request->selpayment);
+        }
 
-        //Start with creating your object, which will be used to query the database
+        //Fetch list of results
 
-        // $job_spaces = JobSpace::select("job_spaces.*","job_spaces.status as sts")
-        // ->orderby("job_spaces.colors","desc");
-
-
-        // //Add Conditions
-
-        // if(!is_null($request->jobname)) {
-        //     $job_spaces->where('campaign_name','=',$request->jobname);
-        // }
-
-        // if(!is_null($request->payment)) {
-        //     $job_spaces->where('campaign_earning','=',$request->payment);
-           
-        // }
-
-        // //Fetch list of results
-
-        // $result = $job_spaces->paginate(2);
-
-           // echo $jobname;
-        $job_spaces = JobSpace::select("job_spaces.*","job_spaces.status as sts")
-                            ->orderby("job_spaces.colors","desc")
-                            ->paginate(2);
-
-                            
-
-        // $explode_country = explode(',' ,$job_spaces->country) ;
-        // $check = array_search(Auth::user()->country, $explode_country);
-         $userId = Auth::user()->id;
-       // $data = JobDone::select("proof_of_work as pof")->where("campaign_id",$job_spaces->id)->where("user_id",$userId)->count();
+       $jobspaces = $job_spaces->orderby("job_spaces.is_featured","desc")->orderby("job_spaces.colors","desc")->paginate(2, ['*'], 'page', $request->get('page'));
        
+       $userId = Auth::user()->id;
+      
        $data = '';
       
        if ($request->ajax()) {
-        foreach ($job_spaces as $job_space) {
+        foreach ($jobspaces as $job_space) {
             $action = route('jobdetail', ['id' => $job_space->id]);
             $explode_country = explode(',' ,$job_space->country) ;
             $check = array_search(Auth::user()->country, $explode_country);
             $userId = Auth::user()->id;
             $jobdone = JobDone::select("proof_of_work as pof")->where("campaign_id",$job_space->id)->where("user_id",$userId)->count();
+            $baseurl = BASEURL;
             if($check !== false){
             if($jobdone == $job_space->promoters_needed){
 
             }else{
             
+                if($job_space->is_featured == '1'){
+                $featured ='<img src="'.$baseurl.'images/featured.png" alt="Featured" align="top" style="margin-left:10px;">';
+            }else{
+                $featured = '';
+            }
             if($job_space->colors == 'LG'){
                 $bg_Colr ='background-color:#C4EE98;';
             }
@@ -83,7 +69,7 @@ class DashboardController extends Controller
                 }else { 
                 $status =  '<td style='.$bg_Colr.'}><span class="rectangual-box" style="background-color:red;"></span></td>';
             } 
-            $data .='<tr><td align="left" style='.$bg_Colr.'><a href="'.$action.'">'.$job_space->campaign_name.'</a></td><td style='.$bg_Colr.'>$'.$job_space->campaign_earning.'</td>'. $status.'<td style='.$bg_Colr.'>'.$jobdone.'/<sup>'.$job_space->promoters_needed.'</sup></td></tr>';
+            $data .='<tr><td align="left" style='.$bg_Colr.'><a href="'.$action.'">'.$job_space->campaign_name.' '.$featured.'</a></td><td style='.$bg_Colr.'>$'.$job_space->campaign_earning.'</td>'. $status.'<td style='.$bg_Colr.'>'.$jobdone.'/<sup>'.$job_space->promoters_needed.'</sup></td></tr>';
             
              }
             }

@@ -61,10 +61,10 @@
                                 </th>
                                 <!-- </form> -->
                                 <th width="15%">
-                                    <select class="selectbox-design ">
+                                    <select class="selectbox-design " id="selpayment">
                                         <option selected disabled>Payment</option>
                                         @foreach ($payments as $payment)
-                                        <option name="campaign_earning" id="payment">${{$payment->campaign_earning}}</option>
+                                        <option name="campaign_earning" id="payment" data-payment="{{$payment->campaign_earning}}" value="{{$payment->campaign_earning}}">${{$payment->campaign_earning}}</option>
                                         @endforeach
                                        
                                     </select>
@@ -89,60 +89,53 @@
 <!--============================= Scripts =============================-->
 
 <a href="#" class="back-to-top" style="display: none;"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
-
 <script>
-    jQuery(document).ready(function() {
-        var offset = 220;
-        var duration = 500;
-        jQuery(window).scroll(function() {
-            if (jQuery(this).scrollTop() > offset) {
-                jQuery('.back-to-top').fadeIn(duration);
-            } else {
-                jQuery('.back-to-top').fadeOut(duration);
-            }
-        });
-
-        jQuery('.back-to-top').click(function(event) {
-            event.preventDefault();
-            jQuery('html, body').animate({
-                scrollTop: 0
-            }, duration);
-            return false;
-        })
-    });
-</script>
-<!-- <script>
-$(document).ready(function() {
-    var jobname = $("#jobname").val();
-    var payment = $("#payment").val();
-    $('#payment').click(function() {
-      var SITEURL = "{{ url('/jobspaces') }}";
-        //debugger;
-        $.ajax({
-            type: "POST",
-            url: SITEURL, 
+   
+    $('#selpayment').on('change', function() {
+        //load_more(page);
+        var jobname = $('#jobname').val();
+        var selpayment =  $('#selpayment').val();
+       $.ajax({
+            url: "{{ route('dashboard')}}",
+            type: 'GET',
             data: {
-                //"jobname" : jobname,
-                "payment" : payment
-            }, 
-           // alert(payment);
-            success: function(data) {
-                console.log(data);
+                'jobname': jobname,
+                'selpayment': selpayment,
+            },
+            success: function(response) {
+                $("#results").html('');
+                $("#results").append(response);
+
+            },
+            error: function(response) {
+                $("#successmsg").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Social Channel Not Saved!</strong></div>');
             }
-        })
-        
+     });
     });
-    
-});
-  </script> -->
-<script>
-    // $('#payment').on('click', function () {
-    // var payment = {};
+    $('#jobname').keyup(function(){
+       // load_more(page);
+        var jobname = $('#jobname').val();
+        var selpayment =  $('#selpayment').val();
+       $.ajax({
+            url: "{{ route('dashboard')}}",
+            type: 'GET',
+            data: {
+                'jobname': jobname,
+                'selpayment': selpayment,
+            },
+            success: function(response) {
+                $("#results").html('');
+                $("#results").append(response);
 
-    // $('#payment:selected').each(function () {
-    //     payment[$(this).attr('payment')] = $(this).val();
+            },
+            error: function(response) {
+                $("#successmsg").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Social Channel Not Saved!</strong></div>');
+            }
+     });
+    });
+    // $('#jobname').on('click', function() {
+    //     load_more(page);
     // });
-
    var SITEURL = "{{ url('/') }}";
    var page = 1; //track user scroll as page number, right now page number is 1
    load_more(page); //initial content load
@@ -153,13 +146,18 @@ $(document).ready(function() {
       }
     });     
     function load_more(page){
-        //debugger;
+        // var jobname = $('#jobname').val();
+        // var selpayment =  $('#selpayment').val();
+        
+       
         $.ajax({
            url: SITEURL+ "/jobspace?page=" + page,
            type: "get",
+           //data: {'jobname': jobname,'selpayment':selpayment},
            datatype: "html",
            beforeSend: function()
            {
+            
               $('.ajax-loading').show();
             }
         })
@@ -181,5 +179,29 @@ $(document).ready(function() {
           alert('No response from server');
        });
     }
+//});
 </script>
+<script>
+    jQuery(document).ready(function() {
+        var offset = 220;
+        var duration = 500;
+        jQuery(window).scroll(function() {
+            if (jQuery(this).scrollTop() > offset) {
+                jQuery('.back-to-top').fadeIn(duration);
+            } else {
+                jQuery('.back-to-top').fadeOut(duration);
+            }
+        });
+
+        jQuery('.back-to-top').click(function(event) {
+            event.preventDefault();
+            jQuery('html, body').animate({
+                scrollTop: 0
+            }, duration);
+            return false;
+        })
+    });
+</script>
+
+
 @include("layouts.footer")

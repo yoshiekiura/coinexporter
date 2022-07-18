@@ -342,7 +342,7 @@ input[type=checkbox]:checked + .checkbox:before {content: "\2713";font-size: 14p
 .breadcrumb a{color:#dadada;}
 .table_responsive_maas .form-control{height:45px;min-height: 45px; max-width:350px;}
 .table_responsive_maas tr:nth-child(even) td {background: #e5e5e5}
-.selectbox-design {background: #fff url(../images/select-arrow.gif) no-repeat 95% center;
+.selectbox-design {background: #fff url(../images/select-arrow.png) no-repeat 95% center;
 height: 45px; font-weight:normal;border-radius: 5px;width: 100%;font-size: 14px;color:rgba(32,46,63,0.5);border: 1px solid #A8A9AC;padding-left: 10px;padding-right: 10px;}
 
 
@@ -364,7 +364,7 @@ height: 45px; font-weight:normal;border-radius: 5px;width: 100%;font-size: 14px;
 .selct-box .form-control {padding: 7px 10px;color: rgb(32 46 63);background-color: #fff;background-clip: padding-box;border: 1px solid rgb(32 46 63 / 27%);border-radius: 5px;min-height: 0;}
 .tab-text  .form-select { color: #7a7a7a;}
 .tab-text .tab-pane .table>:not(caption)>*>* {background-color:#fff;border-bottom-width: 0px;padding: 12px 10px;}
-.tab-text .tab-pane .table {border-radius: 10px;background: #ffffff!important;box-shadow: 0 0 20px #bbb3b3;padding: 16px 16px;border-collapse: unset;text-align: center;}
+.tab-text .tab-pane .table {border-radius: 10px;background: #ffffff;box-shadow: 0 0 20px #bbb3b3;padding: 16px 16px;border-collapse: unset;text-align: center;}
 .tab-text .tab-pane .table tr:nth-child(odd) td {background: #e5e5e5;}
 .tab-text .tab-pane .table td a {color: #116a9d;font-weight: 500;}
 .txt-area label {padding-bottom: 10px;color: #0f4d70;font-weight: 500;}
@@ -536,6 +536,16 @@ textarea.form-control {min-height: 170px;}
 
 .check-input-option label {
     margin-right: 10px;
+}
+
+/* ===========================dashboard -2========== */
+.card-dash {
+    background: #fff;
+    border-radius: 10px;
+}
+.card-dash .card-body i{
+    color: #e5e5e5;
+    font-size: 50px;
 }
 /* ===================Campaign and promotion============= */
 .promotion-grid-group {display: grid;grid-template-columns: repeat(4, 1fr);grid-column-gap: 20px;grid-row-gap: 20px;}
@@ -804,7 +814,7 @@ header button.dark-btn .fa-sun {display: none;}
 .dark-mode .adv-banner, .dark-mode .service-sec, .dark-mode .social-sec,
 .dark-mode .market-sec, .dark-mode .testimonial-sec, .dark-mode .coin-export, .dark-mode footer, 
 .dark-mode .top-about, .dark-mode .snd-about, .dark-mode .con-social-sec, .dark-mode .contact-form, 
-.dark-mode .faq-accodian, .dark-mode .guide-sec, .dark-mode .Worker-sec, .dark-mode .dashboard-body, .dark-mode .finish-table, .dark-mode .my-account-sec,.dark-mode .transaction-sec, .dark-mode .terms_condition, .dark-mode .tutor-im-box,.dark-mode .section-tutorial,.dark-mode .error-page,.dark-mode .withdraw-sec, .dark-mode .campaign-sec, .dark-mode  .dropdown-menu, .dark-mode .email-zip-box, .dark-mode .email-zip, .dark-mode .roadmap-sec, .dark-mode .token-sec, .dark-mode .promotion, .dark-mode .dark-bg, .dark-mode .investor-sec, .dark-mode  .benifit-section {
+.dark-mode .faq-accodian, .dark-mode .guide-sec, .dark-mode .Worker-sec, .dark-mode .dashboard-body, .dark-mode .finish-table, .dark-mode .my-account-sec,.dark-mode .transaction-sec, .dark-mode .terms_condition, .dark-mode .tutor-im-box,.dark-mode .section-tutorial,.dark-mode .error-page,.dark-mode .withdraw-sec, .dark-mode .campaign-sec, .dark-mode  .dropdown-menu, .dark-mode .email-zip-box, .dark-mode .email-zip, .dark-mode .roadmap-sec, .dark-mode .token-sec, .dark-mode .promotion, .dark-mode .dark-bg, .dark-mode .investor-sec, .dark-mode  .benifit-section, .dark-mode .box-download {
   background: rgb(0 0 0);
 }
 .dark-mode .innerpage_banner{background: url(../images/innerpagebgdark.jpg) left top no-repeat;background-size: cover;}
@@ -855,16 +865,16 @@ header button.dark-btn .fa-sun {display: none;}
 .dark-mode .service-sec .service-list li span {background: #202020;}
 .dark-mode .service-sec .service-list-btm em {color: #fff;}
 
-.dark-mode .social-sec .social-sec-head p,.dark-mode .coin-export .ce-para p,.dark-mode .service-sec .service-head p,.dark-mode .testimonial-sec .testiti-head p,.dark-mode .testimonial-sec .testi-box p,.dark-mode .banner ul li,.dark-mode .service-sec .service-list li,.dark-mode footer ul li a, .dark-mode footer .copyright, .dark-mode footer p, .dark-mode .market-sec .market-box p,.dark-mode .top-about .top-ab-txt p,.dark-mode .snd-about .snd-txt p, .dark-mode .con-social-sec .con-social-box p, .dark-mode .contact-form .cof-form .cof-title p, .dark-mode .dashboard-footer,.dark-mode .faq-accodian .accordion-item .accordion-body p, .dark-mode .guide-sec .guide-box ul li, .dark-mode .Worker-sec .work-titel ul li, .dark-mode .modal-dialog .modal-content .modal-body .chkboxmain label, .dark-mode .modal-dialog .modal-content .modal-body .text-end a, .dark-mode .modal-dialog .modal-content .modal-body .dont-account, .dark-mode .modal-dialog .modal-content .modal-body li a,.dark-mode .dashboard-form-area label, .dark-mode .profile-usermenu ul li a, .dark-mode .profile-usermenu ul li i, .dark-mode .finish-task .finish-title h4, .dark-mode  .terms_condition .terms_condition-text p, .dark-mode .terms_condition .terms_condition-text li i, .dark-mode .tutor-im-box .title-blog p,.dark-mode .section-tutorial p, .dark-mode .error-page .error-content p, .dark-mode .with-complain-form .with-box2 .selct-bal label, .dark-mode .balance-title .selct-bal label,  .dark-mode .title label, .dark-mode .color-check p, .dark-mode .with-text ul li,.dark-mode .pro-title p, .dark-mode .loc-pro p, .dark-mode .pass-title label, .dark-mode .tran-title label, .dark-mode .email-zip-title ul li, .dark-mode .email-zip-title p, .dark-mode .roadmap-sec .description li, .dark-mode .text {color: #9d9d9d!important;}
+.dark-mode .social-sec .social-sec-head p,.dark-mode .coin-export .ce-para p,.dark-mode .service-sec .service-head p,.dark-mode .testimonial-sec .testiti-head p,.dark-mode .testimonial-sec .testi-box p,.dark-mode .banner ul li,.dark-mode .service-sec .service-list li,.dark-mode footer ul li a, .dark-mode footer .copyright, .dark-mode footer p, .dark-mode .market-sec .market-box p,.dark-mode .top-about .top-ab-txt p,.dark-mode .snd-about .snd-txt p, .dark-mode .con-social-sec .con-social-box p, .dark-mode .contact-form .cof-form .cof-title p, .dark-mode .dashboard-footer,.dark-mode .faq-accodian .accordion-item .accordion-body p, .dark-mode .guide-sec .guide-box ul li, .dark-mode .Worker-sec .work-titel ul li, .dark-mode .modal-dialog .modal-content .modal-body .chkboxmain label, .dark-mode .modal-dialog .modal-content .modal-body .text-end a, .dark-mode .modal-dialog .modal-content .modal-body .dont-account, .dark-mode .modal-dialog .modal-content .modal-body li a,.dark-mode .dashboard-form-area label, .dark-mode .profile-usermenu ul li a, .dark-mode .profile-usermenu ul li i, .dark-mode .finish-task .finish-title h4, .dark-mode  .terms_condition .terms_condition-text p, .dark-mode .terms_condition .terms_condition-text li i, .dark-mode .tutor-im-box .title-blog p,.dark-mode .section-tutorial p, .dark-mode .error-page .error-content p, .dark-mode .with-complain-form .with-box2 .selct-bal label, .dark-mode .balance-title .selct-bal label,  .dark-mode .title label, .dark-mode .color-check p, .dark-mode .with-text ul li,.dark-mode .pro-title p, .dark-mode .loc-pro p, .dark-mode .pass-title label, .dark-mode .tran-title label, .dark-mode .email-zip-title ul li, .dark-mode .email-zip-title p, .dark-mode .roadmap-sec .description li, .dark-mode .text, .dark-mode #dvPassport {color: #9d9d9d!important;}
 
 .dark-mode .social-sec .social-box, .dark-mode .market-sec .market-box, .dark-mode .con-social-sec .con-social-box, 
-.dark-mode .guide-sec .guide-box, .dark-mode .blog-standard-item, .dark-mode .balance-title, .dark-mode .with-complain-form .with-box2, .dark-mode .cost-box, .dark-mode .coo-box, .dark-mode .team-box {box-shadow: unset;}
+.dark-mode .guide-sec .guide-box, .dark-mode .blog-standard-item, .dark-mode .balance-title, .dark-mode .with-complain-form .with-box2, .dark-mode .cost-box, .dark-mode .coo-box, .dark-mode .team-box, .dark-mode .tab-text .tab-pane .table {box-shadow: unset;}
 .dark-mode .market-sec .market-box i {color: #d3d3d3;background: #484848;}
 
 .dark-mode .market-sec .market-box, .dark-mode .testimonial-sec .testi-box, 
 .dark-mode .social-sec .social-box, .dark-mode footer .subscribe-main, .dark-mode .con-social-sec .con-social-box, 
 .dark-mode .modal-content,
-.dark-mode .guide-sec .guide-box, .dark-mode .blog-standard-item, .dark-mode .balance-title, .dark-mode .with-complain-form .with-box2, .dark-mode .campaign-sec .tab-box .tab-text form, .dark-mode .coo-box, .dark-mode .cost-box, .dark-mode .box-icon.style-04 .icon-box-wrap, .dark-mode .rivate-services-box, .dark-mode .about-one__contact-icon, .dark-mode .benifit-section:before, .dark-mode .team-box{background: #202020;}
+.dark-mode .guide-sec .guide-box, .dark-mode .blog-standard-item, .dark-mode .balance-title, .dark-mode .with-complain-form .with-box2, .dark-mode .campaign-sec .tab-box .tab-text form, .dark-mode .coo-box, .dark-mode .cost-box, .dark-mode .box-icon.style-04 .icon-box-wrap, .dark-mode .rivate-services-box, .dark-mode .about-one__contact-icon, .dark-mode .benifit-section:before, .dark-mode .team-box, .dark-mode .tab-text .tab-pane .table{background: #202020;}
 
 .dark-mode .snd-about .snd-img .video-play-button:after{background: rgb(16 16 16);}
 .dark-mode .snd-about .snd-img .video-play-button:before{background: rgb(16 16 16);}
@@ -902,15 +912,15 @@ header button.dark-btn .fa-sun {display: none;}
 	background: #181818;
 }
 .dark-mode .table_responsive_maas table td, .dark-mode .table_responsive_maas table td a {
-	color: #b9b9b9;
+	color: #dfdfdf;
 }
-.dark-mode .table_responsive_maas tr:nth-child(even) td {
+.dark-mode .table_responsive_maas tr:nth-child(even) td, .dark-mode .tab-text .tab-pane .table>:not(caption)>*>* {
     background: #383838;
 }
 .dark-mode .table_responsive_maas table td{
     background: #242424;
 }
-.dark-mode .dashboard-nav, .dark-mode .table>:not(caption)>*>* { background-color: #404040;
+.dark-mode .dashboard-nav, .dark-mode .table>:not(caption)>*>* ,.dark-mode .tab-text .tab-pane .table tr:nth-child(odd) td{ background-color: #404040;
 }
 .dark-mode #cssmenu ul ul li a {
     border-bottom: 1px solid rgb(82 82 82 / 67%);
@@ -920,9 +930,7 @@ header button.dark-btn .fa-sun {display: none;}
 .dark-mode .welcome-dashboard #cssmenu > ul > li > a{
 	color: #fff;
 }
-.dark-mode .rectangual-box {
-    background-color: #919191;
-}
+
 .dark-mode .change_photo a.change_btn,.dark-mode .profile-usermenu ul li.active a {
     background-color: #202020;
 }
@@ -950,6 +958,53 @@ header button.dark-btn .fa-sun {display: none;}
 }
 .dark-mode .table_responsive_maas table td {border-bottom: 0;}
 .dark-mode .search-input span{color: #cdcdcd;}
+
+
+
+
+
+.dark-mode .selectbox-design {
+    background: #404040 url(../images/select-arrowwh.png) no-repeat 95% center;
+    color: rgb(255 255 255);}
+.dark-mode #dvPassport textarea, .dark-mode .box-download textarea {
+    background: transparent;
+    border: 1px solid #a3a3a3;
+    color: #fff;
+}
+.dark-mode .tab-text .tab-pane .table tr {
+    color: #fff;
+}
+.dark-mode  .tab-text .tab-pane .table td a {
+    color: #0fa8ff;
+}
+.dark-mode .vscomp-toggle-button {
+    background-color: #202020;
+    border: 1px solid #ddd;
+    color: #fff;
+}
+.dark-mode .vscomp-arrow::after {
+    border-bottom-color: #fff;
+    border-right-color: #fff;
+}
+.dark-mode .vscomp-dropbox {
+    background-color: #2c2a2a;
+}
+.dark-mode .vscomp-option.focused {
+    background-color: #767474;
+}
+.dark-mode .vscomp-wrapper.multiple .vscomp-option .vscomp-option-text {
+    color: #fff;
+}
+.dark-mode .vscomp-no-options, .vscomp-no-search-results {
+    color: #fff;
+}
+.dark-mode .vscomp-wrapper.has-select-all .vscomp-search-input, .vscomp-wrapper.has-select-all .vscomp-toggle-all-label {
+   
+    color: #fff;
+}
+.dark-mode .modal-dialog.loginpanle-modal .form-control {
+    background-color: #282828;
+}
 /*=========================== Button ===========================*/
 
 .btn-style-one{color: #fff; border-radius:5px; min-width:130px; text-align:center; border:0px solid #2b79cb;padding: 12px 25px;background:#2b79cb; transition: 0.5s ease-in-out; display:inline-block;cursor: pointer; font-weight:500;}
@@ -1099,14 +1154,4 @@ select{-webkit-appearance: none;-moz-appearance: none;appearance: none;}
 
 @media (prefers-color-scheme: dark) {
 
-}
-
-/* ===========================dashboard -2========== */
-.card-dash {
-    background: #fff;
-    border-radius: 10px;
-}
-.card-dash .card-body i{
-    color: #e5e5e5;
-    font-size: 50px;
 }

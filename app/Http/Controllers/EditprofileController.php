@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class EditprofileController extends Controller
 {
@@ -74,27 +75,43 @@ class EditprofileController extends Controller
     // Change user password
     public function changepassword(Request $request)
     {
-        // $request->validate([
-        //     'password' => 'required',
-        //     'newPassword' => 'required',
-        //     'ConfirmPassword' => 'required'
-        // ]);
-
+        $validator = Validator::make($request->all(), [
+           
+            'oldPassword' => 'required',
+            'newPassword' => 'required',
+            'ConfirmPassword' => 'required'
+        ]);
+        if ($validator->fails())   //check all validations are fine, if not then redirect and show error messages
+        {
+            // $request->session()->flash($validator->errors(),422);
+            // return redirect()->back();
+            // $errors = $validator->errors();
+            // return redirect()->back()->with('error',$errors);
+            return response()->json($validator->errors(),422);  
+            // validation failed return back to form
+            
+        } else {
         $id = Auth::user()->id;
         $userData = User::where('id', $id)->first();
         if (Hash::check($request->oldPassword, $userData->password)) {
             if ($request->newPassword == $request->ConfirmPassword) {
                 $userData->password = Hash::make($request->newPassword);
                 if ($userData->save()) {
+                    $request->session()->flash('success', 'You are Logged In Successfully!');
+                    //return response()->json(["status"=>true,"redirect_location"=>url("/editprofile")]);
                     return redirect()->back()->with('success', 'Password Updated Successfully!');
                 } else {
+                    //return response()->json([["Password Not Updated!"]],422);
                     return redirect()->back()->with('error', 'Password Not Updated!');
                 }
             } else {
+                //return response()->json([["Confirm password does not match."]],422);
                 return redirect()->back()->with('error', 'Confirm password does not match.');
             }
         } else {
+            //return response()->json([["Old Password Does not match."]],422);
             return redirect()->back()->with('error', 'Old Password Does not match.');
         }
-    }
+    } 
+}
 }

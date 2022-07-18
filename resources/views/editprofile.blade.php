@@ -18,6 +18,8 @@
         <strong>{{ $message }}</strong>
     </div>
     @endif
+
+    
 </div>
 
 <!--  -->
@@ -132,17 +134,27 @@
                 <form action="{{ route('changepassword') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <img src="{{BASEURL}}images/lock.png" style="max-width: 40%;">
+                    <div id="errors-list"></div>
                     <div class="pass-title" style="text-align: left;">
                         <label style="padding-bottom: 2px;">Old Password</label>
                         <input type="password" name="oldPassword" style="padding: 5px 7px;" required>
+                        @error('oldPassword')
+                            <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @enderror
                     </div>
                     <div class="pass-title" style="text-align: left;">
                         <label style="padding-bottom: 2px;">New Password</label>
                         <input type="password" name="newPassword" style="padding: 5px 7px;" required>
+                        @error('newPassword')
+                            <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @enderror
                     </div>
                     <div class="pass-title" style="text-align: left;">
                         <label style="padding-bottom: 2px;">Confirm New Password</label>
                         <input type="password" name="ConfirmPassword" style="padding: 5px 7px;" required>
+                        @error('ConfirmPassword')
+                            <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @enderror
                     </div>
                     <div class="pass-title" style="margin-top: 30px; margin-bottom: 6px;">
                         <button class="btn-style-one" type="submit">Submit</button>
@@ -159,7 +171,56 @@
 
 
 <a href="#" class="back-to-top" style="display: none;"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+<script>
+    $(document).ready(function() {
 
+        $("#changeModalPassword").validate({
+            rules: {
+                
+                oldPassword: "required",
+                newPassword: "required",
+                ConfirmPassword: "required",
+                
+            },
+            messages: {
+                oldPassword: "Old Password is required",
+                newPassword: "New Password is required",
+                ConfirmPassword: "Confirm Password is required",
+                
+            }
+
+        });
+    });
+</script>
+<script>
+    $(function() {
+        // handle submit event of form
+        // $(document).on("submit", "#changeModalPassword", function() {
+        //     var e = this;
+        //     // change login button text before ajax
+        //     $(this).find("[type='submit']").html("Submitting...");
+
+        //     $.post($(this).attr('action'), $(this).serialize(), function(data) {
+
+        //         $(e).find("[type='submit']").html("Submit");
+        //         if (data.status) { // If success then redirect to login url
+        //             window.location = data.redirect_location;
+        //         }
+        //     }).fail(function(response) {
+        //         // handle error and show in html
+        //         $(e).find("[type='submit']").html("Submit");
+        //          $(".alerts").remove();
+        //         var erroJson = JSON.parse(response.responseText);
+        //         for (var err in erroJson) {
+        //             for (var errstr of erroJson[err])
+        //                 $("#errors-list").append("<div class='alerts alert-danger'>" + errstr + "</div>");
+        //         }
+
+        //     });
+        //     return false;
+        // });
+    });
+</script>
 <script>
     var post = function(formId) {
         var formData = new FormData(document.getElementById(formId));

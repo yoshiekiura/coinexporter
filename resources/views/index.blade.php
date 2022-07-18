@@ -84,7 +84,7 @@
 			</div>
 			<div class="col-md-6 p-0">
 				<div class="ce-img">
-					<img src="<?php echo BASEURL; ?>images/exportbg.jpg" alt="">
+				<img src="{{BASEURL}}images/exportbgdark.png" alt="">
 				</div>
 			</div>
 		</div>

@@ -230,7 +230,7 @@
                     </div>
                     <div class="cost-input">
                       <label>Promoters Needed (Minimum of 1)</label>
-                      <input type="text" class="promoterNeed" id="proNeeded" name="promoters_needed" placeholder="Type numbers" value="{{old('promoters_needed')}}">
+                      <input type="text" class="promoterNeed form-control" id="proNeeded" name="promoters_needed" placeholder="Type numbers" value="{{old('promoters_needed')}}">
                       @error('promoters_needed')
                       <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
                       @enderror
@@ -240,14 +240,14 @@
 
                     <div class="cost-input">
                       <label>Promoter to Earn</label>
-                      <input type="text" class="campCalculation" id="proEarn" name="promoters_earn" placeholder="Type amount each" value="{{old('promoters_earn')}}">
+                      <input type="text" class="campCalculation form-control" id="proEarn" name="promoters_earn" placeholder="Type amount each" value="{{old('promoters_earn')}}">
                       @error('promoters_earn')
                       <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
                       @enderror
                     </div>
                     <div class="cost-input">
                       <label>Campaign Cost</label>
-                      <input type="text" id="camp_cost" onchange="costFunction()" name="campaign_cost" placeholder="Campaign Cost" value="{{old('campaign_cost')}}" readonly>
+                      <input type="text" id="camp_cost" class="form-control" onchange="costFunction()" name="campaign_cost" placeholder="Campaign Cost" value="{{old('campaign_cost')}}" readonly>
                       @error('campaign_cost')
                       <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
                       @enderror
@@ -287,7 +287,7 @@
                     <div class="coo-box">
                       <div class="color-check2">
                       <!-- style="display:block; !important" -->
-                        <input type="checkbox" name="featured_campaign" id="featured_campaign" value="featured" @if (old('featured_campaign') == 'featured') checked @endif data-price="0.7" style="display:inline-block;">&nbsp;
+                        <input type="checkbox" name="featured_campaign" id="featured_campaign" value="1" @if (old('featured_campaign') == '1') checked @endif data-price="0.7" style="display:inline-block;">&nbsp;
                         <label>Featured My Campaign ($0.7)(OPTIONAL)</label>
                         <p><strong>BENEFITS:</strong></p>
                         <ul>

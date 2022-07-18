@@ -39,7 +39,7 @@ $userId = Auth::user()->id;
         <div class="row align-items-center">
             <div class="col-lg-6 col-md-6">
                 <div class="email-zip-title with-text">
-                    <h3>Email/Zip Submit Sign Up</h3>
+                    <h3 class="heading">Email/Zip Submit Sign Up</h3>
                     <ul>
                     <li><span> <strong>Work done: </strong> </span>{{$data}}/ <sup> {{ $jobSpaceData->promoters_needed }}</sup></li>
                         <li><span> <strong>You will earn: </strong></span> $ {{ $jobSpaceData->campaign_earning }}</li>
@@ -100,14 +100,13 @@ $userId = Auth::user()->id;
     </div>
 </div>
 
-
 <div class="ptb-50 box-download">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="title text-center">
-                    <h4>Uploaded Content For Campaign Promotion Purposes</h4>
-                    <p>(You can download videos, banners or copy the text. You can also share directly to your desired social platform)</p>
+                    <h4 class="heading">Uploaded Content For Campaign Promotion Purposes</h4>
+                    <p class="text">(You can download videos, banners or copy the text. You can also share directly to your desired social platform)</p>
                     <?php $ext = pathinfo($jobSpaceData->file_name, PATHINFO_EXTENSION);?>
                          @if(($ext == 'mp4') || ($ext == 'mp3') || ($ext == 'pdf') || ($ext == 'gif'))
                          <form  action="{{route('downloadfile')}}" method="POST" enctype="multipart/form-data">

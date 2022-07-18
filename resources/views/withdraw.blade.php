@@ -139,25 +139,25 @@
                             <div class="col-lg-4 col-md-4">
                                 <div class="selct-bal">
                                     <label>Requested Amount </label>
-                                    <input type="text" name="name" placeholder="$">
+                                    <input type="text" name="name" placeholder="$" class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <div class="selct-bal">
                                     <label>Date of Request</label>
-                                    <input type="text" name="name" placeholder="$">
+                                    <input type="text" name="name" placeholder="$" class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <div class="selct-bal">
                                     <label>Time of Request</label>
-                                    <input type="text" name="name" placeholder="$">
+                                    <input type="text" name="name" placeholder="$" class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="selct-bal">
                                     <label>Write Us Any Additional Message</label>
-                                    <input type="text" name="name" placeholder="$">
+                                    <input type="text" name="name" placeholder="$" class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">

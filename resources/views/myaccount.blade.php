@@ -63,7 +63,7 @@
                         <tbody>
                             <form action="" method="POST" enctype="multipart/form-data" id="serialize">
                                 @csrf
-                                <input type="hidden" id="userid" value="{{Auth::id()}}"> 
+                                <input type="hidden" id="userid" value="{{Auth::id()}}" class="form-control"> 
                                 @if($SocialPlatform)
                                     @foreach ($SocialPlatform as $key=>$linkName)
                                     @php
@@ -71,17 +71,17 @@
 
                                     @endphp
                                     @if($social_user_link)
-                                        <input class="channelData" type="hidden"  value="{{$social_user_link->id}}" name="channelId{{$key+1}}">
+                                        <input class="channelData" type="hidden"  value="{{$social_user_link->id}}" name="channelId{{$key+1}}" class="form-control">
                                     @else
-                                     <input class="channelData" type="hidden"  value="0" name="channelId{{$key+1}}">
+                                     <input class="channelData" type="hidden"  value="0" name="channelId{{$key+1}}" class="form-control">
                                     @endif
                                 <tr>
                                     <td>
                                         {{$linkName->social_platform_name}}
-                                         <input  class="channelLink" type="hidden" id="channelLink{{$key+1}}" value="{{$linkName->social_platform_name}}" name="channelLink{{$key+1}}">
+                                         <input  class="channelLink" type="hidden" id="channelLink{{$key+1}}" value="{{$linkName->social_platform_name}}" name="channelLink{{$key+1}}" class="form-control">
                                     </td>
                                      <td class="box pass-title" name="box{{$key+1}}" >
-                                          <input style="display:none;" class="channelData" type="text" id="channelName{{$key+1}}" value="{{$social_user_link ? $social_user_link->channel_name : ''}}" name="channelName{{$key+1}}" >
+                                          <input style="display:none;" class="channelData" type="text" id="channelName{{$key+1}}" value="{{$social_user_link ? $social_user_link->channel_name : ''}}" name="channelName{{$key+1}}" class="form-control">
                                           <span id="channelTestName{{$key+1}}">{{$social_user_link ? $social_user_link->channel_name : ''}}<span>
                                      </td>
                                      <td>
@@ -150,7 +150,7 @@
                                 <div class="col-lg-12 col-md-6">
                                     <div class="pass-title">
                                         <label>PASTE YOUR BSC WALLET ADDRESS ONLY</label>
-                                        <input type="text" name="" placeholder="Wallet Address">
+                                        <input type="text" name="" placeholder="Wallet Address" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-6">

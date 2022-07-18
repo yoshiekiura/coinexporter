@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Validator;
 
 class RegisteredUserController extends Controller
 {
@@ -34,17 +35,28 @@ class RegisteredUserController extends Controller
     public function store(Request $request,User $user)
     {
         //dd($request->all());
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            //'email' => 'required|email|unique:users,email,'.$user->id,
-            // 'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'password' => ['required'],
-            'country' => ['required'],
-            'terms' => ['required'],
+       
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',   // required and email format validation
+             // 'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            //'password' => 'required|min:8', 
             
-            
-        ]);
+            // required and number field validation
+           // 'confirm_password' => 'confirmed|min:8',
+            'password' => 'min:8|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'min:8',
+            'country'=> 'required',
+            'terms'=> 'required',
+
+        ]); // create the validations
+        if ($validator->fails())   //check all validations are fine, if not then redirect and show error messages
+        {
+            return response()->json($validator->errors(),422);  
+            // validation failed return back to form
+
+        } else {
         if(!empty($request->referral_code)){
             $ref_code = $request->referral_code;
             }else{
@@ -60,10 +72,17 @@ class RegisteredUserController extends Controller
         ]);
        
         event(new Registered($user));
-
       // Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME)->with('success','You are Registered Successfully!');
+        //return redirect(RouteServiceProvider::HOME)->with('success','You are Registered Successfully!');
+        if($user){
+            $request->session()->flash('success', 'You are Registered Successfully!');
+            return response()->json(["status"=>true,"redirect_location"=>url("/")]);
+        } else {
+            return response()->json(["Something Wrong!"],422);
+            //return response()->json($validator->errors(),422); 
+        }
+      }
     }
     // public function checkDuplicateEmail(Request $request){
     //     if($request->ajax()){

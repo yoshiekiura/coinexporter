@@ -173,12 +173,12 @@ jQuery(document).ready(function() {
 </script> 
 
 <script src="js/menu.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$("#cssmenu").menumaker({
 		title: "",
 		format: "multitoggle"
 	});
-</script>
+</script> -->
 <script>
 function myFunction() {
    var element = document.body;

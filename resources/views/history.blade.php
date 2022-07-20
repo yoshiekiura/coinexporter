@@ -26,10 +26,11 @@
                     <th width="10%">Time </th>
                     <th width="10%">Date </th>
                     <th width="10%">Reason</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                @foreach ($JobPaymentChecks as $JobPaymentCheck)
+                @foreach ($JobPaymentChecks as $key=>$JobPaymentCheck)
                   <tr>
                   <td align="left">{{$JobPaymentCheck->campaign_id}} </td>
                       <td>{{$JobPaymentCheck->campaign_category_name}}</td>
@@ -43,11 +44,48 @@
                       <td></td>
                       @endif 
                     <td><a href="#">Fb.harana.com</a></td>
-                    <td><a href="#" class="click" data-bs-toggle="modal" data-bs-target="#proofModal">Click to view</a></td>
+                    <td><a href="#" class="click" data-bs-toggle="modal" data-bs-target="#proofModal{{$key+1}}">Click to view</a></td>
                     <td>12:23 UTC</td>
                     <td>12 June, 2022</td>
                     <td><a href="#" class="click" data-bs-toggle="modal" data-bs-target="#rejectModal">Click</a></td>
+                    <td><!-- Example split danger button -->
+<!-- Example single danger button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    Action
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Aprrove</a></li>
+    <li><a class="dropdown-item" href="#">Reject</a></li>
+  </ul>
+</div></td>                  
                   </tr>
+                  
+                <!-- ========================== Click Here======================= -->
+                <div class="modal fade" id="proofModal{{$key+1}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" style="max-width: 514px;">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Submitted Proof</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                      <?php $ext = pathinfo($JobPaymentCheck->file_name, PATHINFO_EXTENSION);?>
+                      @if(($ext == 'mp4') || ($ext == 'mp3') || ($ext == 'pdf') || ($ext == 'gif'))
+                        <iframe src="<?php echo BASEURL; ?>uploads/{{$JobPaymentCheck->file_name}}"></iframe>
+                        @elseif(($ext == 'png') || ($ext == 'PNG') || ($ext == 'jpg') || ($ext == 'JPG') || ($ext == 'jpeg') || ($ext == 'JPEG'))
+                        <img src="<?php echo BASEURL; ?>uploads/{{$JobPaymentCheck->file_name}}">
+                        @else
+                        @if(empty($JobPaymentCheck->file_name))
+                        <p>N/A</p>
+                        @else
+                        <p>{{$JobPaymentCheck->file_name}}</p>
+                        @endif
+                        @endif
+                      </div>
+                    </div>
+                  </div>
+                </div>
                   @endforeach
                    
                 </tbody>
@@ -82,31 +120,6 @@
 </div>
 
 
-<!-- ========================== Click Here======================= -->
-<div class="modal fade" id="proofModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" style="max-width: 514px;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Submitted Proof</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-       <?php $ext = pathinfo($JobPaymentCheck->file_name, PATHINFO_EXTENSION);?>
-       @if(($ext == 'mp4') || ($ext == 'mp3') || ($ext == 'pdf') || ($ext == 'gif'))
-        <iframe src="<?php echo BASEURL; ?>uploads/{{$JobPaymentCheck->file_name}}"></iframe>
-        @elseif(($ext == 'png') || ($ext == 'PNG') || ($ext == 'jpg') || ($ext == 'JPG') || ($ext == 'jpeg') || ($ext == 'JPEG'))
-        <img src="<?php echo BASEURL; ?>uploads/{{$JobPaymentCheck->file_name}}">
-        @else
-        @if(empty($JobPaymentCheck->file_name))
-        <p>N/A</p>
-        @else
-        <p>{{$JobPaymentCheck->file_name}}</p>
-        @endif
-        @endif
-      </div>
-    </div>
-  </div>
-</div>
 <!-- <div class="modal fade" id="proofModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="max-width: 514px;">
     <div class="modal-content">

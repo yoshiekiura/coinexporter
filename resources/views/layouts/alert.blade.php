@@ -1,11 +1,10 @@
 <script>
     window.setTimeout(function() {
-        $(".alert").fadeOut(500, function() {
-            $(this).remove();
-        });
-    }, 4000);
+    $(".alert").fadeOut(500, function(){
+        $(this).remove(); 
+    });
+}, 4000);
 </script>
-
 <style>
     .alert {
         width: 34%;
@@ -26,6 +25,7 @@
         top: 12%;
         right: 2%;
     }
+    .alert .btn-close{background-color: transparent;}
     .close {
         position: absolute;
         width: 30px;

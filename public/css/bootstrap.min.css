@@ -2881,6 +2881,11 @@ z-index:3
 	font-size: .875rem;
 	border-radius: .2rem
 }
+.btn-group-xs>.btn, .btn-xs {
+	padding: .28rem .1rem;
+	font-size: .775rem;
+	border-radius: .1rem
+}
 .fade {
 	transition: opacity .15s linear
 }
@@ -2931,7 +2936,7 @@ z-index:3
 	z-index: 1000;
 	display: none;
 	min-width: 10rem;
-	padding: .5rem 0;
+	padding: .5rem 0px;
 	margin: 0;
 	font-size: 1rem;
 	color: #212529;
@@ -3128,7 +3133,7 @@ z-index:3
 .dropdown-item {
 	display: block;
 	width: 100%;
-	padding:0px;
+	padding:05px 10px;
 	clear: both;
 	font-weight: 400;
 	color: #212529;

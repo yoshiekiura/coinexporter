@@ -6,15 +6,16 @@
     @include("layouts.alert")
 
     @if (Session::has('success'))
-    <div class="alert success-alert" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+    <div class="alert success-alert  alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         {{ Session::get('success') }}
-    </div>
+    </div>  
     @endif
-    @if ($message = Session::get('error'))
-    <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>{{ $message }}</strong>
+    @if (Session::has('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+    {{ Session::get('error') }}
     </div>
     @endif
 
@@ -53,11 +54,12 @@
                     <div id="successmsg"></div>
                     <table class="table table-hover">
                         <thead>
-                            <tr>
+                            <tr> 
+                                <th width="20%">Social Channel </th>
                                 <th width="20%">Links </th>
                                 <th width="40%">Social Channel Name</th>
-                                <th width="20%">Status</th>
-                                <th width="20%">Action</th>
+                                <th width="10%">Status</th>
+                                <th width="10%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -67,7 +69,7 @@
                                 @if($SocialPlatform)
                                     @foreach ($SocialPlatform as $key=>$linkName)
                                     @php
-                                        $social_user_link = App\Models\SocialLink::where('channel_link',$linkName->social_platform_name)->first();
+                                        $social_user_link = App\Models\SocialLink::where('user_id',Auth::user()->id)->where('channel_id',$linkName->id)->first();
 
                                     @endphp
                                     @if($social_user_link)
@@ -75,11 +77,19 @@
                                     @else
                                      <input class="channelData" type="hidden"  value="0" name="channelId{{$key+1}}" class="form-control">
                                     @endif
+                                   
                                 <tr>
                                     <td>
                                         {{$linkName->social_platform_name}}
-                                         <input  class="channelLink" type="hidden" id="channelLink{{$key+1}}" value="{{$linkName->social_platform_name}}" name="channelLink{{$key+1}}" class="form-control">
                                     </td>
+                                    <!-- <td>
+                                        {{$linkName->social_platform_name}}
+                                         <input  class="channelLink" type="hidden" id="channelLink{{$key+1}}" value="{{$linkName->social_platform_name}}" name="channelLink{{$key+1}}" class="form-control">
+                                    </td> -->
+                                    <td class="box pass-title" name="box0{{$key+1}}" >
+                                          <input style="display:none;" class="channelLink" type="text" id="channelLink{{$key+1}}" value="{{$social_user_link ? $social_user_link->channel_link : ''}}" name="channelLink{{$key+1}}" class="form-control">
+                                          <span id="channelLinkTestName{{$key+1}}">{{$social_user_link ? $social_user_link->channel_link : ''}}<span>
+                                     </td>
                                      <td class="box pass-title" name="box{{$key+1}}" >
                                           <input style="display:none;" class="channelData" type="text" id="channelName{{$key+1}}" value="{{$social_user_link ? $social_user_link->channel_name : ''}}" name="channelName{{$key+1}}" class="form-control">
                                           <span id="channelTestName{{$key+1}}">{{$social_user_link ? $social_user_link->channel_name : ''}}<span>
@@ -87,7 +97,7 @@
                                      <td>
                                         <span id="linkStatus{{$key+1}}">{{$social_user_link ? $social_user_link->status : ''}}</span>
                                     </td>
-                                    <td class="buttonBox selct-bal" action="edit"  name="btn{{$key+1}}" onClick="editData('{{$key+1}}')"><button type="button" id="edit{{$key+1}}">Edit</button></td>
+                                    <td class="buttonBox selct-bal" action="edit"  name="btn{{$key+1}}" onClick="editData('{{$key+1}}')"> <input class="channelData" type="hidden"  value="{{$linkName->id}}" name="socialPlatformId{{$key+1}}" class="form-control"><button type="button" id="edit{{$key+1}}">Edit</button></td>
                                     
                                 </tr>
                                     @endforeach
@@ -150,7 +160,8 @@
                                 <div class="col-lg-12 col-md-6">
                                     <div class="pass-title">
                                         <label>PASTE YOUR BSC WALLET ADDRESS ONLY</label>
-                                        <input type="text" name="" placeholder="Wallet Address" class="form-control">
+                                        <input id="text" type="text" name="" placeholder="Wallet Address" class="form-control paste_text">
+                                        <!-- <button class="btn1 paste" onclick="copyToClipboard('#text')">Paste Text</button> -->
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-6">
@@ -218,9 +229,11 @@
 
          var data = $("td[name=btn" + key + "]").attr('action');
           if (data == "edit") {
+             $("#channelLink" + key).show(); 
              $("#channelName" + key).show(); 
              $("#edit" + key).html('Update'); 
              $("td[name=btn" + key + "]").attr('action', 'update');
+             $("#channelLinkTestName" + key).html("");
              $("#channelTestName" + key).html("");
           }
           else {
@@ -228,7 +241,7 @@
              var channelData = $("input[name=channelName" + key + "]").val();
              var channelLink = $("input[name=channelLink" + key + "]").val();
              var channelId =$("input[name=channelId" + key + "]").val();
-             
+             var socialPlatformId =$("input[name=socialPlatformId" + key + "]").val();
              var userid = $("#userid").val();
              if(channelData){
                         $.ajax({
@@ -242,10 +255,14 @@
                             'linkName': channelLink,
                             'channelData': channelData,
                             'userId': userid,
+                            'socialPlatformId': socialPlatformId,
                             'channelId': channelId
                         },
                         success: function(response) {
-                            $("#channelName" + key).hide(); 
+                           // alert(response);
+                            $("#channelLink" + key).hide(); 
+                            $("#channelName" + key).hide();
+                            $("#channelLinkTestName" + key).html(channelLink); 
                             $("#channelTestName" + key).html(channelData); 
                             $("td[name=btn" + key + "]").attr('action', 'edit');
                             $("#edit" + key).html('Edit'); 
@@ -266,5 +283,41 @@
     }
    
 </script>
+<!-- <script>
+    document.getElementById('paste').addEventListener('click', ()=>{
+    let pasteArea = document.getElementById('pasteArea');
+    pasteArea.value = '';
+    navigator.clipboard.readText()
+    .then((text)=>{
+        pasteArea.value = text;
+    });
+});
+    </script> -->
+<!-- <script>
+var copyTextareaBtn = document.querySelector('.paste');
 
+copyTextareaBtn.addEventListener('click', function(event) {
+  var copyTextarea = document.querySelector('.paste_text');
+  copyTextarea.focus();
+  copyTextarea.select();
+
+  try {
+    var successful = document.execCommand('paste');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Pasting text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to paste');
+  }
+});
+</script> -->
+<script>
+function copyToClipboard(element) {
+  var $temp = $("<input>");
+  $("body").append($temp);
+  $temp.val($(element).text()).select();
+  document.execCommand("copy");
+  $temp.remove();
+}
+
+</script>
 @include("layouts.footer")

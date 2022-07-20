@@ -20,31 +20,44 @@
                 @include("layouts.alert")
 
                 @if (Session::has('success'))
-                <div class="alert success-alert" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    {{ Session::get('success') }}
-                </div>
-                @endif
-                @if ($message = Session::get('error'))
-                <div class=" alert alert-danger alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <strong>{{ $message }}</strong>
-                </div>
-                @endif
+
+            <div class="alert success-alert  alert-dismissible fade show" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                {{ Session::get('success') }}
+            </div>  
+            @endif
+            @if (Session::has('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+            {{ Session::get('error') }}
+            </div>
+            @endif
             </div>
 
             <!-- Alert Meassage -->
 
-        <div class="dashboard-advertisment">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 text-end">
-                    <img src="{{BASEURL}}images/banner1.jpg" alt="" />
-                </div>
-                <div class="col-lg-6 col-md-6 text-start">
-                    <img src="{{BASEURL}}images/banner2.jpg" alt="" />
-                </div>
+            <div class="adv-banner">
+	<div class="container">
+    	<div class="row">
+            <div class="col-lg-6 col-md-6 text-end">
+				<div class="owl-carousel" id="adv-slider1">
+					<div class="item"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""/></div>
+       	    		<div class="item"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""/></div>
+					<div class="item"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""/></div>
+					<div class="item"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""/></div>
+				</div>	
+            </div>
+            <div class="col-lg-6 col-md-6 text-start">
+       	    	<div class="owl-carousel" id="adv-slider2">
+					<div class="item"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""/></div>
+       	    		<div class="item"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""/></div>
+					<div class="item"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""/></div>
+					<div class="item"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""/></div>
+				</div>
             </div>
         </div>
+    </div>
+</div>
 
 
         <div class="row">
@@ -62,7 +75,7 @@
                                 <!-- </form> -->
                                 <th width="15%">
                                     <select class="selectbox-design " id="selpayment">
-                                        <option selected disabled>Payment</option>
+                                        <option value="">Payment</option>
                                         @foreach ($payments as $payment)
                                         <option name="campaign_earning" id="payment" data-payment="{{$payment->campaign_earning}}" value="{{$payment->campaign_earning}}">${{$payment->campaign_earning}}</option>
                                         @endforeach
@@ -126,16 +139,12 @@
             success: function(response) {
                 $("#results").html('');
                 $("#results").append(response);
-
             },
             error: function(response) {
                 $("#successmsg").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Social Channel Not Saved!</strong></div>');
             }
      });
     });
-    // $('#jobname').on('click', function() {
-    //     load_more(page);
-    // });
    var SITEURL = "{{ url('/') }}";
    var page = 1; //track user scroll as page number, right now page number is 1
    load_more(page); //initial content load
@@ -146,14 +155,9 @@
       }
     });     
     function load_more(page){
-        // var jobname = $('#jobname').val();
-        // var selpayment =  $('#selpayment').val();
-        
-       
         $.ajax({
            url: SITEURL+ "/jobspace?page=" + page,
            type: "get",
-           //data: {'jobname': jobname,'selpayment':selpayment},
            datatype: "html",
            beforeSend: function()
            {
@@ -202,6 +206,63 @@
         })
     });
 </script>
-
+<script>
+	$('#adv-slider1').owlCarousel({
+   lazyLoad: true,
+        loop: true,
+        margin:0,
+        responsiveClass: true,
+        autoplay:true,
+        autoplayTimeout:3000,
+        autoplayHoverPause:false,
+        mouseDrag: true,
+        touchDrag: true,
+        smartSpeed: 1000,
+        nav: false,
+		dots: false,
+        navText : ["<i class='far fa-chevron-left sp'></i>","<i class='far fa-chevron-right sp'></i>"],
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:1
+        },
+        1000:{
+            items:1
+        }
+    }
+})	
+	
+</script>
+<script>
+	$('#adv-slider2').owlCarousel({
+   lazyLoad: true,
+        loop: true,
+        margin:0,
+        responsiveClass: true,
+        autoplay:true,
+        autoplayTimeout:2000,
+        autoplayHoverPause:false,
+        mouseDrag: true,
+        touchDrag: true,
+        smartSpeed: 1000,
+        nav: false,
+		dots: false,
+        navText : ["<i class='far fa-chevron-left sp'></i>","<i class='far fa-chevron-right sp'></i>"],
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:1
+        },
+        1000:{
+            items:1
+        }
+    }
+})	
+	
+</script>
 
 @include("layouts.footer")

@@ -16,20 +16,21 @@
           @include("layouts.alert")
 
           @if (Session::has('success'))
-          <div class="alert success-alert" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            {{ Session::get('success') }}
-          </div>
-          @endif
-          @if ($message = Session::get('error'))
-          <div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong>{{ $message }}</strong>
-          </div>
-          @endif
+
+      <div class="alert success-alert  alert-dismissible fade show" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          {{ Session::get('success') }}
+      </div>  
+      @endif
+      @if (Session::has('error'))
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+      {{ Session::get('error') }}
+      </div>
+      @endif
 
           <div class="row">
-            <form action="{{route('mycampaignstore')}}" method="POST" enctype="multipart/form-data">
+            <form id="form1" action="{{route('mycampaignstore')}}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="col-lg-12 col-md-10 mx-auto">
                 <div class="tab-text">
@@ -50,7 +51,7 @@
                         <div class="col-lg-6">
                           <div class="selct-box">
                             <label class="form-label">Campaign Type</label>
-                            <select class="form-select" name="campaign_type">
+                            <select class="form-select" name="campaign_type" form="form1">
 
                               @php
                               $campaign_category = App\Models\CampaignCategory::all();
@@ -71,7 +72,7 @@
                         <div class="col-lg-6">
                           <div class="selct-box">
                             <label class="form-label">Select Social platform for campaign</label>
-                            <select class="form-select" name="social_platform">
+                            <select class="form-select" name="social_platform" form="form1">
                               @php
                               $social_platform = App\Models\SocialPlatform::all();
                               @endphp
@@ -91,8 +92,8 @@
 
                         <div class="col-lg-6">
                           <div class="selct-box">
-                            <label class="form-label">Select Target countries of whom to promote campaign</label>
-                            <select id="multipleselect" multiple name="country[]" placeholder="Choose Country" data-search="true" data silent-initial-value-set="true" id="country">
+                            <label class="form-label country">Select Target countries of whom to promote campaign</label>
+                            <select id="multipleselect" multiple name="country[]" placeholder="Choose Country" data-search="true" data silent-initial-value-set="true" form="form1">
                               @php
                               $countries = App\Models\Country::all();
                               @endphp
@@ -110,7 +111,7 @@
                         <div class="col-lg-6">
                           <div class="selct-box">
                             <label class="form-label">Referral Code (If Any)</label>
-                            <input type="text" class="form-control" name="referral_code" value="{{old('referral_code')}}" placeholder="Enter your Referral Code">
+                            <input type="text" class="form-control" name="referral_code" value="{{old('referral_code')}}" placeholder="Enter your Referral Code" form="form1">
                           </div>
 
                         </div>
@@ -152,7 +153,7 @@
                     <div class="col-lg-6 col-md-6">
                       <div class="txt-area">
                         <label for="comment">Describe your campaign </label>
-                        <textarea class="form-control" rows="6" id="comment" name="campaign_desc" placeholder="Clearly state what you want and how you want the promoters to promote your campaign " >{{old('campaign_desc')}}</textarea>
+                        <textarea class="form-control" rows="6" id="comment1" name="campaign_desc" placeholder="Clearly state what you want and how you want the promoters to promote your campaign " form="form1">{{old('campaign_desc')}}</textarea>
 
                       </div>
                       @error('campaign_desc')
@@ -162,7 +163,7 @@
                     <div class="col-lg-6 col-md-6">
                       <div class="txt-area">
                         <label for="comment">What do you need as evidence of work done? </label>
-                        <textarea class="form-control" rows="6" id="comment" name="campaign_proof_desc" placeholder="Clearly state what you want as the proof of work done. e.g: links, screenshots upload and so on.  " >{{old('campaign_proof_desc')}}</textarea>
+                        <textarea class="form-control" rows="6" id="comment2" name="campaign_proof_desc" placeholder="Clearly state what you want as the proof of work done. e.g: links, screenshots upload and so on.  "  form="form1">{{old('campaign_proof_desc')}}</textarea>
                       </div>
                       @error('campaign_proof_desc')
                       <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -176,7 +177,7 @@
                   <div class="row">
                     <div class="col-lg-4 col-md-4">
                       <label class="form-label">What do you want to upload ?</label>
-                      <select class="form-select div-toggle" data-target=".my-info-1" name="file_type">
+                      <select class="form-select div-toggle" data-target=".my-info-1" name="file_type" form="form1">
                       <option value="" data-show=".citrus" selected disabled>Select</option>
                         <option value="video" data-show=".citrus">Video</option>
                         <option value="banner" data-show=".citrus">Banner</option>
@@ -188,7 +189,7 @@
                         <div class="citrus hide">
                           <div class="drop-zone">
                             <span class="drop-zone__prompt">Drop file here or click to upload</span>
-                            <input type="file" class="drop-zone__input" name="file_name">
+                            <input type="file" class="drop-zone__input" name="file_name" form="form1">
                           </div>
                           <div class="button-box">
                             <button type="button">Upload</button>
@@ -199,7 +200,7 @@
                         <div class="hide">
                           <div class="drop-zone">
                             <span class="drop-zone__prompt">Drop file here or click to upload</span>
-                            <input type="file" name="file_name1" class="drop-zone__input">
+                            <input type="file" name="file_name1" class="drop-zone__input" form="form1">
                           </div>
                           <div class="button-box">
                             <button type="button">Upload</button>
@@ -209,7 +210,7 @@
                         </div>
                         <div class="pome hide">
                           <div class="drop-text">
-                            <textarea rows="8" name="text_content"></textarea>
+                            <textarea rows="8" name="text_content" form="form1"></textarea>
                           </div>
                           <div class="button-box">
                             <button type="button">Submit</button>
@@ -230,7 +231,7 @@
                     </div>
                     <div class="cost-input">
                       <label>Promoters Needed (Minimum of 1)</label>
-                      <input type="text" class="promoterNeed form-control" id="proNeeded" name="promoters_needed" placeholder="Type numbers" value="{{old('promoters_needed')}}">
+                      <input type="text" class="promoterNeed form-control" id="proNeeded" name="promoters_needed" placeholder="Type numbers" value="{{old('promoters_needed')}}" form="form1">
                       @error('promoters_needed')
                       <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
                       @enderror
@@ -240,14 +241,14 @@
 
                     <div class="cost-input">
                       <label>Promoter to Earn</label>
-                      <input type="text" class="campCalculation form-control" id="proEarn" name="promoters_earn" placeholder="Type amount each" value="{{old('promoters_earn')}}">
+                      <input type="text" class="campCalculation form-control" id="proEarn" name="promoters_earn" placeholder="Type amount each" value="{{old('promoters_earn')}}" form="form1">
                       @error('promoters_earn')
                       <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
                       @enderror
                     </div>
                     <div class="cost-input">
                       <label>Campaign Cost</label>
-                      <input type="text" id="camp_cost" class="form-control" onchange="costFunction()" name="campaign_cost" placeholder="Campaign Cost" value="{{old('campaign_cost')}}" readonly>
+                      <input type="text" id="camp_cost" class="form-control" onchange="costFunction()" name="campaign_cost" placeholder="Campaign Cost" value="{{old('campaign_cost')}}" form="form1" readonly>
                       @error('campaign_cost')
                       <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
                       @enderror
@@ -263,9 +264,9 @@
                         <div class="col-lg-12">
                           <div class="color-check">
                             <p>Select Color</p>
-                            <input type="radio" name="colors" id="highlight_color" value="LG" @if (old('colors') == 'LG') checked @endif data-price="0.3">&nbsp;<label>LG</label>
-                            <input type="radio" name="colors" id="highlight_color" value="Y" @if (old('colors') == 'Y') checked @endif data-price="0.3">&nbsp;<label>Y</label>
-                            <input type="radio" name="colors" id="highlight_color" value="L" @if (old('colors') == 'L') checked @endif data-price="0.3">&nbsp;<label>L</label>
+                            <input type="radio" name="colors" id="highlight_color" value="LG" @if (old('colors') == 'LG') checked @endif data-price="0.3" form="form1">&nbsp;<label>LG</label>
+                            <input type="radio" name="colors" id="highlight_color" value="Y" @if (old('colors') == 'Y') checked @endif data-price="0.3" form="form1">&nbsp;<label>Y</label>
+                            <input type="radio" name="colors" id="highlight_color" value="L" @if (old('colors') == 'L') checked @endif data-price="0.3" form="form1">&nbsp;<label>L</label>
                           </div>
                           
                         </div>
@@ -287,7 +288,7 @@
                     <div class="coo-box">
                       <div class="color-check2">
                       <!-- style="display:block; !important" -->
-                        <input type="checkbox" name="featured_campaign" id="featured_campaign" value="1" @if (old('featured_campaign') == '1') checked @endif data-price="0.7" style="display:inline-block;">&nbsp;
+                        <input type="checkbox" name="featured_campaign" id="featured_campaign" value="1" @if (old('featured_campaign') == '1') checked @endif data-price="0.7" form="form1" style="display:inline-block;">&nbsp;
                         <label>Featured My Campaign ($0.7)(OPTIONAL)</label>
                         <p><strong>BENEFITS:</strong></p>
                         <ul>
@@ -349,12 +350,20 @@
                             </select>
                           </div>
                            </td>
-                          <td>{{$tvl_admin->wallet_address}}</td>
                           <td>
-                            <div class="controls"><a >Paid</a></div>
+                            <input type="text"  name="wallet_addr" class="form-control copy_text" style="width: 235px;position: relative;margin-left: 100px;" value="{{$tvl_admin->wallet_address}}"><button class="btn1 copy" type="submit" form="form2">
+                                Copy Text
+                            </button>
+                           
                           </td>
                           <td>
-                            <input type="text" id="trans_amt" name="transaction_amt" class="form-control" style="width: 235px;position: relative;margin-left: 100px;" value="{{old('transaction_amt')}}">
+                            <div class="controls"><a href="#" class="click" data-bs-toggle="modal" data-bs-target="#rejectModal">Paid</a></div>
+                          </td>
+                          <td>
+                            <input type="text" id="trans_amt" name="transaction_amt" class="form-control paste_text" style="width: 235px;position: relative;margin-left: 100px;" value="{{old('transaction_amt')}}">
+                            <button class="btn1 paste" type="submit" form="form2">
+                                Paste Text
+                            </button>
                             @error('transaction_amt')
                       <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
                       @enderror</td>
@@ -375,7 +384,7 @@
                     </table>
                   </div>
                   <div class="admin-button">
-                    <button type="submit">Click here to submit campaign</button>
+                    <button type="submit" form="form1">Click here to submit campaign</button>
                   </div>
                 </div>
               </div>
@@ -387,17 +396,17 @@
 
                     <tr>
                       <th width="5%">ID </th>
-                      <th width="10%">Campaign Type</th>
-                      <th width="5%">Status</th>
-                      <th width="20%">History Page</th>
+                      <th width="15%">Campaign Type</th>
+                      <th width="15%">Status</th>
                       <th width="10%">Campaign Upload</th>
+                      <th width="35%">Social To Promote campaign</th>
                       <th width="10%">Date </th>
-                      <th width="40%">Social To Promote campaign</th>
+                      <th width="10%">History Page</th>
                     </tr>
                   </thead>
                   <tbody>
 
-                    @foreach ($tvl_campaigns as $tvl_campaign)
+                    @foreach ($tvl_campaigns as $key=>$tvl_campaign)
                     <tr>
                       <td align="left">{{$tvl_campaign->campaign_id}} </td>
                       <td>{{$tvl_campaign->campaign_category_name}}</td>
@@ -410,7 +419,7 @@
                       @else
                       <td></td>
                       @endif 
-                      <td><a href="{{route('history', ['id' => $tvl_campaign->campaign_id])}}" class="click">Click </a></td>
+                     
                      @if($tvl_campaign->file_type == 'video')
                       <td>Video</td>
                       @elseif($tvl_campaign->file_type == 'banner')
@@ -420,8 +429,9 @@
                       @else
                       <td>N/A</td>
                       @endif
+                      <td>{{$tvl_campaign->social_platform_name}}</td>
                       <td>{{date("d-M-Y", strtotime($tvl_campaign->created))}}</td>
-                      <td>Facebook</td>
+                      <td><a href="{{route('history', ['id' => $tvl_campaign->campaign_id])}}" class="click">Click </a></td>
                     </tr>
                     @endforeach
 
@@ -434,64 +444,27 @@
       </div>
     </div>
   </div>
+<!--============================= cancelled =============================-->
 
-
-  <!--============================= campaign Modal =============================-->
-
-  <div class="modal fade" id="campaignModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="max-width: 963px;">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body can-modal finish-head">
-          <div class="table_responsive_maas">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th width="10%">Promoter’s ID</th>
-                  <th width="10%">Campaign Type</th>
-                  <th width="10%">Status</th>
-                  <th width="10%">Social link </th>
-                  <th width="20%">Submitted Proof</th>
-                  <th width="10%">Time </th>
-                  <th width="10%">Date </th>
-                  <th width="10%">Confirm</th>
-                  <th width="10%">Reject</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td align="left">Sghv87cb</td>
-                  <td>Write reviewsand post</td>
-                  <td style="color: #1dbb00;font-weight: 500;">Confirmed </td>
-                  <td><a href="#">Fb.harana.com</a></td>
-                  <td><a href="#">Click to view</a></td>
-                  <td>12:23 UTC</td>
-                  <td>12 June, 2022</td>
-                  <td><a href="#" class="click">Click</a></td>
-                  <td><a href="#" class="click" data-bs-toggle="modal" data-bs-target="#rejectModal">Click</a></td>
-                </tr>
-                <tr>
-                  <td align="left">Hgd67sgh </td>
-                  <td>Write reviews and post</td>
-                  <td style="color: #ff7600;font-weight: 500;">Pending </td>
-                  <td><a href="#">Fb.yusuf.com</a></td>
-                  <td><a href="#">Click to view</a></td>
-                  <td>12:43UTC</td>
-                  <td>12 June, 2022</td>
-                  <td><a href="#" class="click">Click</a></td>
-                  <td><a href="#" class="click" data-bs-toggle="modal" data-bs-target="#rejectModal">Click</a></td>
-                </tr>
-
-              </tbody>
-            </table>
-          </div>
-        </div>
+<div class="modal fade" id="rejectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <div class="modal-body can-modal">
+        <!-- <img src="{{BASEURL}}images/modal-bg.png" alt=""> -->
+        <h5 class="modal-title" id="exampleModalLabel">Paid?</h5>
+        <p>You said you have sent payment to the 
+selected campaign admin? Paste your transaction harsh for verification</p>
+      </div>
+    <!--   <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
     </div>
   </div>
-
+</div>
 
 
   <div class="modal fade" id="rejectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -522,6 +495,9 @@
   <!--============================= Scripts =============================-->
   <a href="#" class="back-to-top" style="display: none;"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 <!---=====//Campain Calculation//====--->
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
   <script>
 $(document).ready(function() {
   $('input:radio[name="colors"]').change(function(){
@@ -716,5 +692,28 @@ $(document).ready(function() {
     })
     
 });
+  </script>
+  <script>
+  var copyTextareaBtn = document.querySelector('.copy');
+
+copyTextareaBtn.addEventListener('click', function(event) {
+  var copyTextarea = document.querySelector('.copy_text');
+  copyTextarea.focus();
+  copyTextarea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+});
+$(document).ready(function() {
+    $('.paste').click(function() {
+  navigator.clipboard.writeText('.paste_text');
+});
+});
+
   </script>
 @include("layouts.footer")

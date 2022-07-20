@@ -68,7 +68,7 @@ input[type="checkbox"][readonly] {
                                         <li><a href="{{route('tokenomic')}}">Tokenomics</a></li>
                                         <li><a href="{{route('investor')}}">Investors</a></li>
                                         <li><a href="{{route('roadmap')}}">Roadmap</a></li>
-                                        <li><a  href="../pdf/Coinexporter_Whitepaper.pdf" target="_blank">Whitepaper</a></li>
+                                        <li><a href="/uploads/coinexporter_whitepaper.pdf" target="_blank">Whitepaper</a></li>
                                         <li><a href="{{route('team')}}">Team</a></li>
                                     </ul>
                                 </li>
@@ -398,7 +398,7 @@ input[type="checkbox"][readonly] {
                             <div class="row">
                                 <div class="col-12 chkboxmain err">
                                     <input id="Option6" name="terms" type="checkbox" checked onclick="return false">
-                                    <label class="checkbox" for="Option6"> I read and agreed to the CoinExporter privacy and <a href="{{route('terms')}}" target="_blank">terms and conditions.</a> </label>
+                                    <label class="checkbox" for="Option6"> I read and agreed to the CoinExporter privacy and <a href="{{route('terms')}}" target="_blank" class="link" style="color:#0a354e;font-weight:500;">terms and conditions.</a> </label>
                                     @error('terms')
                                     <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror

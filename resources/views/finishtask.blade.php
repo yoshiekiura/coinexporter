@@ -28,15 +28,16 @@
     @include("layouts.alert")
 
     @if (Session::has('success'))
-    <div class="alert success-alert" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+    <div class="alert success-alert  alert-dismissible fade show" role="alert">
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         {{ Session::get('success') }}
-    </div>
+    </div>  
     @endif
-    @if ($message = Session::get('error'))
-    <div class=" alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>{{ $message }}</strong>
+    @if (Session::has('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+    {{ Session::get('error') }}
     </div>
     @endif
 </div>
@@ -205,12 +206,17 @@
   <div class="modal-dialog" style="max-width: 514px;">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Why do you appeal this task to the admin? <br />Clearly state your reason?</h5>
+        <h5 class="modal-title heading" id="exampleModalLabel">Why do you appeal this task to the admin? <br />Clearly state your reason?</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <textarea rows="5" style="width: 100%;border-radius: 6px;border: 2px dashed #d5d5d5;padding: 10px 10px;" placeholder="write your reason here and submit to the admin. "></textarea>
+        <textarea rows="5" style="width: 100%;border-radius: 6px;border: 2px dashed #d5d5d5;padding: 10px 10px;" placeholder="write your reason here and submit to the admin. " class="txt"></textarea>
       </div>
+      <div class="modal-footer">
+      
+      <button class="btn btn-primary" type="submit">Submit</button>
+  
+    </div>
     </div>
   </div>
 </div>

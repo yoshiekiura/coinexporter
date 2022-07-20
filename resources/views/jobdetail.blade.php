@@ -1,28 +1,31 @@
-@include("layouts.header")
+
+  @include("layouts.header")
 
 <div class="welcome-dashboard">
-    <div class="container">
-    @section('title', 'Job Details')
-        @include("layouts.menu")
-    </div>
+  <div class="container">
+  @section('title', 'Job Details')
+    @include("layouts.menu")
+  </div>
 </div>
-   <!-- Alert Meassage -->
 
-<div class="container">
+  <!-- Alert Meassage -->
+
+  <div class="container">
     @include("layouts.alert")
 
     @if (Session::has('success'))
-    <div class="alert success-alert" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        {{ Session::get('success') }}
-    </div>
-    @endif
-    @if ($message = Session::get('error'))
-    <div class=" alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>{{ $message }}</strong>
-    </div>
-    @endif
+
+        <div class="alert success-alert  alert-dismissible fade show" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {{ Session::get('success') }}
+        </div>  
+        @endif
+        @if (Session::has('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+        {{ Session::get('error') }}
+        </div>
+        @endif
 </div>
 
 <!-- Alert Meassage -->
@@ -33,7 +36,7 @@ $userId = Auth::user()->id;
 @endphp
 <div class="email-zip ptb-50">
     <div class="container">
-    <form method="POST" action="{{ route('jobdetail.update') }}" enctype="multipart/form-data">
+    <form method="POST" id="form1" action="{{ route('jobdetail.update') }}" enctype="multipart/form-data">
             @csrf
         <div class="row align-items-center">
             <div class="col-lg-6 col-md-6">
@@ -64,14 +67,14 @@ $userId = Auth::user()->id;
                         <li><span><strong>Are you interested to promote this campaign?</strong></span></li>
                     </ul>
                     <div class="check-input-option form-group">
-                        <input id="Option2" type="radio" name="intrest_to_promote" value="yes">
+                        <input id="Option2" type="radio" name="intrest_to_promote" value="yes" checked form="form1">
                         <label> YES</label>
-                        <input id="Option3" type="radio" name="intrest_to_promote" value="no">
+                        <input id="Option3" type="radio" name="intrest_to_promote" value="no" form="form1">
                         <label>NO</label>
                     </div> 
                     <div id="dvPassport" style="display: none">
                         <label for=""> Why No:</label>
-                        <textarea name="reason" cols="30" rows="4" id="txtPassportNumber"></textarea>
+                        <textarea name="reason" cols="30" rows="4" id="txtPassportNumber" form="form1"></textarea>
                         <!-- <button>Submit</button> -->
                     </div>
                 </div>
@@ -82,23 +85,12 @@ $userId = Auth::user()->id;
                 </div>
             </div>
                 </div>
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <center>
-                        <div class="email-box-area">
-                        
-                            <input type="hidden" name="campainEarning" value="{{$jobSpaceData->campaign_earning}}">
-                            <input type="hidden" name="campainId" value="{{$jobSpaceData->id}}">
-                            <button>SUBMIT: I agreed that I have duly completed this task as instructed</button>
-                        </div>
-                     </center>
-    </form>
-            </div>
+               
+    </form> 
+  </div>
             
-        </div> 
+</div> 
       
-    </div>
-</div>
-
 <div class="ptb-50 box-download">
     <div class="container">
         <div class="row">
@@ -108,31 +100,30 @@ $userId = Auth::user()->id;
                     <p class="text">(You can download videos, banners or copy the text. You can also share directly to your desired social platform)</p>
                     <?php $ext = pathinfo($jobSpaceData->file_name, PATHINFO_EXTENSION);?>
                          @if(($ext == 'mp4') || ($ext == 'mp3') || ($ext == 'pdf') || ($ext == 'gif'))
-                         <form  action="{{route('downloadfile')}}" method="POST" enctype="multipart/form-data">
+                         <form id="form2" action="{{route('downloadfile')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                         <iframe src="<?php echo BASEURL; ?>uploads/{{$jobSpaceData->file_name}}" width="300" height="250"></iframe><br>
-                        <input type="hidden" name="campaign_id" value="{{ $jobSpaceData->id }}">
-                        <button class="btn1" type="submit">Download</button>
+                        <input type="hidden" name="campaign_id" value="{{ $jobSpaceData->id }}" form="form2">
+                        <button class="btn1" type="submit" form="form2">Download</button>
                         </form>
                         @elseif(($ext == 'png') || ($ext == 'PNG') || ($ext == 'jpg') || ($ext == 'JPG') || ($ext == 'jpeg') || ($ext == 'JPEG'))
-                        <form action="{{route('downloadfile')}}" method="POST" enctype="multipart/form-data">
+                        <form id="form2" action="{{route('downloadfile')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                         <img src="<?php echo BASEURL; ?>uploads/{{$jobSpaceData->file_name}}" width="300" height="300"><br>
-                        <input type="hidden" name="campaign_id" value="{{ $jobSpaceData->id }}">
-                        <button class="btn1" type="submit">Download</button>
+                        <input type="hidden" name="campaign_id" value="{{ $jobSpaceData->id }}" form="form2">
+                        <button class="btn1" type="submit" form="form2">Download</button>
                         </form>
                         @else
                         @if(empty($jobSpaceData->file_name))
                         <textarea name="" cols="30" rows="7" id="txtPassportNumber" class="copy_text">N/A</textarea><br>
                         <br>
-                        <button class="btn1">Download</button>
+                        <button class="btn1" form="form2">Download</button>
                         <button class="btn1 copy">Copy Text</button>
                         @else
                         <textarea name="" cols="30" rows="7" id="txtPassportNumber" class="copy_text">{{$jobSpaceData->file_name}}</textarea><br>
                         <button class="btn1 copy">Copy Text</button>
                         @endif
                         @endif
-                  
                     <div>
                         
                         
@@ -148,8 +139,33 @@ $userId = Auth::user()->id;
             <!----Share This Buttons End -->
         </div>
     </div>
+    <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top:10px;">
+    <center>
+        <div class="email-box-area">
+        
+            <input type="hidden" name="campainEarning" value="{{$jobSpaceData->campaign_earning}}" form="form1">
+            <input type="hidden" name="campainId" value="{{$jobSpaceData->id}}" form="form1">
+            <button type="submit" form="form1">SUBMIT: I agreed that I have duly completed this task as instructed</button>
+        </div>
+        </center>
+</div>
 </div>
 
+<div class="dashboard-footer">
+	<div class="container">
+    	<div class="row">
+        	<div class="col-lg-12">
+            	&copy; 2009 - 2022 Coin Exporter, All Rights Reserved 
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--============================= Scripts =============================-->
+
+
+<a href="#" class="back-to-top" style="display: none;"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
 <script>            
 jQuery(document).ready(function() {
@@ -171,6 +187,7 @@ jQuery(document).ready(function() {
 });
 </script> 
 
+<script src="{{BASEURL}}js/menu.js"></script>
 <script type="text/javascript">
 	$("#cssmenu").menumaker({
 		title: "",
@@ -183,6 +200,7 @@ function myFunction() {
    element.classList.toggle("dark-mode");
 }
 </script>
+
 <script>
     $(function () {
         $("#Option3").click(function () {
@@ -200,23 +218,24 @@ function myFunction() {
     });
 </script>
 
-<script src="{{BASEURL}}js/menu.js"></script>
+<script src="{{BASEURL}}js/wow.js"></script>
+<script>new WOW().init();</script>
 <script>
-    const $ = (data) => document.querySelector(data)
+var copyTextareaBtn = document.querySelector('.copy');
 
-    let btn = $('.copy')
-    let copyText = $('.copy_text')
-    btn.addEventListener('click',(e)=>{
-    e.preventDefault()
-    copyText.select();
-    copyText.setSelectionRange(0, 99999); /* For mobile devices */
-    /* Copy the text inside the text field */
-    document.execCommand("copy");
-    /* Alert the copied text */
-   // alert("Coupon is : " + copyText.value);
-    })
+copyTextareaBtn.addEventListener('click', function(event) {
+  var copyTextarea = document.querySelector('.copy_text');
+  copyTextarea.focus();
+  copyTextarea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+});
 </script>
-<!--============================= Scripts =============================-->
-
-
-<a href="#" class="back-to-top" style="display: none;"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+</body>
+</html>

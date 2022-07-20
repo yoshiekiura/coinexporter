@@ -42,13 +42,19 @@ class MycampaignController extends Controller
 							
 							"job_spaces.*",
 							
-							"campaign_categories.*"
+							"campaign_categories.campaign_category_name",
+
+                            "social_platform.social_platform_name"
 
                         )
 
                         ->join("job_spaces", "job_spaces.id", "=", "job_payment_check.campaign_id")
 						
 						->join("campaign_categories", "job_spaces.campaign_category_id", "=", "campaign_categories.id")
+
+                        ->join("social_platform", "job_spaces.campaign_subcategory_id", "=", "social_platform.id")
+                        
+                        ->where("job_spaces.user_id",Auth::user()->id)
 						
 						->orderBy("job_payment_check.id","desc")
 

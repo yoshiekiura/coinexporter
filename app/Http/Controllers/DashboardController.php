@@ -25,6 +25,9 @@ class DashboardController extends Controller
         if($request->selpayment) {
             $job_spaces->where('campaign_earning',$request->selpayment);
         }
+        // if($request->selpayment = null) {
+        //     $job_spaces->where('status','active');
+        // }
 
         //Fetch list of results
 
@@ -53,13 +56,13 @@ class DashboardController extends Controller
                 $featured = '';
             }
             if($job_space->colors == 'LG'){
-                $bg_Colr ='background-color:#C4EE98;';
+                $bg_Colr ='background-color:#3f6c10;';
             }
             else if($job_space->colors == 'L'){
                 $bg_Colr ='background-color:#F9734B;';
             }
             else if($job_space->colors == 'Y'){
-                $bg_Colr ='background-color:#ECF70E;';
+                $bg_Colr ='background-color:#bbc328;';
             }
             else {
                 $bg_Colr ='';

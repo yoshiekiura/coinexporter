@@ -1041,7 +1041,6 @@ footer {padding: 20px 0px 20px;}
 .dashboard-pages #cssmenu.small-screen #menu-button {top: -214px;}
 .dashboard-pages #cssmenu.small-screen > ul {top: -164px;}
 
-}
 input,textarea {-webkit-user-select:text;}
 select{-webkit-appearance: none;-moz-appearance: none;appearance: none;}
 
@@ -1051,7 +1050,7 @@ select{-webkit-appearance: none;-moz-appearance: none;appearance: none;}
 
 
 
-
+}
 /*========= Multiple Dropdown Select ==*/
 /* .selct-box .bootstrap-select{width: 100%!important;}
 .selct-box .bootstrap-select.show-tick .dropdown-menu li a span.text {margin-left: 15px;padding-bottom: 8px;padding-top: 8px;border-right: 0;

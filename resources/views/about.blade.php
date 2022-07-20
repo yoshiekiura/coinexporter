@@ -24,6 +24,76 @@
 	</div>
 </div>
 
+<div class="top-about ptb-50">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-lg-6 col-md-6 col-sm-12">
+				<div class="top-ab-txt">
+					<h3 class="heading">The Problem</h3>
+					<p>The dream of every project, business or brand is to succeed. For this, every cryptocurrency project needs
+						a wide range of impactful, data-based, solution-driven and targeted campaigns. Big, small and medium
+						size influencers are available with varieties of promotion services but the employers are faced with
+						serious challenges ranging from outsourcing the genuine influencers, high cost of services, inability to
+						review the work and policing of the works done, and so on, are time-consuming and inefficient. </p>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12">
+				<div class="about-img">
+					<img src="{{BASEURL}}images/problem.png" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="top-about ptb-50">
+	<div class="container">
+		<div class="row align-items-center flex-column-reverse flex-sm-row flex-md-row flex-lg-row">
+			<div class="col-lg-6 col-md-6 col-sm-12">
+				<div class="about-img">
+					<img src="{{BASEURL}}images/solution.png" alt="">
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12">
+				<div class="top-ab-txt">
+					<h3 class="heading">The Solution</h3>
+					<p>CoinExporter understands the varieties of challenges the projects owners are facing in the cryptocurrency
+						ecosystem when it comes to marketing and promotion. This is why CoinExporter is developing the
+						product that is AI powered and engineered with modern technological infrastructure including machine
+						learning to address most of those concerns. Among others, CoinExporter is a centralized marketing
+						agency that provides the platform for small, medium and big influencers to execute a promotion
+						campaigns and earn. The employers will have all the possibilities to monitor and manage the influencers
+						with the jobs they have agreed to promote. CoinExporter is providing a scalable and improvable
+						technological infrastructure that will bring relief to the employers, creating sustainable development in the
+						areas of our target services and to become a mainstream company in the cryptocurrency space.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="top-about ptb-50">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-lg-6 col-md-6 col-sm-12">
+				<div class="top-ab-txt">
+					<h3 class="heading">The Impact</h3>
+					<p>CoinExporter’s solution will provide an easy access to the employers to meet small, medium and big
+						influencers with genuine services that are cost efficient. Thereby, bridging the gap in the high cost and
+						less efficient marketing and promotion services and providing more possibilities for crypto enthusiasts to
+						work to earn and or get credible information as regards to other varieties of services offered by
+						CoinExporter. </p>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12">
+				<div class="about-img">
+					<img src="{{BASEURL}}images/impact.png" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="snd-about">
 	<div class="container-fluid p-0">
 		<div class="row align-items-center">
@@ -45,13 +115,12 @@
 	</div>
 </div>
 
-
 <div class="testimonial-sec ptb-50">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-lg-4 col-sm-12">
 				<div class="testiti-head">
-					<h2>What They Are <br /> Telling About Us</h2>
+					<h2>What They Are <br /> Saying About Us</h2>
 					<p>2356+ Clients Trusted Us</p>
 				</div>
 			</div>

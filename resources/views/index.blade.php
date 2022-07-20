@@ -6,39 +6,44 @@
 
 @include("layout.menu")
 <div class="container">
-@include("layouts.alert")
 
+@include("layouts.alert")
 @if (Session::has('success'))
-<div class="alert success-alert" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+<div class="alert success-alert  alert-dismissible fade show" role="alert">
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     {{ Session::get('success') }}
 </div>  
-              @endif
-              @if (Session::has('error'))
-            <div class="alert alert-danger alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	{{ Session::get('error') }}
-              </div>
-              @endif
+@endif
+@if (Session::has('error'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+{{ Session::get('error') }}
+</div>
+ @endif
 </div>
 <div class="adv-banner">
 	<div class="container">
     	<div class="row">
             <div class="col-lg-6 col-md-6 text-end">
+			<a href="#">
 				<div class="owl-carousel" id="adv-slider1">
 					<div class="item"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""/></div>
        	    		<div class="item"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""/></div>
 					<div class="item"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""/></div>
 					<div class="item"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""/></div>
-				</div>	
+				</div>
+			</a>
             </div>
             <div class="col-lg-6 col-md-6 text-start">
+			<a href="#">
        	    	<div class="owl-carousel" id="adv-slider2">
 					<div class="item"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""/></div>
        	    		<div class="item"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""/></div>
 					<div class="item"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""/></div>
 					<div class="item"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""/></div>
 				</div>
+			</a>
             </div>
         </div>
     </div>
@@ -99,24 +104,138 @@
 			<div class="col-lg-12 col-md-12">
 				<div class="service-head text-center">
 					<h2 class="mb-0">Our Services</h2>
-					<p>EMPLOYERS request Direct Marketers to execute their campaigns through:</p>
+					<p class="text">Our range of services cover the marketing agency, education,
+                        entertainment, resource facilities, and coins/tokens listings
+                        platforms
+                    </p>
 				</div>
-				<div class="service-list mt-5">
-					<ol>
-						<li><span>01</span> Share video, sticker and text to their approved Facebook, Twitter, Discord and tiktok timeline</li>
-						<li><span>02</span> Share and pin video, stickers and text in the approved cryptocurrency Telegram and Facebook groups</li>
-						<li><span>03</span> Like, Follow and Share Facebook and Twitter pages</li>
-						<li><span>04</span> Write good reviews and post on approved Facebook, Twitter, Discord and Tik Tok timeline</li>
-						<li><span>05</span> Write good reviews and post on approved Facebook and Twitter groups.</li>
-						<li><span>06</span> Achieve any special form of promotion accomplishable </li>
-					</ol>
-				</div>
-                <div class="service-list-btm"><em>DIRECT MARKETERS are approved mass promoters with active account to execute the tasks requested by the employers.</em></div>
-                
-			</div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="features-wrap-card text-center">
+                    <div class="features-image">
+                        <img src="{{BASEURL}}images/service1.png" alt="image">
+                    </div>
+                    <div class="features-content">
+                        <h5 class="heading">Promote-To- Earn</h5>
+                        <p class="text">Influencers and non-crypto enthusiasts can create accounts
+                            with CoinExporter and promote campaigns on their social
+                            channels as instructed by the employers. Promoters decide
+                            which to promote and which not to promote. The employers
+                            decide how to promote and how much to pay. Anybody can
+                            be monetized their social channels for marketing services
+                            </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="features-wrap-card text-center">
+                    <div class="features-image">
+                        <img src="{{BASEURL}}images/service2.png" alt="image">
+                    </div>
+                    <div class="features-content">
+                        <h5 class="heading">Peer-To-Peer Marketplace </h5>
+                        <p class="text">A centralized marketplace which allow influencers to
+                            incorporate their services and gives the employers to
+                            connect with them for marketing and promotion services</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="features-wrap-card text-center">
+                    <div class="features-image">
+                        <img src="{{BASEURL}}images/service3.png" alt="image">
+                    </div>
+                    <div class="features-content">
+                        <h5 class="heading">Expert Reviews Report</h5>
+                        <p class="text">This is the CoinExporter education page where crypto
+                            experts from CoinExporter, publish a comprehensive review
+                            of the projects and focusing on the SWOT analysis, in order
+                            to give the investors an informed decision</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="features-wrap-card text-center">
+                    <div class="features-image">
+                        <img src="{{BASEURL}}images/service4.png" alt="image">
+                    </div>
+                    <div class="features-content">
+                        <h5 class="heading">Investment Call Support</h5>
+                        <p class="text">This is the investment call page where investment for
+                            presales, private sales or any other form of investment are
+                            called for the projects after serious reviews by
+                            CoinExporter’s experts of investment team</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="features-wrap-card text-center">
+                    <div class="features-image">
+                        <img src="{{BASEURL}}images/service5.png" alt="image">
+                    </div>
+                    <div class="features-content">
+                        <h5 class="heading">AI Marketing</h5>
+                        <p class="text">Data-driven marketing, email marketing, social media
+                            channels marketing and others as driven by our AI
+                            Infrastructure </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="features-wrap-card text-center">
+                    <div class="features-image">
+                        <img src="{{BASEURL}}images/service6.png" alt="image">
+                    </div>
+                    <div class="features-content">
+                        <h5 class="heading">Coins Fora</h5>
+                        <p class="text">Decentralized platform for coins/tokens listing, chart,
+                            market capitalization, opinions, progresses, events, and so
+                            on, by the system, project owners and investors
+                            </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="features-wrap-card text-center">
+                    <div class="features-image">
+                        <img src="{{BASEURL}}images/service7.png" alt="image">
+                    </div>
+                    <div class="features-content">
+                        <h5 class="heading">Decentralized Payment Service
+                        </h5>
+                        <p class="text">CoinExporter will provide a decentralized auxiliary payment
+                            services on Blockchain Technology</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="features-wrap-card text-center">
+                    <div class="features-image">
+                        <img src="{{BASEURL}}images/service8.png" alt="image">
+                    </div>
+                    <div class="features-content">
+                        <h5 class="heading">Affiliate Marketing</h5>
+                        <p class="text">Marketing of all digital securities and commodities using
+                            crypto as payment medium</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="features-wrap-card text-center">
+                    <div class="features-image">
+                        <img src="{{BASEURL}}images/service9.png" alt="image">
+                    </div>
+                    <div class="features-content">
+                        <h5 class="heading">NFTs Marketplace</h5>
+                        <p class="text">Decentralized marketplace for marketing and promoting
+                            NFTs collections to the investors and site visitors</p>
+                    </div>
+                </div>
+            </div>
 		</div>
 	</div>
 </div>
+
 
 
 
@@ -126,7 +245,7 @@
 			<div class="col-lg-12">
 				<div class="social-sec-head text-center">
 					<h2 class="mb-0">Our Social Channels</h2>
-					<p>Stay updates with all the latest news/update of CoinExporter by Social Channels </p>
+					<p>Stay updated with all the latest news/update of CoinExporter by Social Channels </p>
 				</div>
 			</div>
             <hr class="spacer20px"/>
@@ -195,7 +314,7 @@
 		<div class="row">
 			<div class="col-md-4 col-lg-4 col-sm-12">
 				<div class="testiti-head">
-					<h2>What They Are <br /> Telling About Us</h2>
+					<h2>What They Are <br /> Saying About Us</h2>
 					<p>2356+ Clients Trusted Us</p>
 				</div>
 			</div>
@@ -234,6 +353,31 @@
 </div>
 
 
+<section class="our-partners">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="our-partners_main owl-carousel">
+					<a href="" class="partners_single">
+						<img src="{{BASEURL}}images/partner-1.jpg" alt="">
+                    </a>
+					<a href="" class="partners_single">
+						<img src="{{BASEURL}}images/partner-2.jpg" alt="">
+                    </a>
+					<a href="" class="partners_single">
+						<img src="{{BASEURL}}images/partner-3.jpg" alt="">
+                    </a>
+					<a href="" class="partners_single">
+						<img src="{{BASEURL}}images/partner-4.jpg" alt="">
+                    </a>
+					<a href="" class="partners_single">
+						<img src="{{BASEURL}}images/partner-5.jpg" alt="">
+                    </a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
 <!--============================= Scripts =============================-->
 <a href="#" class="back-to-top" style="display: none;"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
@@ -315,6 +459,41 @@ jQuery(document).ready(function() {
 })	
 	
 </script>
+<script>
+	jQuery(".our-partners_main").owlCarousel({
+	    lazyLoad: true,
+	    loop: true,
+	    margin:20,
+	    responsiveClass: true,
+	    animateOut: 'fadeOut',
+    	animateIn: 'fadeIn',
+	    autoplay:true,
+		autoplayTimeout:1500,
+		autoplayHoverPause:false,
+	    autoHeight: true,
+	    mouseDrag: true,
+		touchDrag: true,
+	    smartSpeed: 1000,
+	    nav: false,
+	    //navText : ["<i class='fa fa-arrow-left'></i>","<i class='fa fa-arrow-right'></i>"],
+	    dots:false,
+	    responsive: {
+	        0: {
+	            items: 2
+	        },
 
+	        600: {
+	            items: 3
+	        },
 
+	        1024: {
+	            items: 4
+	        },
+
+	        1366: {
+	            items: 5
+	        }
+	    }
+	});
+</script>
 @include("layout.footer")

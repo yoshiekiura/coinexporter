@@ -2,7 +2,7 @@
 <html lang="en">
 @include("layout.header")
 <body>
-@section('title','Takenomics')
+@section('title','Tokenomics')
 @include("layout.menu")
 
 <section class="ptb-50 token-sec">

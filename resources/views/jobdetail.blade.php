@@ -1,6 +1,12 @@
 @include("layouts.header")
 
-<!-- Alert Meassage -->
+<div class="welcome-dashboard">
+    <div class="container">
+    @section('title', 'Job Details')
+        @include("layouts.menu")
+    </div>
+</div>
+   <!-- Alert Meassage -->
 
 <div class="container">
     @include("layouts.alert")
@@ -20,13 +26,6 @@
 </div>
 
 <!-- Alert Meassage -->
-
-<div class="welcome-dashboard">
-    <div class="container">
-    @section('title', 'Job Details')
-        @include("layouts.menu")
-    </div>
-</div>
 @php 
 $userId = Auth::user()->id;
  $data = App\Models\JobDone::select("proof_of_work as pof")->where("campaign_id",$jobSpaceData->id)->where("user_id",$userId)->count();
@@ -65,7 +64,7 @@ $userId = Auth::user()->id;
                         <li><span><strong>Are you interested to promote this campaign?</strong></span></li>
                     </ul>
                     <div class="check-input-option form-group">
-                        <input id="Option2" type="radio" name="intrest_to_promote" value="yes" checked>
+                        <input id="Option2" type="radio" name="intrest_to_promote" value="yes">
                         <label> YES</label>
                         <input id="Option3" type="radio" name="intrest_to_promote" value="no">
                         <label>NO</label>
@@ -172,13 +171,12 @@ jQuery(document).ready(function() {
 });
 </script> 
 
-<script src="js/menu.js"></script>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 	$("#cssmenu").menumaker({
 		title: "",
 		format: "multitoggle"
 	});
-</script> -->
+</script>
 <script>
 function myFunction() {
    var element = document.body;
@@ -201,6 +199,8 @@ function myFunction() {
         });
     });
 </script>
+
+<script src="{{BASEURL}}js/menu.js"></script>
 <script>
     const $ = (data) => document.querySelector(data)
 

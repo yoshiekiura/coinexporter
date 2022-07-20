@@ -162,7 +162,7 @@ input[type="checkbox"][readonly] {
     </div>
     </div>
 </header>
-@if (($_SERVER['REQUEST_URI'] == '/') || ($_SERVER['REQUEST_URI'] == '/job_space'))
+@if ((Request::routeIs('index') ? 'active' : '' ) || ( Request::routeIs('job_space') ? 'active' : '' ))
 @else
 <div class="innerpage_banner">
 	<div class="container">

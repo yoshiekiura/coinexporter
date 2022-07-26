@@ -136,10 +136,10 @@ class UserController extends Controller
 	{
 		$rules = [
             'name' 			=> 'required',
-			'email' 		=> 'required|email|unique:users,email',
+			'email' 		=> 'required|email|unique:admins,email',
 			'password' 		=> 'required|same:confirm-password',
 			'roles' 		=> 'required',
-			'mobile' 		=> 'required|string|unique:users,mobile',
+			'mobile' 		=> 'required|string|unique:admins,mobile',
 			'image' 		=> 'nullable',
         ];
 

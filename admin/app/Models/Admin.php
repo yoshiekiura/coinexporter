@@ -15,6 +15,7 @@ use Haruncpi\LaravelUserActivity\Traits\Loggable;
 
 class Admin extends Authenticatable
 {
+    protected $table = "admins";
     use HasFactory, Notifiable, HasApiTokens, HasRoles, Loggable;
 
     // protected $guard = 'admin';

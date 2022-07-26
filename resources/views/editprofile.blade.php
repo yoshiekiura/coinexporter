@@ -43,7 +43,7 @@
                         <div class="avatar">
                             <?php
                             if ($userData->profileImage != null || $userData->profileImage != '') { ?>
-                                <img src="{{BASEURL}}images/<?= $userData->profileImage ?>" alt="image" id="pImage">
+                                <img src="{{BASEURL}}images/<?= $userData->profileImage ?>" alt="image" id="pImage" >
                                 <div class="avatar-upload">
                                     <div class="avatar-edit">
                                     <form action="" method="post" id="form-image">
@@ -87,7 +87,7 @@
                             <div class="content-inner active" style="display: block;">
                                 <div class="edit_profile">
                                     <div class="dashboard-form-area">
-
+                                    <div id="successmsg"></div>     
                                         <div class="row">
                                             <div class="col-md-6 form-group">
                                                 <label>Name</label><input type="text" name="name" class="form-control" placeholder="Your Name*" required="" aria-required="true" value="<?= $userData->name ?>">
@@ -329,6 +329,7 @@ function formValidate()
 <script>
     var post = function(formId) {
         var formData = new FormData(document.getElementById(formId));
+        var img=$("#pImage").val();
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -339,10 +340,13 @@ function formValidate()
             processData: false,
             contentType: false,
             success: function(result) {
-                location.reload();
+                //location.reload();<img src="{{BASEURL}}images/'+$userData->profileImage+'" alt="image" id="pImage" >
+                $('#pImage').html('<img src="' + $userData->profileImage + '" />');
+                $("#successmsg").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><strong>Profile uploaded Successfully!</strong></div>');
             },
             error: function(result) {
-                location.reload();
+                //location.reload();
+                $("#successmsg").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><strong>Profile not updated!</strong></div>');
             }
         });
     }

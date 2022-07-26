@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Support\Facades\DB;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +17,7 @@ use Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
-class UserController extends Controller
+class AdminController extends Controller
 {
     function __construct()
 	{
@@ -65,7 +65,7 @@ class UserController extends Controller
 	public function index(Request $request)
 	{
 		if ($request->ajax()) {
-            $data = User::get();
+            $data = Admin::get();
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -159,7 +159,7 @@ class UserController extends Controller
 		$input['password'] = Hash::make($input['password']);
 
 		try {
-			$user = User::create($input);
+			$user = Admin::create($input);
 			if($request->roles)
             {
 				$user->assignRole($request->input('roles'));
@@ -176,7 +176,7 @@ class UserController extends Controller
 
 	public function edit($id)
 	{
-		$user = User::find($id);
+		$user = Admin::find($id);
 		$roles = Role::all();
 		return view('admin.users.edit',compact('user','roles'));
 	}
@@ -200,7 +200,7 @@ class UserController extends Controller
         
         $this->validate($request, $rules, $messages);
 		$input = $request->all();
-		$user = User::find($id);
+		$user = Admin::find($id);
 
 		if (empty($input['image'])) {
 			$input['image'] = $user->image;
@@ -231,14 +231,14 @@ class UserController extends Controller
 	public function destroy()
 	{
 		$id = request()->input('id');
-		$all_user = User::all();
+		$all_user = Admin::all();
 		$count_all_user = $all_user->count();
 
 		if ($count_all_user <= 1) {
 			Toastr::error(__('user.message.warning_last_user'));
 		    return redirect()->route('users.index');
 		}else{
-			$getuser = User::find($id);
+			$getuser = Admin::find($id);
 			if(!empty($getuser->image)){
 				$image_path = 'storage/'.$getuser->image;
 				if(File::exists($image_path)) {
@@ -246,7 +246,7 @@ class UserController extends Controller
 				}
 			}
 			try {
-				User::find($id)->delete();
+				Admin::find($id)->delete();
 				return back()->with(Toastr::error(__('user.message.destroy.success')));
 			} catch (Exception $e) {
 				$error_msg = Toastr::error(__('user.message.destroy.error'));
@@ -276,7 +276,7 @@ class UserController extends Controller
 		$input['password'] = Hash::make($input['password']);
 
 		try {
-			$user = User::whereId($id)->update([
+			$user = Admin::whereId($id)->update([
 				'password' => $input['password']
 			]);
 
@@ -290,7 +290,7 @@ class UserController extends Controller
 
 	public function status_update(Request $request)
 	{
-		$user = User::find($request->id)->update(['status' => $request->status]);
+		$user = Admin::find($request->id)->update(['status' => $request->status]);
 
 		if($request->status == 1)
         {

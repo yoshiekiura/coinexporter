@@ -31,7 +31,7 @@
 <!-- Alert Meassage -->
 @php 
 $userId = Auth::user()->id;
- $data = App\Models\JobDone::select("proof_of_work as pof")->where("campaign_id",$jobSpaceData->id)->where("user_id",$userId)->count();
+ $data = App\Models\JobDone::select("proof_of_work as pof")->where("campaign_id",$jobSpaceData->id)->count();
  
 @endphp
 <div class="email-zip ptb-50">
@@ -85,7 +85,22 @@ $userId = Auth::user()->id;
                 </div>
             </div>
                 </div>
-               
+                <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top:10px;">
+                <center>
+                    <div class="email-box-area">
+                    
+                        <input type="hidden" name="campainEarning" value="{{$jobSpaceData->campaign_earning}}" form="form1">
+                        <input type="hidden" name="campainId" value="{{$jobSpaceData->id}}" form="form1">
+                        @php if($jobSpace){ @endphp
+                            <button type="button" style="background-color:#6177BA;" disabled>You own this campaign. So you can not promote this!</button>
+                    </div>
+                      @php  }  else{ @endphp
+                            <button type="submit" form="form1">SUBMIT: I agreed that I have duly completed this task as instructed</button>
+                    </div>
+                     @php   }    @endphp         
+                        
+                    </center>
+</div>
     </form> 
   </div>
             
@@ -139,16 +154,6 @@ $userId = Auth::user()->id;
             <!----Share This Buttons End -->
         </div>
     </div>
-    <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top:10px;">
-    <center>
-        <div class="email-box-area">
-        
-            <input type="hidden" name="campainEarning" value="{{$jobSpaceData->campaign_earning}}" form="form1">
-            <input type="hidden" name="campainId" value="{{$jobSpaceData->id}}" form="form1">
-            <button type="submit" form="form1">SUBMIT: I agreed that I have duly completed this task as instructed</button>
-        </div>
-        </center>
-</div>
 </div>
 
 <div class="dashboard-footer">

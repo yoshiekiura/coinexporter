@@ -80,9 +80,9 @@
                   <form method="POST" action="{{ route('finishtask.update', ['id' => $job_done->jobdoneId]) }}">
                   {{csrf_field()}}
                   <div class="email-box-area">
-                  <input type="hidden" name="campainUserId" value="{{$job_done->user_id}}">
                         <input type="hidden" name="campainId" value="{{$job_done->campaign_id}}">
-                       
+                        <input type="hidden" name="status" value="{{$job_done->tvl_status}}">
+                        <input type="hidden" name="campaign_earnings" value="{{$job_done->campEarn}}">
                     <input type="hidden" name="finishtask_id" value="{{$job_done->jobdoneId}}" >
                       <p>PROOF BOX - Enter the proof in the box below</p>
                       <h4 class="text-danger">* If a printscreen is asked, use theses free sites: <a href="https://snipboard.io/"> Snipboard</a> or <a href="https://prnt.sc/"> PRNT </a></h4>
@@ -120,16 +120,19 @@
 										<td>${{$job_done->campaign_earning}}</td>
                     @if ($job_done->tvl_status == "Pending")
                     <td style="color: #ff7600;font-weight: 500;">Pending</td>
-										@elseif ($job_done->tvl_status == "Published")
-										<td style="color: #1dbb00;font-weight: 500;">Published </td>
+										@elseif ($job_done->tvl_status == "Approved")
+										<td style="color: #1dbb00;font-weight: 500;">Approved </td>
 										@elseif ($job_done->tvl_status == "Rejected")
 										<td style="color: #e11010;font-weight: 500;">Rejected</td>
 										@else
 										<td></td>
 											@endif
                     <td>{{date("d-M-Y", strtotime($job_done->created))}}</td>
+                    @if ($job_done->tvl_status == "Approved")
+                    <td></td>
+                    @else
                     <td><a href="#" class="click" data-bs-toggle="modal" data-bs-target="#clickexampleModal">Click Here</a></td>
-                 
+                    @endif
                   </tr>
                    
 									  @endforeach

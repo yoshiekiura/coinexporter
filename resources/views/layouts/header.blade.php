@@ -21,8 +21,15 @@
     <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css"> -->
     <link rel="stylesheet" href="<?php echo BASEURL; ?>assets/owl.carousel.css">
     <link rel="stylesheet" href="<?php echo BASEURL; ?>css/virtual-select.min.css" />
+    <!-- clipboard CSS -->
+    <!-- <link rel="stylesheet" href="<?php echo BASEURL; ?>css/main.css" />
+    <link rel="stylesheet" href="<?php echo BASEURL; ?>css/clipboardtext.css" /> -->
+
     <script src="<?php echo BASEURL; ?>js/virtual-select.min.js"></script>
     <script src="<?php echo BASEURL; ?>assets/owl.carousel.js"></script>
+
+     <!-- clipboard JS -->
+    <!-- <script type="module" src="<?php echo BASEURL; ?>js/clipboardtext.js" defer="defer"></script> -->
 
     <!----Share This Script Start -->
     <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=62cd0611d5dcc80019ab0719&product=inline-share-buttons" async="async"></script>
@@ -191,34 +198,4 @@
             </div>
         </div>
     </header>
-    <!-- ========================== change password modal======================= -->
-    <div class="modal fade" id="changeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" style="max-width: 385px;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <form action="{{ route('changepassword') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <img src="<?php echo BASEURL; ?>images/lock.png" style="max-width: 40%;">
-                        <div class="pass-title" style="text-align: left;">
-                            <label style="padding-bottom: 2px;">Old Password</label>
-                            <input type="password" name="oldPassword" style="padding: 5px 7px;">
-                        </div>
-                        <div class="pass-title" style="text-align: left;">
-                            <label style="padding-bottom: 2px;">New Password</label>
-                            <input type="password" name="newPassword" style="padding: 5px 7px;">
-                        </div>
-                        <div class="pass-title" style="text-align: left;">
-                            <label style="padding-bottom: 2px;">Confirm New Password</label>
-                            <input type="password" name="ConfirmPassword" style="padding: 5px 7px;">
-                        </div>
-                        <div class="pass-title" style="margin-top: 30px; margin-bottom: 6px;">
-                            <button class="btn-style-one" type="submit">Submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+  

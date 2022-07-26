@@ -57,17 +57,21 @@ class RegisteredUserController extends Controller
             // validation failed return back to form
 
         } else {
-        if(!empty($request->referral_code)){
-            $ref_code = $request->referral_code;
+        if(!empty($request->referrer_code)){
+            $ref_code = $request->referrer_code;
             }else{
                 $ref_code ='NULL';
             }
+            $randomNumber = random_int(100000, 999999);
+            $refferal_code = 'CE'.$randomNumber;
+           
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'country' => $request->country,
-            'referral_code' => $ref_code,
+            'referral_code' =>$refferal_code,
+            'referrer_code' => $ref_code,
             'terms' => $request->terms,
         ]);
        

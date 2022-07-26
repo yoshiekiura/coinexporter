@@ -27,63 +27,53 @@ input[type="checkbox"][readonly] {
                     </div>
                     <div class="menu">
                         <nav id="cssmenu" class="head_btm_menu">
-
-
                             <ul>
-                               
                                     <li class="{{ Request::routeIs('index') ? 'active' : '' }}"><a href="{{route('index')}}">Home</a></li>
-                              
-                               
                                     <li class="{{ Request::routeIs('about') ? 'active' : '' }}"><a href="{{route('about')}}">About</a></li>
-                               
-                                <li><a href="#">Utilities</a>
+                                    <li><a href="#">Utilities</a>
 
-                                    <ul> @if(Auth::check())
-                                        <li><a href="{{route('dashboard')}}">Campaign and Promotion</a>
-                                        <li><a href="{{route('404')}}">Staking</a></li>
-                                        <li><a href="{{route('404')}}">Affiliate Marketing</a></li>
-                                        <li><a href="{{route('404')}}">ER Services</a></li>
-                                        <li><a href="{{route('404')}}">Investment Call Support</a></li>
-                                        <li><a href="{{route('404')}}">Coins Fora</a></li>
-                                        <li><a href="{{route('404')}}">NFTs and NFTs Marketplace</a></li>
-                                        <li><a href="{{route('404')}}">P2P Marketing Service</a></li>
-                                        </li>
-                                        @else
-                                        <li><a href="{{route('job_space')}}">Job Space</a>
-                                        <li><a href="{{route('404')}}">Staking</a></li>
-                                        <li><a href="{{route('404')}}">Affiliate Marketing</a></li>
-                                        <li><a href="{{route('404')}}">ER Services</a></li>
-                                        <li><a href="{{route('404')}}">Investment Call Support</a></li>
-                                        <li><a href="{{route('404')}}">Coins Fora</a></li>
-                                        <li><a href="{{route('404')}}">NFTs and NFTs Marketplace</a></li>
-                                        <li><a href="{{route('404')}}">P2P Marketing Service</a></li>
-                                        @endif
-                                        
-                                        
-                                    </ul>
-                                </li>
-                                <li><a href="#">CoinExporter Token</a>
-                                    <ul>
-                                        <li><a href="{{route('coinexporter_token')}}">About CoinExporter Token</a></li>
-                                        <li><a href="{{route('tokenomic')}}">Tokenomics</a></li>
-                                        <li><a href="{{route('investor')}}">Investors</a></li>
-                                        <li><a href="{{route('roadmap')}}">Roadmap</a></li>
-                                        <li><a href="/uploads/coinexporter_whitepaper.pdf" target="_blank">Whitepaper</a></li>
-                                        <li><a href="{{route('team')}}">Team</a></li>
-                                    </ul>
-                                </li>
+                                        <ul> @if(Auth::check())
+                                            <li><a href="{{route('dashboard')}}">Campaign and Promotion</a>
+                                            <li><a href="{{route('404')}}">Staking</a></li>
+                                            <li><a href="{{route('404')}}">Affiliate Marketing</a></li>
+                                            <li><a href="{{route('404')}}">ER Services</a></li>
+                                            <li><a href="{{route('404')}}">Investment Call Support</a></li>
+                                            <li><a href="{{route('404')}}">Coins Fora</a></li>
+                                            <li><a href="{{route('404')}}">NFTs and NFTs Marketplace</a></li>
+                                            <li><a href="{{route('404')}}">P2P Marketing Service</a></li>
+                                            </li>
+                                            @else
+                                            <li><a href="{{route('job_space')}}">Job Space</a>
+                                            <li><a href="{{route('404')}}">Staking</a></li>
+                                            <li><a href="{{route('404')}}">Affiliate Marketing</a></li>
+                                            <li><a href="{{route('404')}}">ER Services</a></li>
+                                            <li><a href="{{route('404')}}">Investment Call Support</a></li>
+                                            <li><a href="{{route('404')}}">Coins Fora</a></li>
+                                            <li><a href="{{route('404')}}">NFTs and NFTs Marketplace</a></li>
+                                            <li><a href="{{route('404')}}">P2P Marketing Service</a></li>
+                                            @endif
+                                            
+                                            
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">CoinExporter Token</a>
+                                        <ul>
+                                            <li><a href="{{route('coinexporter_token')}}">About CoinExporter Token</a></li>
+                                            <li><a href="{{route('tokenomic')}}">Tokenomics</a></li>
+                                            <li><a href="{{route('investor')}}">Investors</a></li>
+                                            <li><a href="{{route('roadmap')}}">Roadmap</a></li>
+                                            <li><a href="/uploads/coinexporter_whitepaper.pdf" target="_blank">Whitepaper</a></li>
+                                            <li><a href="{{route('team')}}">Team</a></li>
+                                        </ul>
+                                    </li>
                              
                                     <li class="{{ Request::routeIs('faq') ? 'active' : '' }}"><a href="{{route('faq')}}">FAQ</a></li>
-                              
                                     <li class="{{ Request::routeIs('contact') ? 'active' : '' }}"><a href="{{route('contact')}}">Contact</a></li>
-                               
                         </nav>
                     </div>
 
                     @if(Auth::check())
-                    {{-- <div class="head-btn">
-                    <a href="{{ route('logout') }}" class="login"><i class="fal fa-user"></i> Log Out</a>
-                </div> --}}
+                    
                 <div class="dashboard_table_sec_top_right">
                     <div class="afterlogin-head">
                         <ul>
@@ -215,14 +205,14 @@ input[type="checkbox"][readonly] {
                     <ul>
                         <li>
                             <i class="far fa-envelope"></i>
-                            <input type="email" class="form-control" name="email"  required autofocus value="karthik@gmail.com" placeholder="Email">
+                            <input type="email" class="form-control" name="email"  required autofocus placeholder="Email">
                             @error('email')
                             <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
                         </li>
                         <li>
                             <i class="far fa-lock"></i>
-                            <input class="form-control" type="password" name="password" value="karthik123" required autocomplete="current-password" placeholder="Password">
+                            <input class="form-control" type="password" name="password"  required autocomplete="current-password" placeholder="Password">
                             @error('password')
                             <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
@@ -386,7 +376,7 @@ input[type="checkbox"][readonly] {
 
                         <li>
                             <i class="fa fa-retweet"></i>
-                            <input type="text" class="form-control" name="referral_code"  placeholder="Referral Code(If Any)">
+                            <input type="text" class="form-control" name="referrer_code"  placeholder="Referral Code(If Any)">
                             
                         </li>
                         <!-- <li class="pb-2"><img src="images/captcha.jpg" class="w-75" alt=""/></li> -->
@@ -430,160 +420,6 @@ input[type="checkbox"][readonly] {
 
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $("#regForm").validate({
-            // if(grecaptcha.getResponse() == "") {
-            //   e.preventDefault();
-            //   alert("You can't proceed!");
-            // }
-            rules: {
-                //console.log 123;
-                name: "required",
-                email: {
-                    required: true,
-                    email: true
-                },
-                password: "required",
-                country: "required",
-                //  captcha: "required",
-                terms: "required",
-            },
-            messages: {
-                name: "Name is required",
-                email: {
-                    required: "Email is Required",
-                    email: "Enter Valid Email",
-                    // remote: "This Email Already Exists",
-                },
-                password: "Password is required",
-                country: "Please select the country",
-                //  captcha: "Captcha is required",
-                terms: "Terms & Conditions is required",
-            }
 
-        });
-    });
-</script>
-<script>
-    function loginsubmitForm() {
-        // var response = grecaptcha.getResponse();
-        // if(response.length == 0) {
-        //     document.getElementById('g-recaptcha-error').innerHTML = '<span style="color:red;">This field is required.</span>';
-        //     return false;
-        // }
-        // return true;
-    }
-
-    // function verifyCaptcha() {
-    //     document.getElementById('g-recaptcha-error').innerHTML = '';
-    // }
-</script>
-<script>
-    $(document).ready(function() {
-
-        $("#loginForm").validate({
-            // if(grecaptcha.getResponse() == "") {
-            //   e.preventDefault();
-            //   alert("You can't proceed!");
-            // }
-            rules: {
-                email: {
-                    required: true,
-                    email: true
-                },
-                password: "required",
-                //  captcha: "required",
-            },
-            messages: {
-                email: {
-                    required: "Email is Required",
-                    email: "Enter Valid Email",
-                },
-                password: "Password is required",
-                //  captcha: "Captcha is required",
-            }
-
-        });
-    });
-</script>
-<!--========SignIn Through Ajax Call====-->
-
-<script>
-    $(function() {
-        // handle submit event of form
-        $(document).on("submit", "#loginForm", function() {
-            var e = this;
-            // change login button text before ajax
-            $(this).find("[type='submit']").html("Signing In...");
-
-            $.post($(this).attr('action'), $(this).serialize(), function(data) {
-
-                $(e).find("[type='submit']").html("Sign In");
-                if (data.status) { // If success then redirect to login url
-                    window.location = data.redirect_location;
-                }
-            }).fail(function(response) {
-                // handle error and show in html
-                $(e).find("[type='submit']").html("Sign In");
-                 $(".alerts").remove();
-                var erroJson = JSON.parse(response.responseText);
-                for (var err in erroJson) {
-                    for (var errstr of erroJson[err])
-                        $("#errors-list").append("<div class='alerts alert-danger'>" + errstr + "</div>");
-                }
-
-            });
-            return false;
-        });
-
-        $(document).on("submit", "#regForm", function() {
-            var e = this;
-            // change Signup button text before ajax
-            $(this).find("[type='submit']").html("Registering...");
-
-            $.post($(this).attr('action'), $(this).serialize(), function(data) {
-
-                $(e).find("[type='submit']").html("Register Now");
-                if (data.status) { // If success then redirect to Signup url
-                    window.location = data.redirect_location;
-                }
-            }).fail(function(response) {
-                // handle error and show in html
-                $(e).find("[type='submit']").html("Register Now");
-                $(".alerts").remove();
-                var erroJson = JSON.parse(response.responseText);
-               
-                for (var err in erroJson) {
-                    for (var errstr of erroJson[err])
-                        $("#reg-errors-list").append("<div class='alerts alert-danger'>" + errstr + "</div>");
-                }
-
-            });
-            return false;
-        });
-    });
-</script>
-
-
-
- <script type="text/javascript">
-
-function signinModal(){
-$('#signin-modal').modal('show');
-$('#register-modal').modal('hide');
-}       
-
-function forgotModal(){
-$('#forgot-modal').modal('show');
-$('#signin-modal').modal('hide');
-
-} 
-
-function registerModal(){
-$('#signin-modal').modal('hide');
-$('#register-modal').modal('show');
-}       
-</script>
 
 

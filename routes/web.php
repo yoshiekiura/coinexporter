@@ -19,6 +19,13 @@ use App\Http\Controllers\JobdetailController;
 // Route::get('/jobspace', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/migrate', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+     Artisan::call('route:clear');
+    Artisan::call('config:cache');
+   // return what you want
+});
 
 require __DIR__ . '/auth.php';
  
@@ -45,6 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/withdraw', 'WithdrawController@index')->name('withdraw');
     Route::get('/tutorial', 'TutorialController@index')->name('tutorial');
     Route::get('/history/{id}', 'HistoryController@index')->name('history');
+    Route::post('/history/approval', 'HistoryController@create')->name('history/approval');
 
     Route::get('/editprofile', 'EditprofileController@index')->name('editprofile');
     Route::post('/editprofileupdate', 'EditprofileController@store')->name('editprofileupdate');
@@ -62,5 +70,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/refferedUsers', 'ReffereduserController@index')->name('refferedUsers');
     Route::get('/dashboard', 'MyaccountController@controlpanel')->name('controlpanel');
     Route::get('/jobspace', 'DashboardController@index')->name('dashboard');
+    Route::post('/ajaxjobspace', 'DashboardController@jobspace_filter')->name('ajax_dashboard');
     
 });

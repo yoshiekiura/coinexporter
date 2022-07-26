@@ -8,17 +8,17 @@
 
     @if (Session::has('success'))
 
-        <div class="alert success-alert  alert-dismissible fade show" role="alert">
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            {{ Session::get('success') }}
-        </div>  
-        @endif
-        @if (Session::has('error'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
-        {{ Session::get('error') }}
-        </div>
-        @endif
+<div class="alert success-alert  alert-dismissible fade show" role="alert">
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    {{ Session::get('success') }}
+</div>  
+  @endif
+  @if (Session::has('error'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+      {{ Session::get('error') }}
+</div>
+@endif
 
     
 </div>
@@ -44,23 +44,37 @@
                             <?php
                             if ($userData->profileImage != null || $userData->profileImage != '') { ?>
                                 <img src="{{BASEURL}}images/<?= $userData->profileImage ?>" alt="image" id="pImage">
+                                <div class="avatar-upload">
+                                    <div class="avatar-edit">
+                                    <form action="" method="post" id="form-image">
+                                        
+                                        <input type="hidden" name="oldProfile" id="oldProfile" value="<?= $userData->profileImage ?>">
+                                        <input type='file' class="change_btn" name="profileImage" id="imageUpload" accept=".png, .jpg, .jpeg" value="" placeholder="Change Profile Photo" onchange="post('postId')"/>
+                                        <label for="imageUpload">Change Photo</label>
+                                    </form>
+                                    </div>
+                                </div>
                             <?php } else { ?>
                                 <img src="{{BASEURL}}images/istockphoto.jpg" alt="image">
+                                <div class="avatar-upload">
+                                    <div class="avatar-edit">
+                                    <form action="" method="post" id="form-image">
+                                        
+                                        <input type="hidden" name="oldProfile" id="oldProfile" value="<?= $userData->profileImage ?>">
+                                        <input type='file' class="change_btn" name="profileImage" id="imageUpload" accept=".png, .jpg, .jpeg" value="" placeholder="Change Profile Photo" onchange="post('postId')"/>
+                                        <label for="imageUpload">Change Photo</label>
+                                    </form>
+                                    </div>
+                                </div>
                             <?php } ?>
-                            <input type="hidden" name="oldProfile" id="oldProfile" value="<?= $userData->profileImage ?>">
-                            <input type="file" class="change_btn" name="profileImage" id="profileImage" value="" placeholder="Change Profile Photo" onchange="post('postId')">
                         </div>
-                        <!-- <div class="change_photo"> -->
-                        <!-- <a href="#" class="change_btn"><i class="far fa-camera"></i> Change Photo</a> -->
-                        <!-- </div> -->
                         <h3 class="name">{{ Auth::user()->name }}</h3>
                         <div class="profile-usermenu">
                             <ul>
-                                <li class="dropdown-item active"><a href="#"><i class="fas fa-male"></i>Edit Profile</a></li>
-                                <li class="dropdown-item"><a href="#"><i class="fas fa-cogs"></i>Settings</a></li>
-                                <li class="dropdown-item"><a href="{{ route('myaccount') }}"><i class="fas fa-envelope"></i>My Account </a></li>
-                                <li class="dropdown-item"><a href="#" data-bs-toggle="modal" data-bs-target="#changeModal"><i class="fas fa-key"></i>Change Password</a></li>
-                                <li class="dropdown-item"><a href="{{ route('logout') }}"><i class="fas fa-power-off"></i>Sign Out</a></li>
+                                <li class="active"><a href="#"><i class="fas fa-male"></i>Edit Profile</a></li>
+                                <li class=""><a href="{{ route('myaccount') }}"><i class="fas fa-envelope"></i>My Account </a></li>
+                                <li class=""><a href="#" data-bs-toggle="modal" data-bs-target="#changeModal"><i class="fas fa-key"></i>Change Password</a></li>
+                                <li class=""><a href="{{ route('logout') }}"><i class="fas fa-power-off"></i>Sign Out</a></li>
                             </ul>
                         </div>
                     </div>
@@ -125,7 +139,7 @@
 </div>
 
 <!-- Start Change old Passowrd -->
-<div class="modal fade" id="changeModalPassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="changeModalPassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" style="max-width: 385px;">
         <div class="modal-content">
             <div class="modal-header">
@@ -164,7 +178,51 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+  <!-- ========================== change password modal======================= -->
+  <div class="modal fade" id="changeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 385px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <!-- <div id="errors-list"></div> -->
+                    <form action="{{ route('changepassword') }}" method="POST" enctype="multipart/form-data" >
+                        @csrf
+                        <img src="<?php echo BASEURL; ?>images/lock.png" style="max-width: 40%;">
+                        <div class="pass-title" style="text-align: left;">
+                            <label style="padding-bottom: 2px;">Old Password</label>
+                            <input type="password" name="oldPassword" id="oldPassword" style="padding: 5px 7px;" required>
+                            <span id="erroroldPassword" style="color: red"></span>
+                            @error('oldPassword')
+                            <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="pass-title" style="text-align: left;">
+                            <label style="padding-bottom: 2px;">New Password</label>
+                            <input type="password" name="newPassword" id="newPassword" style="padding: 5px 7px;" required>
+                            <span id="errornewPassword" style="color: red"></span>
+                            @error('newPassword')
+                            <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="pass-title" style="text-align: left;">
+                            <label style="padding-bottom: 2px;">Confirm New Password</label>
+                            <input type="password" name="ConfirmPassword" id="ConfirmPassword" style="padding: 5px 7px;" required>
+                            <span id="errorConfirmPassword" style="color: red"></span>
+                            @error('ConfirmPassword')
+                            <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="pass-title" style="margin-top: 30px; margin-bottom: 6px;">
+                            <button class="btn-style-one" type="submit" onclick="formValidate(this)">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 <!-- End Change old Passowrd -->
 
 
@@ -172,12 +230,12 @@
 
 
 <a href="#" class="back-to-top" style="display: none;"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
-<script>
+<!-- <script>
     $(document).ready(function() {
 
-        $("#changeModalPassword").validate({
+        $("#changeModal").validate({
             rules: {
-                
+                 
                 oldPassword: "required",
                 newPassword: "required",
                 ConfirmPassword: "required",
@@ -192,35 +250,81 @@
 
         });
     });
-</script>
+</script> -->
 <script>
-    $(function() {
-        // handle submit event of form
-        // $(document).on("submit", "#changeModalPassword", function() {
-        //     var e = this;
-        //     // change login button text before ajax
-        //     $(this).find("[type='submit']").html("Submitting...");
+//     $(function() {
+//        // handle submit event of form
+//         $(document).on("submit", "#changeModal", function() {
+//             var e = this;
+//             // change login button text before ajax
+//             $(this).find("[type='submit']").html("Submitting...");
 
-        //     $.post($(this).attr('action'), $(this).serialize(), function(data) {
+//             $.post($(this).attr('action'), $(this).serialize(), function(data) {
 
-        //         $(e).find("[type='submit']").html("Submit");
-        //         if (data.status) { // If success then redirect to login url
-        //             window.location = data.redirect_location;
-        //         }
-        //     }).fail(function(response) {
-        //         // handle error and show in html
-        //         $(e).find("[type='submit']").html("Submit");
-        //          $(".alerts").remove();
-        //         var erroJson = JSON.parse(response.responseText);
-        //         for (var err in erroJson) {
-        //             for (var errstr of erroJson[err])
-        //                 $("#errors-list").append("<div class='alerts alert-danger'>" + errstr + "</div>");
-        //         }
+//                 $(e).find("[type='submit']").html("Submit");
+//                 if (data.status) { // If success then redirect to login url
+//                     window.location = data.redirect_location;
+//                 }
+//             }).fail(function(response) {
+//                 // handle error and show in html
+//                 $(e).find("[type='submit']").html("Submit");
+//                  $(".alerts").remove();
+//                 var erroJson = JSON.parse(response.responseText);
+//                 for (var err in erroJson) {
+//                     for (var errstr of erroJson[err])
+//                         $("#errors-list").append("<div class='alerts alert-danger'>" + errstr + "</div>");
+//                 }
 
-        //     });
-        //     return false;
-        // });
-    });
+//             });
+//             return false;
+//         });
+//     });
+// </script>
+<script type="text/javascript">
+
+function formValidate()
+{   
+
+    var oldPassword=$("#oldPassword").val();
+    var newPassword=$("#newPassword").val();
+    var ConfirmPassword=$("#ConfirmPassword").val();
+    var blankTest=/\S/;
+    
+    if(!blankTest.test(oldPassword))
+    {   
+        $("#oldPassword").css("background-color", "rgb(247, 211, 216)");
+        $("#erroroldPassword").html("Field is required");
+        $("#oldPassword").focus();
+        return false;
+    }else{
+        $("#oldPassword").css("background-color", "");
+        $("#erroroldPassword").html("");
+    }
+    if(!blankTest.test(newPassword))
+    {   
+        $("#newPassword").css("background-color", "rgb(247, 211, 216)");
+        $("#errornewPassword").html("Field is required");
+        $("#newPassword").focus();
+        return false;
+    }else{
+        $("#newPassword").css("background-color", "");
+        $("#errornewPassword").html("");
+    }
+    
+    if(!blankTest.test(ConfirmPassword)){   
+        $("#ConfirmPassword").css("background-color", "rgb(247, 211, 216)");
+        $("#errorConfirmPassword").html("Field is required");
+        $("#ConfirmPassword").focus();
+        return false;
+    }else{
+        $("#ConfirmPassword").css("background-color", "");
+        $("#errorConfirmPassword").html("");
+    } 
+   
+    return false;
+}
+
+
 </script>
 <script>
     var post = function(formId) {

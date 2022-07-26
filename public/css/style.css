@@ -62,7 +62,9 @@ header{ position:relative; padding:10px 0px;-webkit-box-shadow: 0 2px 4px rgb(15
 .head-btn a:hover{ background-color:#007cc2; color:#fff;}
 .head-btn .login{ background-color:#ffaa00; color:#fff;border:1px solid #ffaa00;}
 .head-btn .login:hover{ background-color:#007cc2; border:1px solid #007cc2;}
-.adv-banner{ position:relative; padding:30px 0px;}
+
+/*  */
+.adv-banner{ position:relative; padding:30px 0px;} /*z-index: -1;*/
 
 button.dark-btn{
 	border: 1px solid #363636;
@@ -83,6 +85,50 @@ button.dark-btn{
         opacity: 0.9;
         transform: translateY(0);
     } 
+}
+/* ===========Edit profile css================== */
+
+.avatar-upload {
+    position: relative;
+    max-width: 205px;
+    margin: auto;
+    /* margin-bottom: 20px; */
+}
+  .avatar-upload .avatar-edit {
+    position: absolute;
+    right: -39px;
+    z-index: 1;
+    top: -24px;
+}
+  .avatar-upload .avatar-edit input {
+    display: none;
+  }
+  .avatar-upload .avatar-edit input + label {
+    display: inline-block;
+    width: 120px;
+    height: 24px;
+    margin-bottom: 0;
+    background: #4c91ce;
+    cursor: pointer;
+    font-weight: normal;
+    transition: all 0.2s ease-in-out;
+    color: #fff;
+    padding: 4px 0 4px 31px;
+    font-size: 12px;
+}
+.avatar-upload .avatar-edit input + label:hover {
+    background: #333333;
+}
+  .avatar-upload .avatar-edit input + label:after {
+    font-family: "Font Awesome 5 Pro";
+    color: #ffffff;
+    position: absolute;
+    right: 96px;
+    top: 1px;
+    text-align: center;
+    line-height: 22px;
+    margin: auto;
+    content: '\f332';
 }
 
 /*=========================== Banner ===========================*/
@@ -118,6 +164,7 @@ footer li a:hover{ text-decoration:underline;}
     padding-left: 300px;
     padding-top: 50px;
 }
+
 .ce-para p{ color:#012f4a; font-weight:500; line-height:1.9;}
 
 
@@ -685,31 +732,48 @@ section.investor-sec {
 .token-box p{
     margin-bottom: 0;
 }
-.token-sec .token-title:before {
+.token-title2 h2{
+    position: relative;
+}
+.token-title h2{
+    position: relative;
+}
+
+.token-sec .token-title h2:before {
     position: absolute;
     content: '';
     background: #fa0;
     width: 60px;
     height: 4px;
-    top: 58px;
+    bottom: -8px;
     left: 0;
 }
-.token-sec .token-title2:before {
+.token-sec .token-title2 h2:before {
     position: absolute;
     content: '';
     background: #007cc2;
     width: 60px;
     height: 4px;
-    top: 58px;
+    bottom: -8px;
     left: 0;
 }
 
-.token-title2 {
-    position: relative;
+
+
+
+/* =====================copy-text================== */
+
+button.input-group-text.copy {
+    padding: 13.5px 10px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border: 1px solid gray;
+    border-left: 0;
 }
-.token-title {
-    position: relative;
-}
+.selct-box .form-select {
+    padding: 0.575rem 2.25rem 0.575rem 0.75rem;
+    border: 1px solid #a7a7a7;}
+
 /******************* Timeline Demo - 4 *****************/
 .main-timeline4{overflow:hidden;position:relative}
 .main-timeline4:before{content:"";width:5px;height:80%;background:#333;position:absolute;top:70px;left:50%;transform:translateX(-50%)}
@@ -847,13 +911,13 @@ header button.dark-btn .fa-sun {display: none;}
 .dark-mode .social-sec .social-sec-head p,.dark-mode .coin-export .ce-para p,.dark-mode .service-sec .service-head p,.dark-mode .testimonial-sec .testiti-head p,.dark-mode .testimonial-sec .testi-box p,.dark-mode .banner ul li,.dark-mode .service-sec .service-list li,.dark-mode footer ul li a, .dark-mode footer .copyright, .dark-mode footer p, .dark-mode .market-sec .market-box p,.dark-mode .top-about .top-ab-txt p,.dark-mode .snd-about .snd-txt p, .dark-mode .con-social-sec .con-social-box p, .dark-mode .contact-form .cof-form .cof-title p, .dark-mode .dashboard-footer,.dark-mode .faq-accodian .accordion-item .accordion-body p, .dark-mode .guide-sec .guide-box ul li, .dark-mode .Worker-sec .work-titel ul li, .dark-mode .modal-dialog .modal-content .modal-body .chkboxmain label, .dark-mode .modal-dialog .modal-content .modal-body .text-end a, .dark-mode .modal-dialog .modal-content .modal-body .dont-account, .dark-mode .modal-dialog .modal-content .modal-body li a,.dark-mode .dashboard-form-area label, .dark-mode .profile-usermenu ul li a, .dark-mode .profile-usermenu ul li i, .dark-mode .finish-task .finish-title h4, .dark-mode  .terms_condition .terms_condition-text p, .dark-mode .terms_condition .terms_condition-text li i, .dark-mode .tutor-im-box .title-blog p,.dark-mode .section-tutorial p, .dark-mode .error-page .error-content p, .dark-mode .with-complain-form .with-box2 .selct-bal label, .dark-mode .balance-title .selct-bal label,  .dark-mode .title label, .dark-mode .color-check p, .dark-mode .with-text ul li,.dark-mode .pro-title p, .dark-mode .loc-pro p, .dark-mode .pass-title label, .dark-mode .tran-title label, .dark-mode .email-zip-title ul li, .dark-mode .email-zip-title p, .dark-mode .roadmap-sec .description li, .dark-mode .text, .dark-mode #dvPassport {color: #9d9d9d!important;}
 
 .dark-mode .social-sec .social-box, .dark-mode .market-sec .market-box, .dark-mode .con-social-sec .con-social-box, 
-.dark-mode .guide-sec .guide-box, .dark-mode .blog-standard-item, .dark-mode .balance-title, .dark-mode .with-complain-form .with-box2, .dark-mode .cost-box, .dark-mode .coo-box, .dark-mode .team-box, .dark-mode .tab-text .tab-pane .table {box-shadow: unset;}
+.dark-mode .guide-sec .guide-box, .dark-mode .blog-standard-item, .dark-mode .balance-title, .dark-mode .with-complain-form .with-box2, .dark-mode .cost-box, .dark-mode .coo-box, .dark-mode .team-box, .dark-mode .tab-text .tab-pane .table, .dark-mode .features-wrap-card {box-shadow: unset;}
 .dark-mode .market-sec .market-box i {color: #d3d3d3;background: #484848;}
 
 .dark-mode .market-sec .market-box, .dark-mode .testimonial-sec .testi-box, 
 .dark-mode .social-sec .social-box, .dark-mode footer .subscribe-main, .dark-mode .con-social-sec .con-social-box, 
 .dark-mode .modal-content,
-.dark-mode .guide-sec .guide-box, .dark-mode .blog-standard-item, .dark-mode .balance-title, .dark-mode .with-complain-form .with-box2, .dark-mode .campaign-sec .tab-box .tab-text form, .dark-mode .coo-box, .dark-mode .cost-box, .dark-mode .box-icon.style-04 .icon-box-wrap, .dark-mode .rivate-services-box, .dark-mode .about-one__contact-icon, .dark-mode .benifit-section:before, .dark-mode .team-box, .dark-mode .tab-text .tab-pane .table{background: #202020;}
+.dark-mode .guide-sec .guide-box, .dark-mode .blog-standard-item, .dark-mode .balance-title, .dark-mode .with-complain-form .with-box2, .dark-mode .campaign-sec .tab-box .tab-text form, .dark-mode .coo-box, .dark-mode .cost-box, .dark-mode .box-icon.style-04 .icon-box-wrap, .dark-mode .rivate-services-box, .dark-mode .about-one__contact-icon, .dark-mode .benifit-section:before, .dark-mode .team-box, .dark-mode .tab-text .tab-pane .table, .dark-mode .features-wrap-card{background: #202020;}
 
 .dark-mode .snd-about .snd-img .video-play-button:after{background: rgb(16 16 16);}
 .dark-mode .snd-about .snd-img .video-play-button:before{background: rgb(16 16 16);}
@@ -910,11 +974,26 @@ header button.dark-btn .fa-sun {display: none;}
     background: #181818;}
 .dark-mode  .card-dash .card-body i {
         color: #363636;}
+
+.dark-mode textarea {
+    background-color : transparent;
+        color : white;
+}
+.modal-footer{
+    display:block;
+    text-align:center;
+    border-top:0px;
+}       
 /*=========================== Button ===========================*/
 .btn-style-one{color: #fff; border-radius:5px; min-width:130px; text-align:center; border:0px solid #2b79cb;padding: 12px 25px;background:#2b79cb; transition: 0.5s ease-in-out; display:inline-block;cursor: pointer; font-weight:500;}
 .btn-style-one:hover{background:#004A98;color: #fff;}
 
+input,textarea {-webkit-user-select:text;}
+select{-webkit-appearance: none;-moz-appearance: none;appearance: none;}
 
+.back-to-top {width:40px;height:40px;line-height:40px;text-align:center;background:#202E3F;position:fixed;bottom:0px;right:0px;text-decoration:none;color:#fff;font-size:14px;display:none;z-index:999;}
+.back-to-top:hover {opacity:.6;filter:alpha(opacity=60)}
+.back-to-top:focus, .back-to-top:hover {color:#fff!important}
 @media only screen and (min-width:1401px) and (max-width:1500px) {
 
 
@@ -1007,7 +1086,10 @@ footer {padding: 20px 0px 20px;}
 .guide-box {min-height: inherit ; margin-bottom:30px;}
 .snd-about {padding: 30px;}
 .snd-txt { padding-left: 0;}
-.top-about {padding: 50px 10px;}
+.top-about {padding: 25px 10px;}
+.top-ab-txt {
+    text-align: center;
+}
 .top-ab-img {margin-bottom: 30px;}
 .dashboard-nav {padding: 0; margin-bottom: 0;}
 .table_responsive_maas table td {min-width: 150px;}
@@ -1040,14 +1122,16 @@ footer {padding: 20px 0px 20px;}
 .dashboard_table_sec_top_right ul li:first-child {margin-left: 0;}
 .dashboard-pages #cssmenu.small-screen #menu-button {top: -214px;}
 .dashboard-pages #cssmenu.small-screen > ul {top: -164px;}
+.dashboard-body {
+    position: relative;
+    padding: 0px 0px 50px 0px;
+}
+
+.token-count-grid {
+    grid-template-columns: repeat(2, 1fr);}
 
 }
-input,textarea {-webkit-user-select:text;}
-select{-webkit-appearance: none;-moz-appearance: none;appearance: none;}
 
-.back-to-top {width:40px;height:40px;line-height:40px;text-align:center;background:#202E3F;position:fixed;bottom:0px;right:0px;text-decoration:none;color:#fff;font-size:14px;display:none;z-index:999;}
-.back-to-top:hover {opacity:.6;filter:alpha(opacity=60)}
-.back-to-top:focus, .back-to-top:hover {color:#fff!important}
 
 
 

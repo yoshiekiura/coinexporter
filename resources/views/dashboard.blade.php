@@ -36,24 +36,26 @@
 
             <!-- Alert Meassage -->
 
-            <div class="adv-banner">
+  <div class="adv-banner">
 	<div class="container">
     	<div class="row">
             <div class="col-lg-6 col-md-6 text-end">
 				<div class="owl-carousel" id="adv-slider1">
-					<div class="item"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""/></div>
-       	    		<div class="item"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""/></div>
-					<div class="item"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""/></div>
-					<div class="item"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""/></div>
-				</div>	
+					<div class="item"><a href="#"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""/></a></div>
+       	    		<div class="item"><a href="#"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""/></a></div>
+					<div class="item"><a href="#"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""/></a></div>
+					<div class="item"><a href="#"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""/></a></div>
+				</div>
+			
             </div>
             <div class="col-lg-6 col-md-6 text-start">
        	    	<div class="owl-carousel" id="adv-slider2">
-					<div class="item"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""/></div>
-       	    		<div class="item"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""/></div>
-					<div class="item"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""/></div>
-					<div class="item"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""/></div>
+					<div class="item"><a href="#"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""/></a></div>
+       	    		<div class="item"><a href="#"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""/></a></div>
+					<div class="item"><a href="#"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""/></a></div>
+					<div class="item"><a href="#"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""/></a></div>
 				</div>
+			
             </div>
         </div>
     </div>
@@ -67,15 +69,14 @@
                     <table class="table table-hover" >
                         <thead>
                             <tr>
-                                {{-- <form action="{{url('/search')}}" method="POST" role="search"> --}}
-                                {{csrf_field()}}
+                              
                                 <th width="55%" style="text-align:left;"><input type="text" id="jobname" class="form-control" placeholder="Job Name">
                                     <!-- <button type="submit" class="btn btn-info"><i class="fas fa-search fa-sm"></i></button> -->
                                 </th>
                                 <!-- </form> -->
                                 <th width="15%">
                                     <select class="selectbox-design " id="selpayment">
-                                        <option value="">Payment</option>
+                                        <option value=" ">Payment</option>
                                         @foreach ($payments as $payment)
                                         <option name="campaign_earning" id="payment" data-payment="{{$payment->campaign_earning}}" value="{{$payment->campaign_earning}}">${{$payment->campaign_earning}}</option>
                                         @endforeach
@@ -112,6 +113,7 @@
             url: "{{ route('dashboard')}}",
             type: 'GET',
             data: {
+                "_token": "{{ csrf_token() }}",
                 'jobname': jobname,
                 'selpayment': selpayment,
             },
@@ -133,6 +135,7 @@
             url: "{{ route('dashboard')}}",
             type: 'GET',
             data: {
+                "_token": "{{ csrf_token() }}",
                 'jobname': jobname,
                 'selpayment': selpayment,
             },

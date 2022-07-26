@@ -62,6 +62,10 @@
                                 @csrf
 
                                 @foreach ($SocialPlatform as $key=>$linkName)
+                                @php
+                                $channel_id = $SocialPlatform->id;
+                                $SocialLink = SocialLink::where('channel_id',$channel_id)->where('user_id',Auth::user()->id);
+                                @endphp
                                 <tr>
                                     <td class="linkName" name="linkName{{$key+1}}">{{ $linkName->social_platform_name }}</td>
                                     @if(count($SocialLink)>0)

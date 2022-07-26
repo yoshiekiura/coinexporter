@@ -267,17 +267,17 @@
                             $("td[name=btn" + key + "]").attr('action', 'edit');
                             $("#edit" + key).html('Edit'); 
                              $("#linkStatus" + key).html('Pending'); 
-                           $("#successmsg").html('<div class="alert success-alert" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Social Channel updated Successfully!</div>');
+                           $("#successmsg").html('<div class="alert success-alert" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>Social Channel updated Successfully!</div>');
                            
 
                         },
                         error: function(response) {
-                          $("#successmsg").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Social Channel Not Saved!</strong></div>');
+                          $("#successmsg").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><strong>Social Channel Not Saved!</strong></div>');
                         }
                     });
                 }
                 else {
-                    $("#successmsg").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Please enter channel name!</strong></div>');
+                    $("#successmsg").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><strong>Please enter channel name!</strong></div>');
                 }
           }
     }

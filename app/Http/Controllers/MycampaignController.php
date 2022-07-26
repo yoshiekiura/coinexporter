@@ -116,20 +116,23 @@ class MycampaignController extends Controller
             $mycampaign->campaign_earning = $request->promoters_earn;
             $mycampaign->promoters_needed = $request->promoters_needed;
             $mycampaign->campaign_cost = $request->campaign_cost;
-            if(!empty($request->referral_code)){
-            $mycampaign->referral_code = $request->referral_code;
+            if(!empty($request->referrer_code)){
+            $mycampaign->referrer_code = $request->referrer_code;
             }else{
-                $mycampaign->referral_code = 'NULL';
+                $mycampaign->referrer_code = 'NULL';
             }
             if(!empty($request->featured_campaign)){
                 $mycampaign->is_featured = $request->featured_campaign;
                 }else{
                     $mycampaign->is_featured = 0;
                 }
+            $randomNumber = random_int(100000, 999999);
+            $referral_code = 'CE'.$randomNumber;
+            $mycampaign->referral_code = $referral_code;
                //dd ($request->featured_campaign);
             $mycampaign->file_type = $request->file_type;
                 $user_id =  Auth::user()->id;
-                $status='active';
+                $status='Pending';
             $mycampaign->status = $status;
             $mycampaign->user_id = $user_id;
 
@@ -190,7 +193,7 @@ class MycampaignController extends Controller
                    
                     $tvlcampaign = new JobPaymentCheck;
                     $tvlcampaign->campaign_id = $camp_id;
-                    $status=1;//status 1 means Pending 
+                    $status='Pending';//status 1 means Pending 
                     $tvlcampaign->status = $status;
                     $trans_amt= $request->transaction_amt;
                    // $trans_amtt =implode(",", $trans_amt);

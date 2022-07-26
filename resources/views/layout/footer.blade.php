@@ -42,7 +42,7 @@
         <div class="row">
             <div class="col-lg-12">
             	<div class="copyright">
-       	    		&copy; 2009 - 2022 Coin Exporter, All Rights Reserved 
+       	    		&copy; 2022 Coin Exporter, All Rights Reserved 
                 </div>
             </div>
         </div>
@@ -82,6 +82,26 @@
 <script>new WOW().init();</script>
 
 
+<script>
+    // about counter
+$(".counter-count").each(function () {
+  $(this)
+    .prop("Counter", 0)
+    .animate(
+      {
+        Counter: $(this).text()
+      },
+      {
+        //if you want to change counter speed then change duration
+        duration: 4000,
+        easing: "swing",
+        step: function (now) {
+          $(this).text(Math.ceil(now));
+        }
+      }
+    );
+});
+</script>
 
 <script>
 $(window).scroll(function(){
@@ -124,6 +144,160 @@ btn.addEventListener("click", function() {
   localStorage.setItem("theme", theme);
 });
 </script>
+<script>
+    $(document).ready(function() {
+        $("#regForm").validate({
+            // if(grecaptcha.getResponse() == "") {
+            //   e.preventDefault();
+            //   alert("You can't proceed!");
+            // }
+            rules: {
+                //console.log 123;
+                name: "required",
+                email: {
+                    required: true,
+                    email: true
+                },
+                password: "required",
+                country: "required",
+                //  captcha: "required",
+                terms: "required",
+            },
+            messages: {
+                name: "Name is required",
+                email: {
+                    required: "Email is Required",
+                    email: "Enter Valid Email",
+                    // remote: "This Email Already Exists",
+                },
+                password: "Password is required",
+                country: "Please select the country",
+                //  captcha: "Captcha is required",
+                terms: "Terms & Conditions is required",
+            }
 
+        });
+    });
+</script>
+<script>
+    function loginsubmitForm() {
+        // var response = grecaptcha.getResponse();
+        // if(response.length == 0) {
+        //     document.getElementById('g-recaptcha-error').innerHTML = '<span style="color:red;">This field is required.</span>';
+        //     return false;
+        // }
+        // return true;
+    }
+
+    // function verifyCaptcha() {
+    //     document.getElementById('g-recaptcha-error').innerHTML = '';
+    // }
+</script>
+<script>
+    $(document).ready(function() {
+
+        $("#loginForm").validate({
+            // if(grecaptcha.getResponse() == "") {
+            //   e.preventDefault();
+            //   alert("You can't proceed!");
+            // }
+            rules: {
+                email: {
+                    required: true,
+                    email: true
+                },
+                password: "required",
+                //  captcha: "required",
+            },
+            messages: {
+                email: {
+                    required: "Email is Required",
+                    email: "Enter Valid Email",
+                },
+                password: "Password is required",
+                //  captcha: "Captcha is required",
+            }
+
+        });
+    });
+</script>
+<!--========SignIn Through Ajax Call====-->
+
+<script>
+    $(function() {
+        // handle submit event of form
+        $(document).on("submit", "#loginForm", function() {
+            var e = this;
+            // change login button text before ajax
+            $(this).find("[type='submit']").html("Signing In...");
+
+            $.post($(this).attr('action'), $(this).serialize(), function(data) {
+
+                $(e).find("[type='submit']").html("Sign In");
+                if (data.status) { // If success then redirect to login url
+                    window.location = data.redirect_location;
+                }
+            }).fail(function(response) {
+                // handle error and show in html
+                $(e).find("[type='submit']").html("Sign In");
+                 $(".alerts").remove();
+                var erroJson = JSON.parse(response.responseText);
+                for (var err in erroJson) {
+                    for (var errstr of erroJson[err])
+                        $("#errors-list").append("<div class='alerts alert-danger'>" + errstr + "</div>");
+                }
+
+            });
+            return false;
+        });
+
+        $(document).on("submit", "#regForm", function() {
+            var e = this;
+            // change Signup button text before ajax
+            $(this).find("[type='submit']").html("Registering...");
+
+            $.post($(this).attr('action'), $(this).serialize(), function(data) {
+
+                $(e).find("[type='submit']").html("Register Now");
+                if (data.status) { // If success then redirect to Signup url
+                    window.location = data.redirect_location;
+                }
+            }).fail(function(response) {
+                // handle error and show in html
+                $(e).find("[type='submit']").html("Register Now");
+                $(".alerts").remove();
+                var erroJson = JSON.parse(response.responseText);
+               
+                for (var err in erroJson) {
+                    for (var errstr of erroJson[err])
+                        $("#reg-errors-list").append("<div class='alerts alert-danger'>" + errstr + "</div>");
+                }
+
+            });
+            return false;
+        });
+    });
+</script>
+
+
+
+ <script type="text/javascript">
+
+function signinModal(){
+$('#signin-modal').modal('show');
+$('#register-modal').modal('hide');
+}       
+
+function forgotModal(){
+$('#forgot-modal').modal('show');
+$('#signin-modal').modal('hide');
+
+} 
+
+function registerModal(){
+$('#signin-modal').modal('hide');
+$('#register-modal').modal('show');
+}       
+</script>
 </body>
 </html>

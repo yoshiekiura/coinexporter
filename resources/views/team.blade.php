@@ -31,10 +31,10 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-12 col-md-12 col-sm-12">
+      <div class="col-lg-12 col-md-12 col-sm-12 ">
         <div class="team-box box2">
-          <div class="row align-items-center">
-            <div class="col-lg-8 col-md-6 col-sm-6">
+          <div class="row align-items-center flex-column-reverse flex-sm-row flex-lg-row flex-md-row">
+            <div class="col-lg-8 col-md-6 col-sm-6 ">
               <div class="team-content">
                 <h5 class="heading">Chief Operation Officer (COO)</h5>
                 <p class="text">The Chief Operation Officer is an experienced Software Quality Assurance Expert with experience in Blockchain Technology and specialty in cryptocurrency. He has significant working experience with successful projects both within cryptocurrency and non-cryptocurrency space.  </p>
@@ -69,12 +69,13 @@
   </div>
 </section>
 
+
 <div class="testimonial-sec ptb-50">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-lg-4 col-sm-12">
 				<div class="testiti-head">
-					<h2>What They Are <br /> Telling About Us</h2>
+					<h2>What They Are <br /> Saying About Us</h2>
 					<p>2356+ Clients Trusted Us</p>
 				</div>
 			</div>

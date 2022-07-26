@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\JobSpace;
 use App\Models\JobDone;
+use App\Models\JobLog;
 use App\Models\CampaignCategory;
 use App\Models\SocialPlatform;
 use App\Models\Admin;
@@ -20,10 +21,10 @@ class FinishtaskController extends Controller
     public function index()
     {
         $pagename= 'Finish Task';
-    $userID = Auth::user()->id;
+         $userID = Auth::user()->id;
 		$job_dones = JobDone::select(
 
-                            "job_dones.proof_of_work as pof", "job_dones.campaign_id","job_dones.id as jobdoneId",
+                            "job_dones.proof_of_work as pof", "job_dones.campaign_id","job_dones.id as jobdoneId","job_dones.campaign_earnings as campEarn",
 
                             "job_dones.status as tvl_status",
 
@@ -47,7 +48,7 @@ class FinishtaskController extends Controller
 
                         //echo json_encode($job_dones);
                         //exit;
-//echo $job_dones->jobdoneId;exit;
+                        //echo $job_dones->jobdoneId;exit;
         return view('finishtask',compact('job_dones'));
     }
 
@@ -71,7 +72,8 @@ class FinishtaskController extends Controller
     {
         //dd($request->all());
         //echo json_encode($request);
-
+        
+        $userID = Auth::user()->id;
         if(empty($request->proofInstructionbox)){
             $proof_of_work = '';
         }
@@ -83,22 +85,19 @@ class FinishtaskController extends Controller
                 'proofInstructionbox'=>'required'
             ]);
      
-     
-            // $student = JobDone::find($id);
-            // $student->proof_of_work = $request->get('proofInstructionbox');
-            // $student->update();
-     
-            // return redirect('/finishtask')->with('success', 'Uploaded Successfully!');
        
         $objJobdone = JobDone::where('id', $request->finishtask_id)->first();
         $objJobdone->proof_of_work = $request->proofInstructionbox;
         $objJobdone->save();
-    // //     $UpdateDetails = JobDone::where('id', $req->finishtask_id)
-    // //    ->update([
-    // //        'proof_of_work' => $proof_of_work
-    // //     ]);
-       
+   
     if ( $objJobdone->save()) {
+        $objJobLog = new JobLog;
+        $objJobLog->proof_of_work = $request->proofInstructionbox; 
+        $objJobLog->user_id = $userID;
+        $objJobLog->campaign_id = $request->campainId;
+        $objJobLog->status = $request->status;
+        $objJobLog->campaign_earnings = $request->campaign_earnings;
+        $objJobLog->save();
         return redirect()->back()->with('success', 'Uploaded Successfully!');
         
     } else {

@@ -22,12 +22,11 @@ class MyaccountController extends Controller
     {
         $id = Auth::user()->id;
         $SocialPlatform = SocialPlatform::select('social_platform.*')->get();
-        $SocialLink = SocialLink::where('channel_id',$SocialPlatform->id)->where('user_id',$id);
 
         $userData = User::where('id', $id)->first();
         $country = Country::where('id', $userData->country)->first();
 
-        return view('myaccount', compact('userData', 'country', 'SocialLink', 'SocialPlatform'));
+        return view('myaccount', compact('userData', 'country', 'SocialPlatform'));
     }
 
     public function create(request $req)

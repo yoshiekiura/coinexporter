@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                &copy; 2009 - 2022 Coin Exporter, All Rights Reserved
+                &copy; 2022 Coin Exporter, All Rights Reserved
             </div>
         </div>
     </div>
@@ -85,6 +85,7 @@ btn.addEventListener("click", function() {
   localStorage.setItem("theme", theme);
 });
 </script>
+
 </body>
 
 </html>

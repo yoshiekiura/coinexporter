@@ -26,7 +26,7 @@
 
 <div class="top-about ptb-50">
 	<div class="container">
-		<div class="row align-items-center">
+		<div class="row align-items-center  flex-column-reverse flex-sm-row flex-md-row flex-lg-row">
 			<div class="col-lg-6 col-md-6 col-sm-12">
 				<div class="top-ab-txt">
 					<h3 class="heading">The Problem</h3>
@@ -48,7 +48,7 @@
 
 <div class="top-about ptb-50">
 	<div class="container">
-		<div class="row align-items-center flex-column-reverse flex-sm-row flex-md-row flex-lg-row">
+		<div class="row align-items-center">
 			<div class="col-lg-6 col-md-6 col-sm-12">
 				<div class="about-img">
 					<img src="{{BASEURL}}images/solution.png" alt="">
@@ -74,7 +74,7 @@
 
 <div class="top-about ptb-50">
 	<div class="container">
-		<div class="row align-items-center">
+		<div class="row align-items-center  flex-column-reverse flex-sm-row flex-md-row flex-lg-row">
 			<div class="col-lg-6 col-md-6 col-sm-12">
 				<div class="top-ab-txt">
 					<h3 class="heading">The Impact</h3>

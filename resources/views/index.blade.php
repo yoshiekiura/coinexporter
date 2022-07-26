@@ -26,24 +26,22 @@
 	<div class="container">
     	<div class="row">
             <div class="col-lg-6 col-md-6 text-end">
-			<a href="#">
 				<div class="owl-carousel" id="adv-slider1">
-					<div class="item"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""/></div>
-       	    		<div class="item"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""/></div>
-					<div class="item"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""/></div>
-					<div class="item"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""/></div>
+					<div class="item"><a href="#"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""></a></div>
+       	    		<div class="item"><a href="#"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""></a></div>
+					<div class="item"><a href="#"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""></a></div>
+					<div class="item"><a href="#"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""></a></div>
 				</div>
-			</a>
+			
             </div>
             <div class="col-lg-6 col-md-6 text-start">
-			<a href="#">
        	    	<div class="owl-carousel" id="adv-slider2">
-					<div class="item"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""/></div>
-       	    		<div class="item"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""/></div>
-					<div class="item"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""/></div>
-					<div class="item"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""/></div>
+					<div class="item"><a href="#"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""></a></div>
+       	    		<div class="item"><a href="#"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""></a></div>
+					<div class="item"><a href="#"><img src="<?php echo BASEURL; ?>images/banner2.jpg" alt=""></a></div>
+					<div class="item"><a href="#"><img src="<?php echo BASEURL; ?>images/banner1.jpg" alt=""></a></div>
 				</div>
-			</a>
+			
             </div>
         </div>
     </div>
@@ -89,7 +87,7 @@
 			</div>
 			<div class="col-md-6 p-0">
 				<div class="ce-img">
-				<img src="{{BASEURL}}images/exportbgdark.png" alt="">
+				<img src="{{BASEURL}}images/exportbg-dark.png" alt="">
 				</div>
 			</div>
 		</div>
@@ -266,7 +264,7 @@
 			</div>
 			<div class="col-md-3 col-lg-3 col-6">
 				<div class="social-box">
-					<a href="#" class="box-color4"><i class="fab fa-linkedin"></i></a>
+					<a href="#" class="box-color4"><i class="fab fa-telegram-plane"></i></a>
 				</div>
 			</div>
 		</div>
@@ -353,7 +351,7 @@
 </div>
 
 
-<section class="our-partners">
+<section class="our-partners dark-bg">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">

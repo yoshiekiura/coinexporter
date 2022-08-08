@@ -49,8 +49,8 @@
                                     <form action="" method="post" id="form-image">
                                         
                                         <input type="hidden" name="oldProfile" id="oldProfile" value="<?= $userData->profileImage ?>">
-                                        <input type='file' class="change_btn" name="profileImage" id="imageUpload" accept=".png, .jpg, .jpeg" value="" placeholder="Change Profile Photo" onchange="post('postId')"/>
-                                        <label for="imageUpload">Change Photo</label>
+                                        <input type='file' class="change_btn" name="profileImage" oninput="pImage.src=window.URL.createObjectURL(this.files[0])" id="imageUpload" accept=".png, .jpg, .jpeg" value="" placeholder="Change Profile Photo"/>
+                                        <label for="imageUpload" id="upload_img">Change Photo</label>
                                     </form>
                                     </div>
                                 </div>
@@ -60,8 +60,8 @@
                                     <div class="avatar-edit">
                                     <form action="" method="post" id="form-image">
                                         
-                                        <input type="hidden" name="oldProfile" id="oldProfile" value="<?= $userData->profileImage ?>">
-                                        <input type='file' class="change_btn" name="profileImage" id="imageUpload" accept=".png, .jpg, .jpeg" value="" placeholder="Change Profile Photo" onchange="post('postId')"/>
+                                        <input type="hidden" name="oldProfile" id="oldProfile" value="<?= $userData->profileImage ?>" oninput="pImage.src=window.URL.createObjectURL(this.files[0])">
+                                        <input type='file' class="change_btn" name="profileImage" id="imageUpload" accept=".png, .jpg, .jpeg" value="" placeholder="Change Profile Photo"/>
                                         <label for="imageUpload">Change Photo</label>
                                     </form>
                                     </div>
@@ -74,7 +74,7 @@
                                 <li class="active"><a href="#"><i class="fas fa-male"></i>Edit Profile</a></li>
                                 <li class=""><a href="{{ route('myaccount') }}"><i class="fas fa-envelope"></i>My Account </a></li>
                                 <li class=""><a href="#" data-bs-toggle="modal" data-bs-target="#changeModal"><i class="fas fa-key"></i>Change Password</a></li>
-                                <li class=""><a href="{{ route('logout') }}"><i class="fas fa-power-off"></i>Sign Out</a></li>
+                                <li class=""><a href="{{ route('user.logout') }}"><i class="fas fa-power-off"></i>Sign Out</a></li>
                             </ul>
                         </div>
                     </div>
@@ -138,47 +138,6 @@
     </div>
 </div>
 
-<!-- Start Change old Passowrd -->
-<!-- <div class="modal fade" id="changeModalPassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="max-width: 385px;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-                <form action="{{ route('changepassword') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <img src="{{BASEURL}}images/lock.png" style="max-width: 40%;">
-                    <div id="errors-list"></div>
-                    <div class="pass-title" style="text-align: left;">
-                        <label style="padding-bottom: 2px;">Old Password</label>
-                        <input type="password" name="oldPassword" style="padding: 5px 7px;" required>
-                        @error('oldPassword')
-                            <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
-                            @enderror
-                    </div>
-                    <div class="pass-title" style="text-align: left;">
-                        <label style="padding-bottom: 2px;">New Password</label>
-                        <input type="password" name="newPassword" style="padding: 5px 7px;" required>
-                        @error('newPassword')
-                            <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
-                            @enderror
-                    </div>
-                    <div class="pass-title" style="text-align: left;">
-                        <label style="padding-bottom: 2px;">Confirm New Password</label>
-                        <input type="password" name="ConfirmPassword" style="padding: 5px 7px;" required>
-                        @error('ConfirmPassword')
-                            <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
-                            @enderror
-                    </div>
-                    <div class="pass-title" style="margin-top: 30px; margin-bottom: 6px;">
-                        <button class="btn-style-one" type="submit">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> -->
   <!-- ========================== change password modal======================= -->
   <div class="modal fade" id="changeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" style="max-width: 385px;">
@@ -230,56 +189,6 @@
 
 
 <a href="#" class="back-to-top" style="display: none;"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
-<!-- <script>
-    $(document).ready(function() {
-
-        $("#changeModal").validate({
-            rules: {
-                 
-                oldPassword: "required",
-                newPassword: "required",
-                ConfirmPassword: "required",
-                
-            },
-            messages: {
-                oldPassword: "Old Password is required",
-                newPassword: "New Password is required",
-                ConfirmPassword: "Confirm Password is required",
-                
-            }
-
-        });
-    });
-</script> -->
-<script>
-//     $(function() {
-//        // handle submit event of form
-//         $(document).on("submit", "#changeModal", function() {
-//             var e = this;
-//             // change login button text before ajax
-//             $(this).find("[type='submit']").html("Submitting...");
-
-//             $.post($(this).attr('action'), $(this).serialize(), function(data) {
-
-//                 $(e).find("[type='submit']").html("Submit");
-//                 if (data.status) { // If success then redirect to login url
-//                     window.location = data.redirect_location;
-//                 }
-//             }).fail(function(response) {
-//                 // handle error and show in html
-//                 $(e).find("[type='submit']").html("Submit");
-//                  $(".alerts").remove();
-//                 var erroJson = JSON.parse(response.responseText);
-//                 for (var err in erroJson) {
-//                     for (var errstr of erroJson[err])
-//                         $("#errors-list").append("<div class='alerts alert-danger'>" + errstr + "</div>");
-//                 }
-
-//             });
-//             return false;
-//         });
-//     });
-// </script>
 <script type="text/javascript">
 
 function formValidate()
@@ -327,44 +236,62 @@ function formValidate()
 
 </script>
 <script>
-    var post = function(formId) {
-        var formData = new FormData(document.getElementById(formId));
-        var img=$("#pImage").val();
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            url: "{{ url('profileImageUpload')}}",
-            type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(result) {
-                //location.reload();<img src="{{BASEURL}}images/'+$userData->profileImage+'" alt="image" id="pImage" >
-                $('#pImage').html('<img src="' + $userData->profileImage + '" />');
-                $("#successmsg").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><strong>Profile uploaded Successfully!</strong></div>');
-            },
-            error: function(result) {
-                //location.reload();
-                $("#successmsg").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><strong>Profile not updated!</strong></div>');
-            }
-        });
-    }
+    $(document).ready(function() {
+        
+        $('input[type="file"]').change(function(e) {
+            // Get form
+            var form = $('#postId')[0];
+            // Create an FormData object 
+            var formData = new FormData(form);
 
-    jQuery(document).ready(function() {
+            var file = e.target.files[0].name;
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+               
+                url: "{{ url('profileImageUpload')}}",
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(result) {
+                    //location.reload();
+                    // $('#imageUpload').change(function(){
+          
+                    //     let reader = new FileReader();
+                    //     reader.onload = (e) => { 
+                    //         $('#pImage').attr('src', e.target.result); 
+                    //     }
+                    //     reader.readAsDataURL(this.files[0]); 
+
+                    // });
+                    $("#pImage").attr("src","{{BASEURL}}images/"+e.target.files[0].name);
+                    //$('.avatar').html(img);
+                    $("#successmsg").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><strong>Profile uploaded Successfully!</strong></div>');
+                },
+                error: function(result) {
+                    //location.reload();
+                    $("#successmsg").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><strong>Profile not updated!</strong></div>');
+                }
+            });
+        }); 
+    });
+
+    $(document).ready(function() {
         var offset = 220;
         var duration = 500;
-        jQuery(window).scroll(function() {
-            if (jQuery(this).scrollTop() > offset) {
-                jQuery('.back-to-top').fadeIn(duration);
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > offset) {
+                $('.back-to-top').fadeIn(duration);
             } else {
-                jQuery('.back-to-top').fadeOut(duration);
+                $('.back-to-top').fadeOut(duration);
             }
         });
 
-        jQuery('.back-to-top').click(function(event) {
+        $('.back-to-top').click(function(event) {
             event.preventDefault();
-            jQuery('html, body').animate({
+            $('html, body').animate({
                 scrollTop: 0
             }, duration);
             return false;

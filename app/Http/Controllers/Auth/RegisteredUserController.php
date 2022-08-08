@@ -73,6 +73,7 @@ class RegisteredUserController extends Controller
             'referral_code' =>$refferal_code,
             'referrer_code' => $ref_code,
             'terms' => $request->terms,
+            'status' => 'active'
         ]);
        
         event(new Registered($user));

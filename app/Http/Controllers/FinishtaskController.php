@@ -24,7 +24,7 @@ class FinishtaskController extends Controller
          $userID = Auth::user()->id;
 		$job_dones = JobDone::select(
 
-                            "job_dones.proof_of_work as pof", "job_dones.campaign_id","job_dones.id as jobdoneId","job_dones.campaign_earnings as campEarn",
+                            "job_dones.proof_of_work as pof", "job_dones.campaign_id","job_dones.why_not_reason as reason","job_dones.id as jobdoneId","job_dones.campaign_earnings as campEarn",
 
                             "job_dones.status as tvl_status",
 
@@ -113,9 +113,20 @@ class FinishtaskController extends Controller
      * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function show(Country $country)
+    public function appeal(Request $request)
     {
-        //
+         //dd($request->all());
+        //echo json_encode($request);
+        $userID = Auth::user()->id;
+        $objJobdone = JobDone::where('campaign_id', $request->campainId)->where('user_id',$userID)->first();
+        $objJobdone->appeal_by_promoter = $request->reason_for_appeal; 
+        if($objJobdone->save()){
+            return redirect()->back()->with('success', 'Appeal Sent Successfully!');
+        
+        } else {
+            return redirect()->back()->with('error', 'Appeal Failed!');
+            
+            }
     }
 
     /**

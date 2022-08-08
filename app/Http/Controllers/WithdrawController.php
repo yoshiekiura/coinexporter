@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use App\Models\UserTransaction;
 use App\Models\JobDone;
+use App\Models\ReferralEarning;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DB;
@@ -14,7 +15,9 @@ class WithdrawController extends Controller
     public function index()
     {
       
-        $totalActualBalance = JobDone::where('user_id',Auth::user()->id)->where('status','Approved')->where('earning_status','Success')->sum('campaign_earnings');
+        $campaign_earnings = JobDone::where('user_id',Auth::user()->id)->where('status','Approved')->where('earning_status','Success')->sum('campaign_earnings');
+        $referral_earnings = ReferralEarning::where('referred_user_id',Auth::user()->id)->sum('referral_earnings');
+        $totalActualBalance = round(($campaign_earnings + $referral_earnings),2);
         $userTransaction = UserTransaction::latest()->where('user_id',Auth::user()->id)->get();
         $withdrawalBalance = JobDone::where('user_id',Auth::user()->id)->where('status','Approved')->where('earning_status','On-Going')->sum('campaign_earnings');
         
@@ -35,7 +38,7 @@ class WithdrawController extends Controller
         $objTransaction = new UserTransaction();
         $objTransaction->user_id = Auth::user()->id;
         $objTransaction->transaction_amount = $request->amt_to_withdraw;
-        $objTransaction->transaction_detail = '$'.$request->amt_to_withdraw .' has been withdrwan on'.date('d/m/Y');
+        $objTransaction->transaction_detail = '$'.$request->amt_to_withdraw .' has requested to withdraw on '.date('d/m/Y');
         $objTransaction->wallet_balance = '';
         $objTransaction->status = 'Pending';
         if($objTransaction->save()){

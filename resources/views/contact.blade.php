@@ -5,6 +5,21 @@
 @section('title','Contact Us')
 @include("layout.menu")
 
+<!-- ==========Alert Message======= -->
+			@include("layouts.alert")
+			@if (Session::has('success'))
+
+		<div class="alert success-alert  alert-dismissible fade show" role="alert">
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			{{ Session::get('success') }}
+		</div>  
+		@endif
+		@if (Session::has('error'))
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+			{{ Session::get('error') }}
+		</div>
+		@endif
 <div class="con-social-sec ptb-50">
 	<div class="container">
 		<div class="row">
@@ -56,24 +71,34 @@
 						<p>We are ready and happy to reply. Thank you."</p>
 					</div>
 					<div class="form-sec">
-						<form>
+						<form action="{{route('contactstore')}}" method="POST">
+							@csrf
 							<div class="row">
 								<div class="col-md-6 col-lg-6">
 									<div class="input-box">
-										<input type="email" class="form-control" placeholder="Your Full Name">
+										<input type="text" class="form-control" name="name" id="name" placeholder="Your Full Name" value="{{old('name')}}"  required>
 										<i class="fas fa-user"></i>
+										@error('name')
+										<div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
+										@enderror
 									</div>
 								</div>
 								<div class="col-md-6 col-lg-6">
 									<div class="input-box">
-										<input type="email" class="form-control" placeholder="Your Email">
+										<input type="email" class="form-control" name="email" id="email" placeholder="Your Email" value="{{old('email')}}" required>
 										<i class="fal fa-envelope"></i>
+										@error('email')
+										<div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
+										@enderror
 									</div>
 								</div>
 								<div class="col-md-12 col-lg-12">
 									<div class="input-box">
-										 <textarea class="form-control" placeholder="Write Message" rows="3"></textarea>
+										 <textarea class="form-control" name="message" id="message" placeholder="Write Message" rows="3" required value="{{old('message')}}"></textarea>
 										 <i class="fas fa-pen"></i>
+										 @error('message')
+										<div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
+										@enderror
 									</div>
 								</div>
 								<div class="col-lg-6 col-md-6">
@@ -83,7 +108,7 @@
 								</div>
 								<div class="col-lg-6 col-md-6">
 									<div class="form-button">
-										<button>Send Meassage</button>
+										<button type="submit">Send Meassage</button>
 									</div>
 								</div>
 							</div>

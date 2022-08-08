@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\ContactUs;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -34,7 +34,22 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',   // required and email format validation
+            'message' => 'required'
+            ]);
+
+            $contact = new ContactUs;
+            $contact->name = $request->name;
+            $contact->email = $request->email;
+            $contact->message = $request->message;
+            $contact->status = 'active';
+            if( $contact->save()){
+                return redirect()->back()->with('success','Submitted successfully!');
+             }else{
+                return redirect()->back()->with('error','Unsuccess!');
+             }
     }
 
     /**

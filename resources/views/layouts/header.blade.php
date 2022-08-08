@@ -178,7 +178,7 @@
                                                         <li class="dropdown-item"><a href="#"><i class="fas fa-cogs"></i>Settings</a></li>
                                                         <li class="dropdown-item"><a href="{{ route('myaccount') }}"><i class="fas fa-envelope"></i>My Account </a></li>
                                                         <li class="dropdown-item"><a href="{{ route('editprofile') }}"><i class="fas fa-key"></i>Change Password</a></li>
-                                                        <li class="dropdown-item"><a href="{{ route('logout') }}"><i class="fas fa-power-off"></i>Sign Out</a></li>
+                                                        <li class="dropdown-item"><a href="{{ route('user.logout') }}"><i class="fas fa-power-off"></i>Sign Out</a></li>
                                                     </ul>
                                                 </div>
                                             </div>

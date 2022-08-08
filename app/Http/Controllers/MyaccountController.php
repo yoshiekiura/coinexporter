@@ -7,6 +7,8 @@ use App\Models\SocialPlatform;
 use App\Models\SocialLink;
 use App\Models\Country;
 use App\Models\JobDone;
+use App\Models\Transaction;
+use App\Models\ReferralEarning;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
@@ -79,11 +81,33 @@ class MyaccountController extends Controller
     }
 
     public function controlpanel(request $req){
-        $totalActualBalance = JobDone::where('user_id',Auth::user()->id)->where('status','Approved')->where('earning_status','Success')->sum('campaign_earnings');
-        $withdrawalBalance = JobDone::where('user_id',Auth::user()->id)->where('status','Approved')->where('earning_status','On-Going')->sum('campaign_earnings');
-        $totalPendingBalance = JobDone::where('user_id',Auth::user()->id)->where('status','Pending')->sum('campaign_earnings');
-        $totalBalances = $totalActualBalance + $totalPendingBalance;
+        //TOTAL ACTUAL BALANCE
+        $campaign_earnings = JobDone::where('user_id',Auth::user()->id)->where('status','Approved')->where('earning_status','Success')->sum('campaign_earnings');
+        $referral_earnings = ReferralEarning::where('referred_user_id',Auth::user()->id)->sum('referral_earnings');
+        $totalActualBalance = round(($campaign_earnings + $referral_earnings),2);
         
-        return view('controlpanel',compact('totalActualBalance','withdrawalBalance','totalPendingBalance','totalBalances'));
+        //TOTAL WITHDRAWN AMOUNT
+        $withdrawal_Balance = JobDone::where('user_id',Auth::user()->id)->where('status','Approved')->where('earning_status','On-Going')->sum('campaign_earnings');
+        $withdrawalBalance = round($withdrawal_Balance,2);
+
+        //TOTAL PENDING BALANCE
+        $totalPending_Balance = JobDone::where('user_id',Auth::user()->id)->where('status','Pending')->sum('campaign_earnings');
+        $totalPendingBalance = round($totalPending_Balance,2);
+
+        //TOTAL BALANCES
+        $totalBalances = round(($totalActualBalance + $totalPendingBalance),2);
+
+        //REFERRAL BONUS BALANCE
+        $Register_referralearnings = ReferralEarning::where('referred_user_id',Auth::user()->id)->where('promotion_type','Registration')->sum('referral_earnings');
+        $totalRefferalBalance = round($Register_referralearnings,2);
+
+        //CAMPAIGN BONUS BALANCE
+        $Campaign_referralearnings = ReferralEarning::where('referred_user_id',Auth::user()->id)->where('promotion_type','Campaign')->sum('referral_earnings');
+        $totalCamapignBalance = round($Campaign_referralearnings,2);
+
+        //Transaction Log Details
+        $transactions_log = Transaction::where('user_id',Auth::user()->id)->latest()->get();
+        
+        return view('controlpanel',compact('totalActualBalance','withdrawalBalance','totalPendingBalance','totalBalances','totalRefferalBalance','totalCamapignBalance','transactions_log'));
     }
 }

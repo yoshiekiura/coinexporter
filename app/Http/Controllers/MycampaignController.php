@@ -5,7 +5,7 @@ use App\Models\JobSpace;
 use App\Models\JobPaymentCheck;
 use App\Models\CampaignCategory;
 use App\Models\SocialPlatform;
-use App\Models\Admin;
+use App\Models\CampaignAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,9 +21,9 @@ class MycampaignController extends Controller
     {
 		// $tvl_admins = DB::select('select * from tvl_admins where user_type="Campaign Admin"');
 		 
-		 $tvl_admins = Admin::select(
+		 $tvl_admins = CampaignAdmin::select(
 
-                            "admins.*"
+                            "campaign_admins.*"
 
                         )
 

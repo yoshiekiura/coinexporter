@@ -6,7 +6,7 @@
     </div>
 </div>
 
-<div class="finish-task">
+<div class="finish-task"> 
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12">
@@ -43,7 +43,7 @@
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Referral Bonus Balance</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">${{$totalRefferalBalance}}</div>
                       </div>
                       <div class="col-auto">
                         <i class="fad fa-dollar-sign fa-2x text-gray-300"></i>
@@ -73,7 +73,7 @@
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Campaign Bonus Balance</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">${{$totalCamapignBalance}}</div>
                       </div>
                       <div class="col-auto">
                         <i class="fad fa-dollar-sign fa-2x text-gray-300"></i>
@@ -135,33 +135,22 @@
                             </tr>
                           </thead>
                           <tbody>
+                          @foreach($transactions_log as $key=>$transaction)
                             <tr>
-                              <td align="left">Fsgdh3987dhsd </td>
-                              <td>Write reviews and post</td>
-                              <td>Uploaded</td>
-                              <td>$50 </td>
-                              <td>Confirmed </td>
-                              <td>10 June,2022</td>
+                              <td align="left">{{$transaction->id}}</td>
+                              <td>{{ date("d-M-Y", strtotime($transaction->created_at)) }}</td>
+                              <td>{{$transaction->description}}</td>
+                              @if(($transaction->approved_amount) < 0)
+                              <td>${{round((-$transaction->approved_amount),2)}}</td>
+                              @else
+                              <td>${{round($transaction->approved_amount,2)}}</td>
+                              @endif
+                              <td>{{$transaction->status}}</td>
+                              <td>{{$transaction->transaction_type}}</td>
                               
                             </tr>
-                            <tr>
-                              <td align="left">Hgvdsbjd84736bv</td>
-                              <td>Write reviews and post</td>
-                              <td>Click here to upload</td>
-                              <td>$62 </td>
-                              <td>Pending </td>
-                              <td>14 June,2022</td>
-                              
-                            </tr>
-                            <tr>
-                              <td align="left">Kjhsdg897hgd </td>
-                              <td>Write reviews and post</td>
-                              <td>Uploaded</td>
-                              <td>$28 </td>
-                              <td>(Click to view reason)</td>
-                              <td>16 June,2022</td>
-                              
-                            </tr>
+                            @endforeach
+                            
                           </tbody>
                       </table>
                    </div>

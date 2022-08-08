@@ -58,7 +58,9 @@ class DashboardController extends Controller
             }else{
             
                 if($job_space->is_featured == '1'){
-                $featured ='<img src="'.$baseurl.'images/featured.png" alt="Featured" align="top" style="margin-left:10px;">';
+                $featured =' <div class="ribbon">
+                <span class="ribbon1"><span>Featured</span></span>
+              </div>';
             }else{
                 $featured = '';
             }

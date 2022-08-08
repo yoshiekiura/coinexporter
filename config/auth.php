@@ -14,10 +14,10 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'admin',
+        'passwords' => 'admins',
     ],
-
+ 
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -33,15 +33,24 @@ return [
     |
     | Supported: "session"
     |
+    'guards' => [
+            'web' => [
+                'driver' => 'session',
+                'provider' => 'users',
+            ],
+        ],
     */
-
     'guards' => [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
     ],
-
+        
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -57,9 +66,7 @@ return [
     |
     | Supported: "database", "eloquent"
     |
-    */
-
-    'providers' => [
+        'providers' => [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
@@ -69,6 +76,20 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+    ],
+
+    */
+
+
+    'providers' => [
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
     ],
 
     /*

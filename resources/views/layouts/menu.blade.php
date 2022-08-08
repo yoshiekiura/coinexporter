@@ -18,7 +18,7 @@
                 <nav id="cssmenu">
                     <ul>
                       <li class="{{Request::routeIs('controlpanel') ? 'active' : '' }}"><a href="{{ route('controlpanel')}}"><i class="fas fa-tachometer"></i> Dashboard</a></li>
-                      <li class="{{Request::routeIs('dashboard') ? 'active' : '' }}"><a href="{{ route('dashboard')}}"><i class="fas fa-tachometer-alt"></i> Job Space</a></li>
+                      <li class="{{Request::routeIs('user.dashboard') ? 'active' : '' }}"><a href="{{ route('user.dashboard')}}"><i class="fas fa-tachometer-alt"></i> Job Space</a></li>
                       <li class="{{Request::routeIs('finishtask') ? 'active' : ''}}"><a href="{{ route('finishtask') }}"><i class="fal fa-clipboard-list-check"></i> Finished Tasks</a></li>
                       <li class="{{Request::routeIs('mycampaign') ? 'active' : ''}}"><a href="{{ route('mycampaign') }}"><i class="far fa-bullhorn"></i> My Campaigns</a></li>
                       <li class="{{Request::routeIs('myaccount') ? 'active' : ''}}"><a href="{{ route('myaccount') }}"><i class="fal fa-file-user"></i> My Account</a></li>

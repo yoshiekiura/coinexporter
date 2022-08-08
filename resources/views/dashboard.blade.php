@@ -110,7 +110,7 @@
         var jobname = $('#jobname').val();
         var selpayment =  $('#selpayment').val();
        $.ajax({
-            url: "{{ route('dashboard')}}",
+            url: "{{ route('user.dashboard')}}",
             type: 'GET',
             data: {
                 "_token": "{{ csrf_token() }}",
@@ -132,7 +132,7 @@
         var jobname = $('#jobname').val();
         var selpayment =  $('#selpayment').val();
        $.ajax({
-            url: "{{ route('dashboard')}}",
+            url: "{{ route('user.dashboard')}}",
             type: 'GET',
             data: {
                 "_token": "{{ csrf_token() }}",

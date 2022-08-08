@@ -1,8 +1,9 @@
 <?php
-
+ 
 namespace App\Http\Controllers;
 use App\Models\JobDone;
 use App\Models\JobSpace;
+use App\Models\Transaction;
 use App\Models\User;
 use App\Models\JobLog;
 use App\Models\ReferralEarning;
@@ -63,12 +64,7 @@ class HistoryController extends Controller
             
             $JobDones->status = $req->status;
             $JobDones->why_not_reason = $req->whyreject;
-
-             if($req->status){
-            
-            $JobDones->status = $req->status;
-            $JobDones->why_not_reason = $req->whyreject;
-
+             
             if ($JobDones->save()) {
                 $userID = Auth::user()->id;
                 $jobLog = new JobLog;
@@ -78,7 +74,6 @@ class HistoryController extends Controller
                 $jobLog->campaign_earnings = $req->campaign_earnings;
                 $jobLog->why_not_reason = $req->whyreject;
 
-                
                 if($req->proof_of_work){
                 $jobLog->proof_of_work = $req->proof_of_work;
                 }else{
@@ -86,12 +81,34 @@ class HistoryController extends Controller
                 }
                 $jobLog->save();
 
+                //Transaction For Job Done
+                if($req->status == 'Approved'){
+                    $transactions = new Transaction;
+                    $transactions->user_id = $req->user_id;
+                    $transactions->status='Confirmed'; 
+                    $transactions->withdraw_amount = $req->campaign_earnings;
+                    $transactions->approved_amount = $req->campaign_earnings;
+                    $transactions->description = 'Payment For Job Done $'.$req->campaign_earnings .' has been Credited on '.date('d/m/Y');
+                    $transactions->transaction_type = 'Credit';
+                    $transactions->save();
+                } 
+                elseif($req->status == 'Rejected'){
+                    $transactions = new Transaction;
+                    $transactions->user_id = $req->user_id;
+                    $transactions->status='Cancelled'; 
+                    $transactions->withdraw_amount = (-$req->campaign_earnings);
+                    $transactions->approved_amount = (-$req->campaign_earnings);
+                    $transactions->description = 'Payment For Job Done $'.$req->campaign_earnings .' has been Cancelled on '.date('d/m/Y');
+                    $transactions->transaction_type = 'Debit';
+                    $transactions->save();
+                }else{}
                 
                 $campaignEarning = $req->campaign_earnings;
+
                 //check referral code of camapign
-                $JobRef = JobSpace::select('referral_code','created_at')->where('user_id',$userID)->first();
+                $JobRefs = JobSpace::select('referrer_code','created_at')->where('user_id',$req->user_id)->first();
                 $JobcurrentDate = date('Y-m-d');
-                $JobcreatedDate = date("Y-m-d", strtotime($JobRef->created_at));
+                $JobcreatedDate = date("Y-m-d", strtotime($JobRefs->created_at));
 
                 //Calculate days from given dates of campaign referral
                 $Jobdatetime1 = new DateTime($JobcurrentDate);
@@ -100,19 +117,21 @@ class HistoryController extends Controller
                 $Jobdays = $Jobinterval->format('%a');
 
                 //check referral code of registration
-                $Ref = User::select('referral_code','created_at')->where('id',$userID)->first();
+                $Refs = User::select('referrer_code','created_at')->where('id',$req->user_id)->first();
                 $currentDate = date('Y-m-d');
-                $createdDate = date("Y-m-d", strtotime($Ref->created_at));
+                $createdDate = date("Y-m-d", strtotime($Refs->created_at));
 
                 //Calculate days from given dates of registration referral
                 $datetime1 = new DateTime($currentDate);
                 $datetime2 = new DateTime($createdDate);
                 $interval = $datetime1->diff($datetime2);
                 $days = $interval->format('%a');
-                 if(($Ref->referral_code) && ($JobRef->referral_code)){
-                    $sel= JobSpace::select('job_spaces.user_id')->join('users','job_spaces.user_id','=','users.id')->where('job_spaces.referral_code',$JobRef->referral_code)->where('users.referral_code',$Ref->referral_code)->first();
-                    
+                                              
+                
+                 if((!empty($Refs->referrer_code)) && (!empty($JobRefs->referrer_code))){
+                    $sel= JobSpace::select('job_spaces.user_id')->join('users','job_spaces.user_id','=','users.id')->where('job_spaces.referral_code',$JobRefs->referrer_code)->where('users.referral_code',$Refs->referrer_code)->first();
                     $ref_userid = $sel->user_id;
+                    if($sel){
                     if(($days <= 30) || ($Jobdays <= 30)){
                         $campaignEarn = $campaignEarning * 3/100;
                         if($req->status == 'Approved'){
@@ -123,28 +142,39 @@ class HistoryController extends Controller
                         $referralEarning->promotion_type = 'Both Registration and Campaign';
                         $referralEarning->transaction_date = $currentDate;
                         $referralEarning->save();
-                        }
+
+                        $transactions = new Transaction;
+                        $transactions->user_id = $ref_userid;
+                        $transactions->status='Confirmed'; 
+                        $transactions->withdraw_amount = $campaignEarn;
+                        $transactions->approved_amount = $campaignEarn;
+                        $transactions->description = 'Charges For Refferal Code of Both Registration and Campaign of $'.$campaignEarn .' has been Credited on '.date('d/m/Y');
+                        $transactions->transaction_type = 'Credit';
+                        $transactions->save();
+                        }elseif($req->status == 'Rejected'){
+                        $transactions = new Transaction;
+                        $transactions->user_id = $ref_userid;
+                        $transactions->status='Cancelled'; 
+                        $transactions->withdraw_amount = (-$campaignEarn);
+                        $transactions->approved_amount = (-$campaignEarn);
+                        $transactions->description = 'Charges For Refferal Code of Both Registration and Campaign of $'.$campaignEarn .' has been Cancelled on '.date('d/m/Y');
+                        $transactions->transaction_type = 'Debit';
+                        $transactions->save();
+                        }else{}
+                    }
                     }
                 }
-                else  if($JobRef->referral_code){
-                    $Jobuser = JobSpace::select('user_id')->where('referrer_code',$JobRef->referral_code)->first();
-                    $ref_userid = $Jobuser->user_id;
-                    if($Jobdays <= 30){
-                        $campaignEarn = $campaignEarning * 2/100;
-                        if($req->status == 'Approved'){
-                        $referralEarning = new ReferralEarning;
-                        $referralEarning->promoter_id = $req->user_id;
-                        $referralEarning->referred_user_id = $ref_userid;
-                        $referralEarning->referral_earnings = $campaignEarn;
-                        $referralEarning->promotion_type = 'Campaign';
-                        $referralEarning->transaction_date = $currentDate;
-                        $referralEarning->save();
-                        }
-                    }
-                }
-                else if($Ref->referral_code){
-                    $user = User::select('id')->where('referrer_code',$Ref->referral_code)->first();
-                    $ref_userid = $user->id;
+                elseif(!empty($Refs->referrer_code)){
+                    $Ref = User::select('id','referral_code','created_at')->where('referral_code',$Refs->referrer_code)->first();
+                    $currentDate = date('Y-m-d');
+                    $createdDate = date("Y-m-d", strtotime($Ref->created_at));
+    
+                    //Calculate days from given dates of registration referral
+                    $datetime1 = new DateTime($currentDate);
+                    $datetime2 = new DateTime($createdDate);
+                    $interval = $datetime1->diff($datetime2);
+                    $days = $interval->format('%a');
+                    $ref_userid = $Ref->id; 
                     if($days <= 30){
                         $campaignEarn = $campaignEarning * 1/100;
                         if($req->status == 'Approved'){
@@ -155,9 +185,72 @@ class HistoryController extends Controller
                         $referralEarning->promotion_type = 'Registration';
                         $referralEarning->transaction_date = $currentDate;
                         $referralEarning->save();
-                        }
+    
+                        $transactions = new Transaction;
+                        $transactions->user_id = $ref_userid;
+                        $transactions->status='Confirmed'; 
+                        $transactions->withdraw_amount = $campaignEarn;
+                        $transactions->approved_amount = $campaignEarn;
+                        $transactions->description = 'Charges For Refferal Code of Registration  $'.$campaignEarn .' has been Credited on '.date('d/m/Y');
+                        $transactions->transaction_type = 'Credit';
+                        $transactions->save();
+                        }elseif($req->status == 'Rejected'){
+                        $transactions = new Transaction;
+                        $transactions->user_id = $ref_userid;
+                        $transactions->status='Cancelled'; 
+                        $transactions->withdraw_amount = (-$campaignEarn);
+                        $transactions->approved_amount = (-$campaignEarn);
+                        $transactions->description = 'Charges For Refferal Code of Registration $'.$campaignEarn .' has been Cancelled on '.date('d/m/Y');
+                        $transactions->transaction_type = 'Debit';
+                        $transactions->save();
+                        }else{}
                     }
                 }
+                elseif(!empty($JobRefs->referrer_code)){
+                    $JobRef = JobSpace::select('user_id','referral_code','created_at')->where('referral_code',$JobRefs->referrer_code)->first();
+                    $JobcurrentDate = date('Y-m-d');
+                    $JobcreatedDate = date("Y-m-d", strtotime($JobRef->created_at));
+    
+                    //Calculate days from given dates of campaign referral
+                    $Jobdatetime1 = new DateTime($JobcurrentDate);
+                    $Jobdatetime2 = new DateTime($JobcreatedDate);
+                    $Jobinterval = $Jobdatetime1->diff($Jobdatetime2);
+                    $Jobdays = $Jobinterval->format('%a');
+                    $ref_userid = $JobRef->user_id;    
+                    if($Jobdays <= 30){
+                        $campaignEarn = $campaignEarning * 2/100;
+                        if($req->status == 'Approved'){
+                        $referralEarning = new ReferralEarning;
+                        $referralEarning->promoter_id = $req->user_id;
+                        $referralEarning->referred_user_id = $ref_userid;
+                        $referralEarning->referral_earnings = $campaignEarn;
+                        $referralEarning->promotion_type = 'Campaign';
+                        $referralEarning->transaction_date = $currentDate;
+                        $referralEarning->save();
+    
+                        $transactions = new Transaction;
+                        $transactions->user_id = $ref_userid;
+                        $transactions->status='Confirmed'; 
+                        $transactions->withdraw_amount = $campaignEarn;
+                        $transactions->approved_amount = $campaignEarn;
+                        $transactions->description = 'Charges For Refferal Code of Campaign  $'.$campaignEarn .' has been Credited on '.date('d/m/Y');
+                        $transactions->transaction_type = 'Credit';
+                        $transactions->save();
+                        }elseif($req->status == 'Rejected'){
+                        $transactions = new Transaction;
+                        $transactions->user_id = $ref_userid;
+                        $transactions->status='Cancelled'; 
+                        $transactions->withdraw_amount = (-$campaignEarn);
+                        $transactions->approved_amount = (-$campaignEarn);
+                        $transactions->description = 'Charges For Refferal Code of Campaign $'.$campaignEarn .' has been Cancelled on '.date('d/m/Y');
+                        $transactions->transaction_type = 'Debit';
+                        $transactions->save();
+                        }else{}
+                    }
+    
+                }
+            
+        
                else{}
                 $req->session()->flash('success', 'Status updated Successfully!');
                 return response()->json(["status"=>true,"msg"=>
@@ -166,7 +259,7 @@ class HistoryController extends Controller
                 $req->session()->flash('error', 'Status Not Updated!');
                   return response()->json(["status"=>true,"redirect_location"=>url("/history")]);
             }
-        }   
+          
 
             
         }

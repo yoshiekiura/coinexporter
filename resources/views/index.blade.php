@@ -64,7 +64,7 @@
                     <li>The campaign tasks are seamless </li>
                     <li>Payment is seamless </li>
                 </ul>
-                <a href="#" class="btn-style-one" data-bs-toggle="modal" data-bs-target="#register-modal">Signup Today</a>
+                <a href="#" class="btn-style-one" data-bs-toggle="modal" data-bs-target="#register-modal">Sign-up Today</a>
             </div>
             <div class="col-md-6">
        	    	<img src="<?php echo BASEURL; ?>images/banner.png" alt=""/>
@@ -120,8 +120,12 @@
                             channels as instructed by the employers. Promoters decide
                             which to promote and which not to promote. The employers
                             decide how to promote and how much to pay. Anybody can
-                            be monetized their social channels for marketing services
-                            </p>
+                             monetize their social channels for marketing services
+                        </p>
+                        
+                    </div>
+                    <div class="how-work-btn">
+                        <a href="{{route('promote_to_earn')}}">How it works</a>
                     </div>
                 </div>
             </div>
@@ -132,9 +136,13 @@
                     </div>
                     <div class="features-content">
                         <h5 class="heading">Peer-To-Peer Marketplace </h5>
-                        <p class="text">A centralized marketplace which allow influencers to
-                            incorporate their services and gives the employers to
-                            connect with them for marketing and promotion services</p>
+                        <p class="text">A centralized marketplace which allows influencers to
+                            incorporate their services and give the employers to
+                            connect with them for marketing and promotion services
+                        </p>
+                    </div>
+                    <div class="how-work-btn">
+                        <a href="#">How it works</a>
                     </div>
                 </div>
             </div>
@@ -144,11 +152,12 @@
                         <img src="{{BASEURL}}images/service3.png" alt="image">
                     </div>
                     <div class="features-content">
-                        <h5 class="heading">Expert Reviews Report</h5>
-                        <p class="text">This is the CoinExporter education page where crypto
-                            experts from CoinExporter, publish a comprehensive review
-                            of the projects and focusing on the SWOT analysis, in order
-                            to give the investors an informed decision</p>
+                        <h5 class="heading">Experts Reviews Reports</h5>
+                        <p class="text">This is the CoinExporter's education page where crypto
+                            experts from CoinExporter, publish a comprehensive reviews of the projects, their prospects and SWOT analysis, in order to give investors insights and enable them to make informed decision</p>
+                    </div>
+                    <div class="how-work-btn">
+                        <a href="#">How it works</a>
                     </div>
                 </div>
             </div>
@@ -164,6 +173,9 @@
                             called for the projects after serious reviews by
                             CoinExporter’s experts of investment team</p>
                     </div>
+                    <div class="how-work-btn">
+                        <a href="#">How it works</a>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
@@ -176,6 +188,9 @@
                         <p class="text">Data-driven marketing, email marketing, social media
                             channels marketing and others as driven by our AI
                             Infrastructure </p>
+                    </div>
+                    <div class="how-work-btn">
+                        <a href="#">How it works</a>
                     </div>
                 </div>
             </div>
@@ -191,6 +206,9 @@
                             on, by the system, project owners and investors
                             </p>
                     </div>
+                    <div class="how-work-btn">
+                        <a href="#">How it works</a>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
@@ -204,6 +222,9 @@
                         <p class="text">CoinExporter will provide a decentralized auxiliary payment
                             services on Blockchain Technology</p>
                     </div>
+                    <div class="how-work-btn">
+                        <a href="#">How it works</a>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
@@ -216,6 +237,9 @@
                         <p class="text">Marketing of all digital securities and commodities using
                             crypto as payment medium</p>
                     </div>
+                    <div class="how-work-btn">
+                        <a href="#">How it works</a>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
@@ -226,7 +250,10 @@
                     <div class="features-content">
                         <h5 class="heading">NFTs Marketplace</h5>
                         <p class="text">Decentralized marketplace for marketing and promoting
-                            NFTs collections to the investors and site visitors</p>
+                            NFTs collections to investors and site visitors</p>
+                    </div>
+                    <div class="how-work-btn">
+                        <a href="#">How it works</a>
                     </div>
                 </div>
             </div>
@@ -243,7 +270,7 @@
 			<div class="col-lg-12">
 				<div class="social-sec-head text-center">
 					<h2 class="mb-0">Our Social Channels</h2>
-					<p>Stay updated with all the latest news/update of CoinExporter by Social Channels </p>
+					<p>Follow our social channels to stay up-to date with our new features, news and updates</p>
 				</div>
 			</div>
             <hr class="spacer20px"/>
@@ -287,13 +314,13 @@
                 <div class="col-md-6 col-lg-6">
                     <div class="market-box">
                         <i class="fas fa-shield-check"></i>
-                        <p>DIRECT MARKETERS must have a verified Facebook, Twitter, Discord, Youtube or Tik Tok accounts by CoinExporter. </p>
+                        <p>DIRECT MARKETERS must have a verified Facebook, Twitter, Discord, Youtube or Tik Tok accounts with CoinExporter. </p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6">
                     <div class="market-box">
                         <i class="fas fa-search-dollar"></i>
-                        <p>Direct Marketers with the verified cryptocurrency Telegram, Facebook and YouTube channels/pages/groups have more access to more jobs.</p>
+                        <p>Direct Marketers with verified cryptocurrency Telegram, Facebook and YouTube channels/pages/groups have more access to more jobs.</p>
                     </div>
                     
                 </div>
@@ -355,6 +382,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
+                <h2>Our Partners</h2>
 				<div class="our-partners_main owl-carousel">
 					<a href="" class="partners_single">
 						<img src="{{BASEURL}}images/partner-1.jpg" alt="">

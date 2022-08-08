@@ -279,6 +279,55 @@ btn.addEventListener("click", function() {
     });
 </script>
 
+<script>
+$(function(){
+  
+  $('.eye').click(function(){
+       
+        if($(this).hasClass('fa-eye-slash')){
+           
+          $(this).removeClass('fa-eye-slash');
+          
+          $(this).addClass('fa-eye');
+          
+          $('.eye-text').attr('type','text');
+            
+        }else{
+         
+          $(this).removeClass('fa-eye');
+          
+          $(this).addClass('fa-eye-slash');  
+          
+          $('.eye-text').attr('type','password');
+          
+        }
+    });
+
+    $('.eye2').click(function(){
+       
+       if($(this).hasClass('fa-eye-slash')){
+          
+         $(this).removeClass('fa-eye-slash');
+         
+         $(this).addClass('fa-eye');
+         
+         $('.eye-text2').attr('type','text');
+           
+       }
+       else{
+         
+         $(this).removeClass('fa-eye');
+         
+         $(this).addClass('fa-eye-slash');  
+         
+         $('.eye-text2').attr('type','password');
+         
+       }
+   });
+});
+
+</script>
+
 
 
  <script type="text/javascript">

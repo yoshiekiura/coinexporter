@@ -33,7 +33,7 @@ class JobdetailController extends Controller
         // dd($userID);
   ;
   if (JobDone::where('campaign_id', '=', $request->campainId)->where('user_id', '=', $userID)->count() > 0) {
-        return redirect()->route('dashboard')->with('error', 'You Have Already Done this task!');
+        return redirect()->route('user.dashboard')->with('error', 'You Have Already Done this task!');
     }else{
             $dataJobDone = new JobDone;
             $dataJobDone->campaign_id = $request->campainId;
@@ -55,9 +55,9 @@ class JobdetailController extends Controller
 
                 if ($dataJobDone->save()) {
                 
-                        return redirect()->route('finishtask')->with('success', 'Job Jone Successfully!');
+                        return redirect()->route('finishtask')->with('success', 'Job Done Successfully!');
                         } else {
-                            return redirect()->back()->with('error', 'Job Done Cancelled!');
+                            return redirect()->back()->with('error', 'Something Wrong!');
                     }
         
          }

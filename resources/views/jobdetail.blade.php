@@ -47,7 +47,11 @@ $userId = Auth::user()->id;
                         <li><span> <strong>You will earn: </strong></span> $ {{ $jobSpaceData->campaign_earning }}</li>
                         <li><span> <strong>Campaign ID : </strong> </span>{{ $jobSpaceData->id }}</li>
                         <li><span> <strong>Campaign Name : </strong> </span>{{ $jobSpaceData->campaign_name }}</li>
-                        <li><span> <strong>Required social platform for campaign: </strong></span> {{ $jobSpaceData->social_platform_name }}</li>
+                            @php
+							 $social_platform = App\Models\SocialPlatform::where('id',$jobSpaceData->campaign_subcategory_id)->first();
+							@endphp
+                        <li><span> <strong>Required social platform for campaign: </strong></span>
+                            {{ $social_platform->social_platform_name }}</li>
                         @php
                          $job_space_Country = $jobSpaceData->country ;
                          $exploded_country = explode(",",$job_space_Country);

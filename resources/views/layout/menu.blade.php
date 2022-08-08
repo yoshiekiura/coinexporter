@@ -32,8 +32,8 @@ input[type="checkbox"][readonly] {
                                     <li class="{{ Request::routeIs('about') ? 'active' : '' }}"><a href="{{route('about')}}">About</a></li>
                                     <li><a href="#">Utilities</a>
 
-                                        <ul> @if(Auth::check())
-                                            <li><a href="{{route('dashboard')}}">Campaign and Promotion</a>
+                                        <ul> @if(Auth::guard('web')->check())
+                                            <li><a href="{{route('user.dashboard')}}">Campaign and Promotion</a>
                                             <li><a href="{{route('404')}}">Staking</a></li>
                                             <li><a href="{{route('404')}}">Affiliate Marketing</a></li>
                                             <li><a href="{{route('404')}}">ER Services</a></li>
@@ -72,7 +72,8 @@ input[type="checkbox"][readonly] {
                         </nav>
                     </div>
 
-                    @if(Auth::check())
+                  
+                    @if(Auth::guard('web')->check())
                     
                 <div class="dashboard_table_sec_top_right">
                     <div class="afterlogin-head">
@@ -96,8 +97,8 @@ input[type="checkbox"][readonly] {
                                     <div class="dropdown">
                                         <a class="list_btn" role="button" id="dropdownMenuLink2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <!-- <img src="images/istockphoto.jpg" alt="" title=""> -->
-                                            @if (Auth::user()->profileImage != null || Auth::user()->profileImage != '')
-                                            <img src="<?php echo BASEURL; ?>images/{{Auth::user()->profileImage}}" alt="profile">
+                                            @if (Auth::guard('web')->user()->profileImage != null || Auth::guard('web')->user()->profileImage != '')
+                                            <img src="<?php echo BASEURL; ?>images/{{Auth::guard('web')->user()->profileImage}}" alt="profile">
                                             @else
                                             <img src="<?php echo BASEURL; ?>images/istockphoto.jpg" alt="profile">
                                             @endif
@@ -106,14 +107,14 @@ input[type="checkbox"][readonly] {
                                             <div class="profile-header d-flex align-items-center">
                                                 <div class="thumb-area">
                                                     <!-- <img src="images/istockphoto.jpg" alt="profile"> -->
-                                                    @if (Auth::user()->profileImage != null || Auth::user()->profileImage != '')
-                                                    <img src="<?php echo BASEURL; ?>images/{{Auth::user()->profileImage}}" alt="profile">
+                                                    @if (Auth::guard('web')->user()->profileImage != null || Auth::guard('web')->user()->profileImage != '')
+                                                    <img src="<?php echo BASEURL; ?>images/{{Auth::guard('web')->user()->profileImage}}" alt="profile">
                                                     @else
                                                     <img src="<?php echo BASEURL; ?>images/istockphoto.jpg" alt="profile">
                                                     @endif
                                                 </div>
                                                 <div class="content-text">
-                                                    <h6>{{ Auth::check() ? Auth::user()->name : Auth::user()->email }}</h6>
+                                                    <h6>{{ Auth::guard('web')->check() ? Auth::guard('web')->user()->name : Auth::guard('web')->user()->email }}</h6>
                                                     <p class="mb-0">Corportate Agent</p>
                                                 </div>
                                             </div>
@@ -122,7 +123,7 @@ input[type="checkbox"][readonly] {
                                                 <li class="dropdown-item"><a href="#"><i class="fas fa-cogs"></i>Settings</a></li>
                                                 <li class="dropdown-item"><a href="{{ route('myaccount') }}"><i class="fas fa-envelope"></i>My Account </a></li>
                                                 <li class="dropdown-item"><a href="{{ route('editprofile') }}"><i class="fas fa-key"></i>Change Password</a></li>
-                                                <li class="dropdown-item"><a href="{{ route('logout') }}"><i class="fas fa-power-off"></i>Sign Out</a></li>
+                                                <li class="dropdown-item"><a href="{{ route('user.logout') }}"><i class="fas fa-power-off"></i>Sign Out</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -194,7 +195,7 @@ input[type="checkbox"][readonly] {
                 <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
             </span>
         @endif -->
-            <form id="loginForm" method="POST" action="{{ route('login') }}">
+            <form id="loginForm" method="POST" action="{{ route('user.login') }}">
                 @csrf
                 <div class="modal-body">
                     <h4>
@@ -212,7 +213,8 @@ input[type="checkbox"][readonly] {
                         </li>
                         <li>
                             <i class="far fa-lock"></i>
-                            <input class="form-control" type="password" name="password"  required autocomplete="current-password" placeholder="Password">
+                            <input class="form-control eye-text" type="password" name="password"  required autocomplete="current-password" placeholder="Password" id="password">
+                            <i class="fas fa-eye-slash eye"></i>
                             @error('password')
                             <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
@@ -320,7 +322,7 @@ input[type="checkbox"][readonly] {
             <!-- Validation Errors -->
             <!-- <x-auth-validation-errors class="mb-4" :errors="$errors" /> -->
 
-            <form id="regForm" method="POST" action="{{ route('register') }}">
+            <form id="regForm" method="POST" action="{{ route('user.register') }}">
                 @csrf
                 <div class="modal-body">
                     <h4>
@@ -345,14 +347,16 @@ input[type="checkbox"][readonly] {
                         </li>
                         <li>
                             <i class="far fa-lock"></i>
-                            <input class="form-control err" type="password" name="password" required autocomplete="new-password" placeholder="Password">
+                            <input class="form-control err eye-text" type="password" name="password" required autocomplete="new-password" placeholder="Password" id="password">
+                            <i class="fas fa-eye-slash eye"></i>
                             @error('password')
                             <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
                         </li>
                         <li>
                             <i class="far fa-lock"></i>
-                            <input class="form-control err" type="password" name="password_confirmation"  autocomplete="new-password" placeholder="Confirm Password">
+                            <input class="form-control err eye-text2" type="password" name="password_confirmation"  autocomplete="new-password" placeholder="Confirm Password" id="password"> 
+                            <i class="fas fa-eye-slash eye2"></i>
                             @error('password_confirmation')
                             <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
@@ -388,7 +392,7 @@ input[type="checkbox"][readonly] {
                             <div class="row">
                                 <div class="col-12 chkboxmain err">
                                     <input id="Option6" name="terms" type="checkbox" checked onclick="return false">
-                                    <label class="checkbox" for="Option6"> I read and agreed to the CoinExporter privacy and <a href="{{route('terms')}}" target="_blank" class="link" style="color:#0a354e;font-weight:500;">terms and conditions.</a> </label>
+                                    <label class="checkbox" for="Option6"> I have read and agreed to CoinExporter's <a href="{{route('terms')}}" target="_blank" class="link" style="color:#0a354e;font-weight:500;">privacy policies, terms and conditions.</a> </label>
                                     @error('terms')
                                     <div class="alerts alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror

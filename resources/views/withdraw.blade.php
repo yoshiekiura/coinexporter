@@ -54,13 +54,13 @@
                                 <div class="col-lg-6 col-md-6">
                                     <div class="selct-bal">
                                         <label>Total Actual Balance</label>
-                                        <input type="text" id="aBalance" name="aBalance" class="form-control amountCalc" placeholder="$" onkeypress="return isNumberKey(event)" value="{{$totalActualBalance}}" readonly>
+                                        <input type="text" id="aBalance" name="aBalance" class="form-control amountCalc" placeholder="$" onkeypress="return isNumberKey(event)" value="${{$totalActualBalance}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="selct-bal">
                                         <label>Pending Withdraws Balance </label>
-                                        <input type="text" id="pendingWithdrwBalance" name="wBalance" class="form-control" placeholder="$" onkeypress="return isNumberKey(event)" readonly value="{{$withdrawalBalance}}">
+                                        <input type="text" id="pendingWithdrwBalance" name="wBalance" class="form-control" placeholder="$" onkeypress="return isNumberKey(event)" readonly value="${{$withdrawalBalance}}">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
@@ -108,7 +108,7 @@
                                            @endif
                                         </td>
                                         <td>
-                                           @if($val->status == 'Settled') 
+                                           @if($val->status == 'Approved') 
                                             ${{$val->transaction_amount}}
                                            @else
                                             {{'$0'}} 

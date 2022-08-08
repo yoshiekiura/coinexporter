@@ -86,7 +86,7 @@
                     </td>
                     <td>{{date("H:i", strtotime($JobPaymentCheck->created))}} UTC</td>
                     <td>{{date("d-M-Y", strtotime($JobPaymentCheck->created))}}</td>
-                    <td><a href="#" class="click" data-bs-toggle="modal" data-bs-target="#rejectModal{{$key+1}}">Click</a></td>
+                    <td><a href="#" class="click"  data-bs-toggle="modal" data-bs-target="#rejectModal{{$key+1}}">Click</a></td>
                     @if(($JobPaymentCheck->proof_of_work == '') || ($JobPaymentCheck->tvl_status == 'Approved'))
                     <td></td>
                     @else
@@ -148,7 +148,7 @@
                       <!-- <img src="{{BASEURL}}images/modal-bg.png" alt=""> -->
                       <h5 class="modal-title" id="exampleModalLabel">Reason</h5>
                       @if ($JobPaymentCheck->why_not_reason)
-                      <p>{{$JobPaymentCheck->why_not_reason}}</p>
+                      <p id="reason{{$key+1}}">{{$JobPaymentCheck->why_not_reason}}</p>
                       @else
                       <p>N/A</p>
                       @endif
@@ -224,12 +224,13 @@ jQuery(document).ready(function() {
 
   function status_change(that,key){
   var status = $(that).data("status");
+  var reason=$("#reason"+key).val();
   var proof_of_work=$("#proof_of_work"+key).val();
   var campaign_earnings=$("#campaign_earnings"+key).val();
   var campaign_id=$("#campaign_id"+key).val();
   var user_id=$("#user_id"+key).val();
   var whyreject = $("#whyreject"+key).val();
- // alert(status);
+  //alert(reason);
   $.ajax({
     headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -247,6 +248,7 @@ jQuery(document).ready(function() {
             success: function(response) {
               //alert(response);
               $("#status"+key).html(status);
+              $("#reason"+key).html(whyreject);
               if(status == "Approved")
               {
                 $("table td:nth-child(3)").removeClass("yellow");

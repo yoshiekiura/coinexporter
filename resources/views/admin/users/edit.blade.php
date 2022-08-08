@@ -96,6 +96,15 @@
 											<span class="text-danger">{{ $message }}</span>
 										@enderror
 									</div>
+
+									<div class="form-group">
+                                <label for="wallet_address" class="required">{{ __('Wallet Address') }}:</label>
+                                <input type="text" name="wallet_address" id="wallet_address" class="form-control @error('wallet_address') form-control-error @enderror"  required="required" value="{{$user->wallet_address}}">
+
+                                @error('wallet_address')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
 								</div>
 							</div>
 						</div>

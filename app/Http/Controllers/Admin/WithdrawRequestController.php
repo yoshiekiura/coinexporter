@@ -65,7 +65,7 @@ class WithdrawRequestController extends Controller
 	{
 		$user_transactions = UserTransaction::select(
             "user_transaction.*"
-        )
+        )->where("user_transaction.status","Pending")
         ->get();
         
 		return view('admin.withdraws.index',compact('user_transactions'));

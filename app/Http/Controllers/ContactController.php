@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\ContactUs;
 use Illuminate\Http\Request;
+use Mail;
 
 class ContactController extends Controller
 {
@@ -46,12 +47,23 @@ class ContactController extends Controller
             $contact->message = $request->message;
             $contact->status = 'active';
             if( $contact->save()){
-                return redirect()->back()->with('success','Submitted successfully!');
+
+         //  Send mail to admin
+        \Mail::send('contactMail', array(
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => 'Contact Form Submission',
+            'msg' => $request->message,
+        ), function($message) use ($request){
+            $message->from($request->email);
+            $message->to('maastrix.puja@gmail.com', 'Admin')->subject('Contact Form Submission');
+        });
+                return redirect()->back()->with('success','Thank You For Contacting Us. we will contact you soon!');
              }else{
                 return redirect()->back()->with('error','Unsuccess!');
              }
     }
-
+    
     /**
      * Display the specified resource.
      *

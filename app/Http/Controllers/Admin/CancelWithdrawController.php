@@ -70,5 +70,14 @@ class CancelWithdrawController extends Controller
 		return view('admin.cancelwithdraw.index',compact('user_transactions'));
 	}
 
+    public function confirm(Request $request)
+	{
+		$user_transactions = UserTransaction::select(
+            "user_transaction.*"
+        )->where("user_transaction.status","Confirmed")
+        ->get();
+        
+		return view('admin.confirmwithdraw.index',compact('user_transactions'));
+	}
 
     }

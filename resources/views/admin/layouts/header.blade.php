@@ -54,23 +54,23 @@
         <!-- /Frontend -->
 
         <!-- Notifications -->
-        {{-- <li class="nav-item dropdown noti-dropdown">
+       <li class="nav-item dropdown noti-dropdown">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                 <i class="fe fe-bell"></i> <span class="badge badge-pill">3</span>
             </a>
             <div class="dropdown-menu notifications">
-                <div class="topnav-dropdown-header">
+                <!-- <div class="topnav-dropdown-header">
                     <span class="notification-title">Notifications</span>
                     <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
-                </div>
+                </div> -->
                 <div class="noti-content">
                     <ul class="notification-list">
                         <li class="notification-message">
                             <a href="#">
                                 <div class="media">
-                                    <span class="avatar avatar-sm">
+                                    <!-- <span class="avatar avatar-sm">
                                         <img class="avatar-img rounded-circle" alt="User Image" src="/assets/admin/img/patients/patient3.jpg">
-                                    </span>
+                                    </span> -->
                                     <div class="media-body">
                                         <p class="noti-details"><span class="noti-title">Carl Kelly</span> send a message <span class="noti-title"> to his doctor</span></p>
                                         <p class="noti-time"><span class="notification-time">12 mins ago</span></p>
@@ -84,7 +84,7 @@
                     <a href="#">View all Notifications</a>
                 </div>
             </div>
-        </li> --}}
+        </li>
         <!-- /Notifications -->
         
         <!-- User Menu -->

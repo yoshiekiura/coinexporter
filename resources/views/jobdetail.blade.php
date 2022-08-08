@@ -48,7 +48,7 @@ $userId = Auth::user()->id;
                         <li><span> <strong>Campaign ID : </strong> </span>{{ $jobSpaceData->id }}</li>
                         <li><span> <strong>Campaign Name : </strong> </span>{{ $jobSpaceData->campaign_name }}</li>
                             @php
-							 $social_platform = App\Models\SocialPlatform::where('id',$jobSpaceData->campaign_subcategory_id)->first();
+							 $social_platform = App\Models\SocialPlatform::where('id',$jobSpaceData->channel_id)->first();
 							@endphp
                         <li><span> <strong>Required social platform for campaign: </strong></span>
                             {{ $social_platform->social_platform_name }}</li>

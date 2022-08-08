@@ -19,7 +19,7 @@
             <div class="col-lg-5 col-md-12 footer-logo">
             	<img src="<?php echo BASEURL; ?>images/coin-exporter.png" alt=""/>
                 <img src="<?php echo BASEURL; ?>images/coin-exporterwh.png" alt=""/>
-				<p>It is a specialized and professional cryptocurrency Marketing Agency whose marketing activities take place in form of campaigns, affiliate marketing, ER Reports and so on.</p>
+				<p class="text-justify">It is a specialized and professional cryptocurrency Marketing Agency whose marketing activities take place in form of campaigns, affiliate marketing, ER Reports and so on.</p>
           </div>
             <div class="col-lg-3 col-md-6">
             	<h5>Quick Links</h5>
@@ -36,7 +36,7 @@
             </div>
             <div class="col-lg-4 col-md-6">
        	    	<h5>Our Vision</h5>
-                <p>Providing rare opportunities for cryptocurrency enthusiasts to work as Direct Marketers to earn income through a dedicated and one stop marketing solutions services to employers.</p>
+                <p class="text-justify">Providing rare opportunities for cryptocurrency enthusiasts to work as Direct Marketers to earn income through a dedicated and one stop marketing solutions services to employers.</p>
             </div>
         </div>
         <div class="row">

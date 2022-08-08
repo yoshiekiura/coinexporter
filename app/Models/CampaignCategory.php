@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class CampaignCategory extends Model
 {
-   
+    protected $fillable = [
+        'campaign_category_name',
+        'campaign_category_status',
+    ];
+    
 }

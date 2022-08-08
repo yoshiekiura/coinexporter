@@ -140,27 +140,31 @@ class UserController extends Controller
 	public function store(Request $request)
 	{
 		$rules = [
-            'name' 			=> 'required',
-			'email' 		=> 'required|email|unique:admins,email',
-			'password' 		=> 'required|same:confirm-password',
-			'roles' 		=> 'required',
-			'mobile' 		=> 'required|string|unique:admins,mobile',
-			'image' 		=> 'nullable',
+            'name' 				=> 'required',
+			'email' 			=> 'required|email|unique:admins,email',
+			'password' 			=> 'required|same:confirm-password',
+			'roles' 			=> 'required',
+			'mobile' 			=> 'required|string|unique:admins,mobile',
+			'wallet_address' 	=> 'required',
+			'image' 			=> 'nullable',
         ];
 
         $messages = [
-            'name.required'    		=> __('default.form.validation.name.required'),
-            'email.required'    	=> __('default.form.validation.email.required'),
-            'email.email'    		=> __('default.form.validation.email.email'),
-            'email.unique'    		=> __('default.form.validation.email.unique'),
-            'password.required'    	=> __('default.form.validation.password.required'),
-            'password.same'    		=> __('default.form.validation.password.same'),
-            'roles.required'    	=> __('default.form.validation.roles.required'),
-            'mobile.required'    	=> __('default.form.validation.mobile.required'),
+            'name.required'    			=> __('default.form.validation.name.required'),
+            'email.required'    		=> __('default.form.validation.email.required'),
+            'email.email'    			=> __('default.form.validation.email.email'),
+            'email.unique'    			=> __('default.form.validation.email.unique'),
+            'password.required'    		=> __('default.form.validation.password.required'),
+            'password.same'    			=> __('default.form.validation.password.same'),
+            'roles.required'    		=> __('default.form.validation.roles.required'),
+            'mobile.required'    		=> __('default.form.validation.mobile.required'),
+			'wallet_address.required'   => __('default.form.validation.wallet_address.required'),
         ];
 
         $this->validate($request, $rules, $messages);
 		$input = request()->all();
+		
+		
 		$input['password'] = Hash::make($input['password']);
 
 		try {
@@ -189,17 +193,19 @@ class UserController extends Controller
 	public function update(Request $request, $id)
 	{
 		$rules = [
-            'name' 			=> 'required',
-			'password' 		=> 'same:confirm-password',
-			'roles' 		=> 'required',
-			'image' 		=> 'nullable',
+            'name' 				=> 'required',
+			'password' 			=> 'same:confirm-password',
+			'roles' 			=> 'required',
+			'image' 			=> 'nullable',
+			'wallet_address' 	=> 'required',
         ];
 
         $messages = [
-            'name.required'    		=> __('user.form.validation.name.required'),
-            'password.required'    	=> __('user.form.validation.password.required'),
-            'password.same'    		=> __('user.form.validation.password.same'),
-            'roles.required'    	=> __('user.form.validation.roles.required'),
+            'name.required'    			=> __('user.form.validation.name.required'),
+            'password.required'    		=> __('user.form.validation.password.required'),
+            'password.same'    			=> __('user.form.validation.password.same'),
+            'roles.required'    		=> __('user.form.validation.roles.required'),
+			'wallet_address.required'   => __('user.form.validation.wallet_address.required'),
         ];
 
         

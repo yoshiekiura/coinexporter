@@ -74,10 +74,16 @@ class JobspaceController extends Controller
             $transactions->transaction_type = 'Credit';
             $transactions->save();
 
-            return response()->json(['message' => 'Campaign Approved successfully.']);
-                }catch (Exception $e) {
-                    return response()->json(['message' => 'Something Wrong.']);
-                }   
+            // return response()->json(['message' => 'Campaign Approved successfully.']);
+            //     }catch (Exception $e) {
+            //         return response()->json(['message' => 'Something Wrong.']);
+            //     }   
+            Toastr::success(__('jobspaces.message.approve.success'));
+            return redirect()->route('jobspaces.index');
+            }catch (Exception $e) {
+                $error_msg = Toastr::error(__('jobspaces.message.approve.error'));
+                return redirect()->route('jobspaces.index')->with($error_msg);
+            }   
 	}
 
     public function reject(Request $request,$id)

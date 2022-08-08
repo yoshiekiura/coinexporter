@@ -21,7 +21,7 @@ h6 {font-size:18px;color:#012f4a;margin:0px 0px 15px 0px;line-height: 1.2;font-w
 .spacer30px {clear:both;line-height:0;font-size:0;overflow:hidden;height:30px; background:none; margin:0px 0px 0px 0px;width:100%; border:none;}
 .spacer50px {clear:both;line-height:0;font-size:0;overflow:hidden;height:50px; background:none; margin:0px 0px 0px 0px;width:100%; border:none;}
 .spacer80px {clear:both;line-height:0;font-size:0;overflow:hidden;height:50px; background:none; margin:0px 0px 0px 0px;width:100%; border:none;}
-
+.text-justify{text-align: justify;}
 
 body {
 	overflow-x:hidden;
@@ -78,8 +78,8 @@ button.dark-btn{border: 1px solid #363636;padding: 11px 15px;border-radius: 5px;
 }
 /* ===========Edit profile css================== */
 
-.avatar-upload {position: relative;max-width: 205px;margin: auto;}
-.avatar-upload .avatar-edit {position: absolute;right: -38px;z-index: 1;top: -24px;}
+.avatar-upload {position: relative;margin: auto;}
+.avatar-upload .avatar-edit {position: absolute;right: 0;z-index: 1;top: -24px;}
 .avatar-upload .avatar-edit input {display: none;}
 .avatar-upload .avatar-edit input + label {display: inline-block;width: 120px;height: 24px;margin-bottom: 0;background: #4c91ce;cursor: pointer;font-weight: normal;transition: all 0.2s ease-in-out;color: #fff;padding: 4px 0 4px 31px;font-size: 12px;}
 .avatar-upload .avatar-edit input + label:hover {background: #333333;}
@@ -179,13 +179,13 @@ color: #fff;border-radius: 5px;font-family: 'Oswald', sans-serif; font-size:26px
 /* ====================Campaign page featured ribon page================== */
 
 .ribbon {
-    position: relative;
+    /* position: relative; */
     color: white;
   }
   .ribbon1 {
     position: absolute;
-    top: -45.1px;
-    left: 10px;
+    top: -5px;
+    left: 35px;
 }
 /* .ribbon1:after {
     position: absolute;
@@ -419,7 +419,7 @@ input[type=checkbox]:checked + .checkbox:before {content: "\2713";font-size: 14p
 .table_responsive_maas table {border-collapse:separate;border-spacing: 0 1em;}
 .table_responsive_maas table tbody tr{ border:1px solid #E5ECF8;}
 .table_responsive_maas table {border-collapse: separate;border-spacing: 0 10px;text-align: center;}
-.table_responsive_maas table td {background: #ffffff;border-bottom: 1px solid #dee2e6; padding-left: 0; font-size:14px;vertical-align: middle;}
+.table_responsive_maas table td {position:relative;background-color:  #ffffff;border-bottom: 1px solid #dee2e6; padding-left: 0; font-size:14px;vertical-align: middle;}
 .table_responsive_maas table td:first-of-type{border-top-left-radius: 10px;border-bottom-left-radius: 10px;border-left: 0px solid #E5ECF8; padding-left:20px;}
 .table_responsive_maas table td:last-of-type{border-top-right-radius: 10px;border-bottom-right-radius: 10px;border-right: 0px solid #E5ECF8; padding-left:20px;}
 .table_responsive_maas thead th:first-of-type{border-top-left-radius: 10px;border-bottom-left-radius: 10px;border-left: 0px solid #E5ECF8; padding-left:20px;}

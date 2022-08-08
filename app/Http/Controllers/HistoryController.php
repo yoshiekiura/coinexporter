@@ -64,7 +64,9 @@ class HistoryController extends Controller
             
             $JobDones->status = $req->status;
             $JobDones->why_not_reason = $req->whyreject;
-             
+            if($req->status == 'Approved'){
+                $JobDones->earning_status ='Success';
+            }
             if ($JobDones->save()) {
                 $userID = Auth::user()->id;
                 $jobLog = new JobLog;

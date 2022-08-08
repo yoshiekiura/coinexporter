@@ -19,7 +19,10 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         //print_r($request->all());
-        $job_spaces = JobSpace::select("job_spaces.*","job_spaces.status as sts")->where("job_spaces.status",'Approved');
+        //DB::enableQueryLog();
+
+        $userId = Auth::user()->id;
+        $job_spaces = JobSpace::select("job_spaces.*","job_spaces.status as sts")->join("tbl_user_sociallinks","tbl_user_sociallinks.channel_id","=","job_spaces.channel_id")->where("tbl_user_sociallinks.user_id",$userId)->where("job_spaces.status","Approved")->where("tbl_user_sociallinks.status","Verified");
         if($request->jobname) {
             $job_spaces->where('campaign_name', 'like', '%' . $request->jobname . '%');
         }
@@ -34,18 +37,15 @@ class DashboardController extends Controller
         
        $jobspaces = $job_spaces->orderby("job_spaces.is_featured","desc")->orderby("job_spaces.colors","desc")->paginate(5, ['*'], 'page', $request->get('page'));
       
-
+        //$quries = DB::getQueryLog();
+       // dd($quries);
        
-        
-        $quries = DB::getQueryLog();
-        //dd($quries);
        
-       $userId = Auth::user()->id;
-      
        $data = '';
-      
+       
        if ($request->ajax()) {
         foreach ($jobspaces as $job_space) {
+            //dd($jobspaces);
             $action = route('jobdetail', ['id' => $job_space->id]);
             $explode_country = explode(',' ,$job_space->country) ;
             $check = array_search(Auth::user()->country, $explode_country);
@@ -89,7 +89,7 @@ class DashboardController extends Controller
         return $data;
        
     }
-
+    
        $payments = JobSpace::select("job_spaces.campaign_earning")
        ->orderby("job_spaces.campaign_earning","asc")
        ->groupby("job_spaces.campaign_earning")
@@ -97,7 +97,7 @@ class DashboardController extends Controller
     //    if (! empty(request('categorie'))) {
     //     $project->where('categorie', 'like', '%' . request('categorie') . '%');
     // }
-        return view('dashboard', compact('job_spaces','payments'));
+        return view('dashboard', compact('jobspaces','payments'));
     }
 
     public function jobspace_filter(Request $request){

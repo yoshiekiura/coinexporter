@@ -31,6 +31,8 @@ class Admin extends Authenticatable
         'email',
         'password',
         'mobile',
+        'wallet_address',
+        'user_type',
         'image',
         'status',
     ];

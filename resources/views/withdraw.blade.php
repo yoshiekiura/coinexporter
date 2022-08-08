@@ -54,12 +54,12 @@
                                 <div class="col-lg-6 col-md-6">
                                     <div class="selct-bal">
                                         <label>Total Actual Balance</label>
-                                        <input type="text" id="aBalance" name="aBalance" class="form-control amountCalc" placeholder="$" onkeypress="return isNumberKey(event)" value="${{$totalActualBalance}}" readonly>
+                                        <input type="text" id="aBalance" name="aBalance" class="form-control amountCalc" placeholder="$" onkeypress="return isNumberKey(event)" value="{{$totalActualBalance}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="selct-bal">
-                                        <label>Pending Withdraws Balance </label>
+                                        <label>Pending Withdrawal Balance </label>
                                         <input type="text" id="pendingWithdrwBalance" name="wBalance" class="form-control" placeholder="$" onkeypress="return isNumberKey(event)" readonly value="${{$withdrawalBalance}}">
                                     </div>
                                 </div>
@@ -204,6 +204,7 @@
     var actual_blnce = $('#aBalance').val();
     var amt_to_withdraw = $('#amtToWithdraw').val();
     var pending_Withdraw_blance = $('#pendingWithdrwBalance').val();
+    
     if(parseInt(actual_blnce) < 20){
         $("#successmsg").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>You can only withdraw minimum of $20</strong></div>');
         return false; 
@@ -229,11 +230,16 @@
        
       },
       success:function(response){
-        console.log(response);
-        if (response) {
-          $("#successmsg").html('<div class="alert success-alert" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Withdrawal completed successfully!</div>');
+        console.log(response.status);
+        if (response.status === true) {
+          $("#successmsg").html('<div class="alert success-alert" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+response.msg+'</div>');
                            
           $("#withdrawForm")[0].reset(); 
+        }
+        else {
+            
+            $("#successmsg").html('<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+response.msg+'</div>');
+            
         }
       },
       error: function(response) {

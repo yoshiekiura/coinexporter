@@ -18,7 +18,7 @@ class JobdetailController extends Controller
     public function index($id)
     {
         $userID = Auth::user()->id;
-        $jobSpaceData = JobSpace::select("job_spaces.*")->where('job_spaces.id', $id)->join("social_platform", "social_platform.id", "=", "job_spaces.campaign_subcategory_id")->join("job_payment_check", "job_payment_check.campaign_id", "=", "job_spaces.id")->first();
+        $jobSpaceData = JobSpace::select("job_spaces.*")->where('job_spaces.id', $id)->join("social_platform", "social_platform.id", "=", "job_spaces.channel_id")->join("job_payment_check", "job_payment_check.campaign_id", "=", "job_spaces.id")->first();
   
         $jobSpace = JobSpace::where('id', '=',  $id)->where('user_id', '=', $userID)->first();
         return view('jobdetail', compact('jobSpaceData','jobSpace'));

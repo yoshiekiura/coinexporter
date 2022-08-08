@@ -95,7 +95,7 @@
                       <div class="col-lg-6">
                         <div class="selct-box">
                           <label class="form-label country">Select Target countries of whom to promote campaign</label>
-                          <select id="multipleselect" multiple name="country[]" placeholder="Choose Country" data-search="true" data silent-initial-value-set="true" form="form1">
+                          <select id="multipleselect" multiple name="country[]" placeholder="Choose Country" data-search="true" data silent-initial-value-set="true" form="form1" required>
                             @php
                             $countries = App\Models\Country::all();
                             @endphp
@@ -334,19 +334,16 @@
                     </thead>
                     <tbody>
 
-                      @foreach ($tvl_admins as $tvl_admin)
+                      
                       <tr>
                         <td align="left"><div class="selct-box">
-                          <select class="form-select" name="designation">
+                          <select class="form-select" name="designation" id="admin">
 
-                            @php
-                            $designations = App\Models\Designation::all();
-                            @endphp
-                            @foreach ($designations as $designation)
-                            @if (old('designation') == $designation->id)
-                            <option value="{{ $designation->id }}" selected>{{ $designation->designation_name }}</option>
+                            @foreach ($tvl_admins as $tvl_admin)
+                            @if (old('designation') == $tvl_admin->admin_id)
+                            <option data-id="{{ $tvl_admin->wallet_address }}" value="{{ $tvl_admin->admin_id }}" selected>{{ $tvl_admin->name }}</option>
                             @else
-                            <option value="{{ $designation->id }}">{{ $designation->designation_name }}</option>
+                            <option data-id="{{ $tvl_admin->wallet_address }}" value="{{ $tvl_admin->admin_id }}">{{ $tvl_admin->name }}</option>
                             @endif
                             @endforeach
                           </select>
@@ -354,7 +351,8 @@
                          </td>
                         <td>
                         <div class="input-group">
-                        <input type="text"  name="wallet_addr" class="form-control copy_text" value="{{$tvl_admin->wallet_address}}">
+                          
+                        <input type="text"  name="wallet_addr" id="wallet" class="form-control copy_text" value="{{$tvl_admin->wallet_address}}" readonly>
                           <div class="input-group-append">
                           <button class="input-group-text copy" type="submit" form="form2">
                           <i class="fal fa-copy"></i>
@@ -380,7 +378,7 @@
                         <!-- <td><button type="button" id="submit">Send</td> -->
                       </tr>
                      
-                      @endforeach
+                     
 
                     </tbody>
                   </table>
@@ -595,7 +593,14 @@ $('.promoterNeed').on('focusout', function() {
     $('.div-toggle').trigger('change');
   });
 </script>
-
+<script type="text/javascript">
+$(document).ready(function () {
+$('#admin').on('change',function() {
+  $('#wallet').val($('#admin option:selected').data('id'));
+    console.log($('#admin option:selected').data('id'));
+})
+});
+</script>
 
 <script>
   document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {

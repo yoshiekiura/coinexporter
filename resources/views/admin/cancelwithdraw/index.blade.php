@@ -36,7 +36,7 @@
                         <table class="table table-report -mt-2" id="transaction_table">
                             <thead>
                                 <tr>
-                                {{-- <th>{{__('default.table.sl')}}</th> --}}	
+                                <th>{{__('default.table.sl')}}</th> 	
                                     <th>{{__('Promotors Name')}}</th>
                                     <th>{{__('Promotors Email')}}</th>
                                     <th>{{__('Transaction Amount')}}</th>
@@ -50,12 +50,12 @@
                                         @foreach($user_transactions as $key=>$user_transaction)
                                         @php
                                             $id = $user_transaction->user_id;
-                                            $users = App\Models\User::select('users.*')->where('id',$id)->get();
+                                            $user = App\Models\User::select('users.*')->where('id',$id)->first();
                                             @endphp
-                                            @foreach($users as $user)
+                                            
                                          
                                             <tr>
-                                            {{-- <td>{{ $loop->iteration }}</td> --}}        
+                                            <td>{{ $loop->iteration }}</td>       
                                                 <td>{{ $user->name }}</td> 
                                                 <td>{{ $user->email }}</td>         
                                                 <td>${{ $user_transaction->transaction_amount }}</td>
@@ -63,7 +63,7 @@
                                                 <td>{{ $user_transaction->status }}</td>
                                             </tr> 
                                         @endforeach
-                                        @endforeach
+                                       
                                 </tbody>
                                		
                         </table>

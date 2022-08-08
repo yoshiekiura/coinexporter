@@ -37,7 +37,7 @@
                         <table class="table table-report -mt-2" id="transaction_table">
                             <thead>
                                 <tr>
-                                {{-- <th>{{__('default.table.sl')}}</th> --}}	
+                                 <th>{{__('default.table.sl')}}</th>	
                                     <th>{{__('Promotors Name')}}</th>
                                     <th>{{__('Promotors Email')}}</th>
                                     <th>{{__('Transaction Amount')}}</th>
@@ -52,12 +52,12 @@
                                         @foreach($user_transactions as $key=>$user_transaction)
                                         @php
                                             $id = $user_transaction->user_id;
-                                            $users = App\Models\User::select('users.*')->where('id',$id)->get();
+                                            $user = App\Models\User::select('users.*')->where('id',$id)->first();
                                             @endphp
-                                            @foreach($users as $user)
+                                           
                                          
                                             <tr>
-                                            {{-- <td>{{ $loop->iteration }}</td> --}}        
+                                               <td>{{ $loop->iteration }}</td>      
                                                 <td>{{ $user->name }}</td> 
                                                 <td>{{ $user->email }}</td>         
                                                 <td>${{ $user_transaction->transaction_amount }}</td>
@@ -68,19 +68,18 @@
 
                                                 <td>
                                             @if($user_transaction->status === 'Confirmed')
-                                            <a href="javascript:void(0)" data-status="Confirmed"  class="custom-edit-btn mr-1 disabled" disabled><i class="fa fa-ban mr-1"></i>{{__('Confirmed')}}
-                                            </a>  
+                                            <a href="{{route('withdraws.cancel', $user_transaction->id)}}" class="custom-ban-btn mr-1" ><i class="fa fa-ban mr-1"></i>
+                                            </a>
+                                            @elseif($user_transaction->status === 'Cancelled')
+                                            <a href="#" onclick="confirm_modal({{$key+1}})" data-status="Confirmed"  class="custom-approve-btn mr-1"><i class="fe fe-check mr-1"></i>
+                                            </a>
                                             @else  
-                                            <a href="#" onclick="confirm_modal({{$key+1}})" data-status="Confirmed"  class="custom-edit-btn mr-1"><i class="fe fe-check mr-1"></i>{{__('Confirm')}}
+                                            <a href="#" onclick="confirm_modal({{$key+1}})" data-status="Confirmed"  class="custom-approve-btn mr-1"><i class="fe fe-check mr-1"></i>
+                                            </a>
+                                            <a href="{{route('withdraws.cancel', $user_transaction->id)}}" class="custom-ban-btn mr-1" ><i class="fa fa-ban mr-1"></i>
                                             </a>
                                             @endif
-                                            @if($user_transaction->status === 'Cancelled')
-                                            <a href="javascript:void(0)" class="custom-edit-btn mr-1 disabled" style="background:red" disabled><i class="fa fa-ban mr-1"></i>{{__('Cancelled')}}
-                                            </a>
-                                            @else
-                                            <a href="{{route('withdraws.cancel', $user_transaction->id)}}" class="custom-edit-btn mr-1" style="background:red"><i class="fe fe-trash mr-1"></i>{{__('Cancel')}}
-                                            </a>
-                                            @endif
+                                           
                                                 
                                                 </td>
                                             </tr> 
@@ -105,7 +104,6 @@
                                                         </div>
                                                     </div>
                                                     </div>
-                                        @endforeach
                                         @endforeach
                                 </tbody>
                                		

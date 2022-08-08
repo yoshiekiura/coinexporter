@@ -185,6 +185,27 @@
                         </a>
 
                         <ul style="display: none;">
+                        @can('campaigntype-list')
+                                <li>
+                                    <a href="{{ route('campaigntypes.index') }}" title="{{__('sidebar.campaigntype')}}" class="sidebar-link {{ (request()->is('admin/campaigntypes*')) ? 'active' : '' }}">
+                                        <span class="hide-menu">{{__('sidebar.campaigntype')}}</span>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('socialplatformlinks-list')
+                                <li>
+                                    <a href="{{ route('socialplatformlinks.index') }}" title="{{__('sidebar.socialplatformlinks')}}" class="sidebar-link {{ (request()->is('admin/socialplatformlinks*')) ? 'active' : '' }}">
+                                        <span class="hide-menu">{{__('sidebar.socialplatformlinks')}}</span>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('socialplatform-list')
+                                <li>
+                                    <a href="{{ route('socialplatforms.index') }}" title="{{__('sidebar.socialplatform')}}" class="sidebar-link {{ (request()->is('admin/socialplatforms*')) ? 'active' : '' }}">
+                                        <span class="hide-menu">{{__('sidebar.socialplatform')}}</span>
+                                    </a>
+                                </li>
+                            @endcan
                         @can('sociallink-list')
                                 <li>
                                     <a href="{{ route('sociallinks.index') }}" title="{{__('sidebar.social_link')}}" >
@@ -220,32 +241,27 @@
                                     </a>
                                 </li>
                                 @endcan
-                        </ul>
-                    </li>
-                    @endif
-                <!-- /Accountant -->
-                <!-- Transaction -->
-                @if(auth()->guard('admin')->user()->can('transaction-list'))
-                    <li class="submenu">
-                        <a class="" href="javascript:void(0)" aria-expanded="false">
-                            <i data-feather="dollar-sign"></i>
-                            <span class="hide-menu">{{__('sidebar.transaction')}} </span>
-                            <span class="menu-arrow"></span>
-                        </a>
 
-                        <ul style="display: none;">
-                        @can('transaction-list')
+                                @can('confirmwithdraw-list')
+                                <li>
+                                    <a href="{{ route('confirmwithdraw.index') }}" title="{{__('sidebar.confirmwithdraw')}}" class="sidebar-link {{ (request()->is('admin/confirmwithdraw*')) ? 'active' : '' }}">
+                                        <span class="hide-menu">{{__('sidebar.confirmwithdraw')}}</span>
+                                    </a>
+                                </li>
+                                @endcan
+
+                                @can('transaction-list')
                                 <li>
                                     <a href="{{ route('transactions.index') }}" title="{{__('sidebar.transaction')}}" class="sidebar-link {{ (request()->is('admin/transaction*')) ? 'active' : '' }}">
                                         <span class="hide-menu">{{__('sidebar.transaction')}}</span>
                                     </a>
                                 </li>
                                 @endcan
-                                
                         </ul>
                     </li>
                     @endif
-                <!-- /Transaction -->
+                <!-- /Accountant -->
+              
                 <!-- Settings -->
                 @if(auth()->guard('admin')->user()->can('file-manager') || auth()->guard('admin')->user()->can('currency-list') || auth()->guard('admin')->user()->can('websetting-edit') || auth()->guard('admin')->user()->can('log-view'))
                     <li class="submenu">
@@ -256,6 +272,7 @@
                         </a>
 
                         <ul style="display: none;">
+                            {{-- 
                             @can('currency-list')
                                 <li>
                                     <a href="{{ route('currencies.index') }}" title="{{__('sidebar.currencies')}}" class="sidebar-link {{ (request()->is('admin/currencies*')) ? 'active' : '' }}">
@@ -263,7 +280,7 @@
                                     </a>
                                 </li>
                             @endcan
-
+                            --}}
                             @can('websetting-edit')
                                 <li>
                                     <a href="{{route('website-setting.edit')}}" title="{{__('sidebar.website-setting')}}" class="sidebar-link {{ (request()->is('admin/setting/website-setting*')) ? 'active' : '' }}">

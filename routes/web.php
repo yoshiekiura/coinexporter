@@ -221,8 +221,8 @@ Route::group(['middleware' => 'language'], function () {
 			Route::get('/edit/{id}', 		[App\Http\Controllers\Admin\UserPromotorController::class, 'edit'])->name('userpromotors.edit');
 			Route::post('/update/{id}', 	[App\Http\Controllers\Admin\UserPromotorController::class, 'update'])->name('userpromotors.update');
 			Route::post('/destroy', 		[App\Http\Controllers\Admin\UserPromotorController::class, 'destroy'])->name('userpromotors.destroy');
-			Route::get('/approve/{id}', 			[App\Http\Controllers\Admin\UserPromotorController::class, 'approve'])->name('userpromotors.approve');
-			Route::get('/reject/{id}', 			[App\Http\Controllers\Admin\UserPromotorController::class, 'reject'])->name('userpromotors.reject');
+			Route::get('/approve/{id}', 	[App\Http\Controllers\Admin\UserPromotorController::class, 'approve'])->name('userpromotors.approve');
+			Route::get('/reject/{id}', 		[App\Http\Controllers\Admin\UserPromotorController::class, 'reject'])->name('userpromotors.reject');
 			
 		});
 
@@ -258,7 +258,13 @@ Route::group(['middleware' => 'language'], function () {
 		//Accountant Cancel Withdrawal
 		Route::prefix('cancelwithdraw')->group(function () {
 			Route::get('/index', 					[App\Http\Controllers\Admin\CancelWithdrawController::class, 'index'])->name('cancelwithdraw.index');
+			Route::post('/confirm', 				[App\Http\Controllers\Admin\CancelWithdrawController::class, 'confirm'])->name('cancelwithdraw.confirm');
 		});	
+
+		//Accountant Confirmed Withdrawal
+		Route::prefix('confirmwithdraw')->group(function () {
+			Route::get('/index', 					[App\Http\Controllers\Admin\CancelWithdrawController::class, 'confirm'])->name('confirmwithdraw.index');
+		});
 
 		//Job Spaces
 		Route::prefix('jobspace')->group(function () {
@@ -276,6 +282,39 @@ Route::group(['middleware' => 'language'], function () {
 		//Transactions
 		Route::prefix('transaction')->group(function () {
 			Route::get('/index', 					[App\Http\Controllers\Admin\TransactionController::class, 'index'])->name('transactions.index');
+		});	
+
+		//Campaign Type
+		Route::prefix('campaigntypes')->group(function () {
+			Route::get('/index', 					[App\Http\Controllers\Admin\CampaignTypeController::class, 'index'])->name('campaigntypes.index');
+			Route::get('/create', 					[App\Http\Controllers\Admin\CampaignTypeController::class, 'create'])->name('campaigntypes.create');
+			Route::post('/store', 					[App\Http\Controllers\Admin\CampaignTypeController::class, 'store'])->name('campaigntypes.store');
+			Route::get('/edit/{id}', 				[App\Http\Controllers\Admin\CampaignTypeController::class, 'edit'])->name('campaigntypes.edit');
+			Route::post('/update/{id}', 			[App\Http\Controllers\Admin\CampaignTypeController::class, 'update'])->name('campaigntypes.update');
+			Route::post('/destroy', 				[App\Http\Controllers\Admin\CampaignTypeController::class, 'destroy'])->name('campaigntypes.destroy');
+			
+		});	
+
+		//Social Platform Links
+		Route::prefix('socialplatformlinks')->group(function () {
+			Route::get('/index', 					[App\Http\Controllers\Admin\SocialPlatformLinkController::class, 'index'])->name('socialplatformlinks.index');
+			Route::get('/create', 					[App\Http\Controllers\Admin\SocialPlatformLinkController::class, 'create'])->name('socialplatformlinks.create');
+			Route::post('/store', 					[App\Http\Controllers\Admin\SocialPlatformLinkController::class, 'store'])->name('socialplatformlinks.store');
+			Route::get('/edit/{id}', 				[App\Http\Controllers\Admin\SocialPlatformLinkController::class, 'edit'])->name('socialplatformlinks.edit');
+			Route::post('/update/{id}', 			[App\Http\Controllers\Admin\SocialPlatformLinkController::class, 'update'])->name('socialplatformlinks.update');
+			Route::post('/destroy', 				[App\Http\Controllers\Admin\SocialPlatformLinkController::class, 'destroy'])->name('socialplatformlinks.destroy');
+			
+		});	
+
+		//Social Platform
+		Route::prefix('socialplatforms')->group(function () {
+			Route::get('/index', 					[App\Http\Controllers\Admin\SocialPlatformController::class, 'index'])->name('socialplatforms.index');
+			Route::get('/create', 					[App\Http\Controllers\Admin\SocialPlatformController::class, 'create'])->name('socialplatforms.create');
+			Route::post('/store', 					[App\Http\Controllers\Admin\SocialPlatformController::class, 'store'])->name('socialplatforms.store');
+			Route::get('/edit/{id}', 				[App\Http\Controllers\Admin\SocialPlatformController::class, 'edit'])->name('socialplatforms.edit');
+			Route::post('/update/{id}', 			[App\Http\Controllers\Admin\SocialPlatformController::class, 'update'])->name('socialplatforms.update');
+			Route::post('/destroy', 				[App\Http\Controllers\Admin\SocialPlatformController::class, 'destroy'])->name('socialplatforms.destroy');
+			
 		});	
 		});
 	});

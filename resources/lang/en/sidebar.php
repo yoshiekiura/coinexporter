@@ -41,19 +41,24 @@ return [
     'social_link'           => 'Account Officer',
     'sociallinks'           => 'Social Link Application',
 
-    'employers complain'    => 'Disciplinary Officer',
+    'employers complain'    => 'Complain',
     'employers complains'   => 'Employer Complain',
     'sociallink_verified'   => 'Social Link Application',
 
-    'accountant'            => 'Accountant',
-    'withdraw'              => 'Withdraw Request',
-    'cancelwithdraw'        => 'Cancel Withdrawal',
+    'accountant'            => 'Accounts',
+    'withdraw'              => 'Withdrawal Request',
+    'cancelwithdraw'        => 'Cancelled Withdrawal',
+    'confirmwithdraw'       => 'Confirmed Withdrawal',
 
     'job'                   => 'Campaign',
     'jobs'                  => 'Campaign Request',
     'joblist'               => 'Campaign List',
 
     'transaction'           => 'Transaction History',
+    'campaigntype'          => 'Campaign Type',
+    'socialplatform'        => 'Social Platform',
+    'socialtype'            => 'Social Type',
+    'socialplatformlinks'   => 'Social Platform Link',
 
-
+    
 ];

@@ -86,7 +86,7 @@
                         </div>
                         <div class="col-md-6">
                         @php
-							 $social_platform = App\Models\SocialPlatform::where('id',$jobspaces->campaign_subcategory_id)->first();
+							 $social_platform = App\Models\SocialPlatform::where('id',$jobspaces->channel_id)->first();
 							@endphp
                         <p>{{ $social_platform->social_platform_name }}</p>
                         </div>

@@ -5,7 +5,7 @@ use App\Models\JobSpace;
 use App\Models\JobPaymentCheck;
 use App\Models\CampaignCategory;
 use App\Models\SocialPlatform;
-use App\Models\CampaignAdmin;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,16 +21,18 @@ class MycampaignController extends Controller
     {
 		// $tvl_admins = DB::select('select * from tvl_admins where user_type="Campaign Admin"');
 		 
-		 $tvl_admins = CampaignAdmin::select(
+		 $tvl_admins = Admin::select(
 
-                            "campaign_admins.*"
+                            "admins.*",
+                            "admins.id as admin_id",
+                            "model_has_roles.*"
 
-                        )
+                        )->join("model_has_roles","model_has_roles.model_id","=","admins.id")
 
-                        ->where("user_type", "=", "Campaign Admin")
+                        ->where("model_has_roles.role_id", 2)
 						
                         ->get();
-		
+		 
 		//$tvl_campaigns = DB::select('select *,tvl_campaigns.status as tvl_status,tvl_campaigns.created_at as created from ((tvl_campaigns inner join job_spaces on tvl_campaigns.campaign_id= job_spaces.id)inner join campaign_categories on job_spaces.campaign_category_id=campaign_categories.id) order by tvl_campaigns.id desc');
 		 $tvl_campaigns = JobPaymentCheck::select(
 
@@ -52,7 +54,7 @@ class MycampaignController extends Controller
 						
 						->join("campaign_categories", "job_spaces.campaign_category_id", "=", "campaign_categories.id")
 
-                        ->join("social_platform", "job_spaces.campaign_subcategory_id", "=", "social_platform.id")
+                        ->join("social_platform", "job_spaces.channel_id", "=", "social_platform.id")
                         
                         ->where("job_spaces.user_id",Auth::user()->id)
 						
@@ -108,7 +110,7 @@ class MycampaignController extends Controller
             $camp_name = $cat_name.' '.$sub_cat_name.' $'.$request->promoters_earn;
             $mycampaign = new JobSpace;
             $mycampaign->campaign_category_id = $request->campaign_type;
-            $mycampaign->campaign_subcategory_id = $request->social_platform;
+            $mycampaign->channel_id = $request->social_platform;
             $mycampaign->campaign_name = $camp_name;
             $mycampaign->colors = $request->colors;
             $mycampaign->campaign_req = $request->campaign_desc;

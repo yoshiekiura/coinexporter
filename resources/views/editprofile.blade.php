@@ -60,8 +60,8 @@
                                     <div class="avatar-edit">
                                     <form action="" method="post" id="form-image">
                                         
-                                        <input type="hidden" name="oldProfile" id="oldProfile" value="<?= $userData->profileImage ?>" oninput="pImage.src=window.URL.createObjectURL(this.files[0])">
-                                        <input type='file' class="change_btn" name="profileImage" id="imageUpload" accept=".png, .jpg, .jpeg" value="" placeholder="Change Profile Photo"/>
+                                        <input type="hidden" name="oldProfile" id="oldProfile" value="<?= $userData->profileImage ?>">
+                                        <input type='file' class="change_btn" name="profileImage" id="imageUpload" accept=".png, .jpg, .jpeg" value="" placeholder="Change Profile Photo"  oninput="pImage.src=window.URL.createObjectURL(this.files[0])"/>
                                         <label for="imageUpload">Change Photo</label>
                                     </form>
                                     </div>
@@ -266,13 +266,13 @@ function formValidate()
                     //     reader.readAsDataURL(this.files[0]); 
 
                     // });
-                    $("#pImage").attr("src","{{BASEURL}}images/"+e.target.files[0].name);
+                   // $("#pImage").attr("src","{{BASEURL}}images/"+e.target.files[0].name);
                     //$('.avatar').html(img);
-                    $("#successmsg").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><strong>Profile uploaded Successfully!</strong></div>');
+                    $("#successmsg").html('<div class="alert success-alert alert-dismissible fade show" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><strong>Profile uploaded Successfully!</strong></div>');
                 },
                 error: function(result) {
                     //location.reload();
-                    $("#successmsg").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><strong>Profile not updated!</strong></div>');
+                    $("#successmsg").html('<div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><strong>Profile not updated!</strong></div>');
                 }
             });
         }); 

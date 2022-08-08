@@ -28,7 +28,7 @@
                     <div class="timeline">
                         <a href="#" class="timeline-content">
                             <span class="year">2022</span>
-                            <div class="inner-content">
+                            <div class="inner-content text-end">
                                 <h3 class="title">Q3</h3>
                                 <ul class="description">
                                     <li>Community Creation and Awareness </li>
@@ -57,7 +57,7 @@
                     <div class="timeline">
                         <a href="#" class="timeline-content">
                             <span class="year">2023</span>
-                            <div class="inner-content">
+                            <div class="inner-content text-end">
                                 <h3 class="title">Q1</h3>
                                 <ul class="description">
                                     <li>Completion of CoinExporter (V3.0)</li>

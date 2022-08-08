@@ -36,7 +36,7 @@
                         <table class="table table-report -mt-2" id="jobspaces_table">
                             <thead>
                                 <tr>
-                                {{-- <th>{{__('default.table.sl')}}</th> --}}	
+                                    <th>{{__('default.table.sl')}}</th>
                                     <th>{{__('Name')}}</th>
                                     <th>{{__('Email')}}</th>
                                     <th>{{__('Job Name')}}</th>
@@ -50,12 +50,10 @@
                                         @foreach($jobspaces as $key=>$jobspace)
                                         @php
                                             $id = $jobspace->user_id;
-                                            $users = App\Models\User::select('users.*')->where('id',$id)->get();
+                                            $user = App\Models\User::select('users.*')->where('id',$id)->first();
                                             @endphp
-                                            @foreach($users as $user)
-                                         
                                             <tr>
-                                            {{-- <td>{{ $loop->iteration }}</td> --}}        
+                                                <td>{{ $loop->iteration }}</td>   
                                                 <td>{{ $user->name }}</td> 
                                                 <td>{{ $user->email }}</td>         
                                                 <td>{{ $jobspace->campaign_name }}</td>
@@ -64,7 +62,7 @@
                                                
 
                                                 <td>
-                                                <a href="{{route('jobspaces.view', $jobspace->id)}}" class="custom-edit-btn mr-1 disabled"><i class="fa fa-eye mr-1"></i>View</a>
+                                                <a href="{{route('jobspaces.view', $jobspace->id)}}" class="custom-edit-btn mr-1 disabled"><i class="fa fa-eye mr-1"></i></a>
                                                {{-- <a href="{{route('sociallinks.verify', $sociallink->id)}}" class="custom-edit-btn mr-1">{{__('Verified')}}
 								                </a>
                                                 <a href="{{route('sociallinks.reject', $sociallink->id)}}" class="custom-edit-btn mr-1" style="background:red">{{__('Reject')}}
@@ -72,7 +70,6 @@
                                                 
                                                 </td>
                                             </tr> 
-                                        @endforeach
                                         @endforeach
                                 </tbody>
                                		

@@ -1,10 +1,4 @@
-<script>
-    window.setTimeout(function() {
-    $(".alert").fadeOut(500, function(){
-        $(this).remove(); 
-    });
-}, 4000);
-</script>
+
 <style>
     .alert {
         width: 34%;
@@ -72,3 +66,12 @@
         color: #7a0d03;
     }
 </style>
+
+
+<script>
+    window.setTimeout(function() {
+    $(".alert").fadeOut(500, function(){
+        $(this).remove(); 
+    });
+}, 4000);
+</script>

@@ -19,7 +19,7 @@ class WithdrawController extends Controller
         $referral_earnings = ReferralEarning::where('referred_user_id',Auth::user()->id)->sum('referral_earnings');
         $totalActualBalance = round(($campaign_earnings + $referral_earnings),2);
         $userTransaction = UserTransaction::latest()->where('user_id',Auth::user()->id)->get();
-        $withdrawalBalance = JobDone::where('user_id',Auth::user()->id)->where('status','Approved')->where('earning_status','On-Going')->sum('campaign_earnings');
+        $withdrawalBalance =UserTransaction::where('user_id',Auth::user()->id)->where('status','Pending')->sum('transaction_amount');
         
         return view('withdraw',compact('totalActualBalance','userTransaction','withdrawalBalance'));
     }
@@ -27,25 +27,31 @@ class WithdrawController extends Controller
 
     public function create(Request $request)
     {
-        $jobDone = JobDone::where('user_id',Auth::user()->id)->where('status','Approved')->where('earning_status','Success')->get();
-        if($jobDone){
-            foreach($jobDone as $val) {
-                $objJobdone = JobDone::where('id',$val->id)->first();
-                $objJobdone->earning_status = 'On-Going';
-                $objJobdone->save();
+        $pending = UserTransaction::where('user_id',Auth::user()->id)->where('status','Pending')->get();
+        if(count($pending) <= 0){
+            $jobDone = JobDone::where('user_id',Auth::user()->id)->where('status','Approved')->where('earning_status','Success')->get();
+            if($jobDone){
+                foreach($jobDone as $val) {
+                    $objJobdone = JobDone::where('id',$val->id)->first();
+                    $objJobdone->earning_status = 'On-Going';
+                    $objJobdone->save();
+                }
             }
-        }
-        $objTransaction = new UserTransaction();
-        $objTransaction->user_id = Auth::user()->id;
-        $objTransaction->transaction_amount = $request->amt_to_withdraw;
-        $objTransaction->transaction_detail = '$'.$request->amt_to_withdraw .' has requested to withdraw on '.date('d/m/Y');
-        $objTransaction->wallet_balance = '';
-        $objTransaction->status = 'Pending';
-        if($objTransaction->save()){
-            return response()->json(["status"=>true,"msg"=>"withdrawal completed successfully!"]);
-        }
-        else {
-             return response()->json(["status"=>false,"msg"=>"something went wrong"]);
+            $objTransaction = new UserTransaction();
+            $objTransaction->user_id = Auth::user()->id;
+            $objTransaction->transaction_amount = $request->amt_to_withdraw;
+            $objTransaction->transaction_detail = '$'.$request->amt_to_withdraw .' has requested to withdraw on '.date('d/m/Y');
+            $objTransaction->wallet_balance = '';
+            $objTransaction->status = 'Pending';
+            if($objTransaction->save()){
+                return response()->json(["status"=>true,"msg"=>"withdrawal completed successfully!"]);
+            }
+            else {
+                return response()->json(["status"=>false,"msg"=>"something went wrong"]);
+            }
+       }
+       else {
+        return response()->json(["status"=>false,"msg"=>"Sorry You can't request for withdraw. Beacuse you have already pending balance to approve."]);
         }
     }
 

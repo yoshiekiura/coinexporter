@@ -75,6 +75,7 @@ class WithdrawRequestController extends Controller
     public function confirm(Request $request)
 	{
         $user_transactions =UserTransaction::where('id',$request->usertransaction_id)->first();
+        
 		try {
             
             $user_transactions->status = 'Confirmed'; 
@@ -99,6 +100,14 @@ class WithdrawRequestController extends Controller
     public function cancel(Request $request, $id) 
 	{
         $user_transactions =UserTransaction::where('id',$id)->first();
+            $jobDone = JobDone::where('user_id',$user_transactions->user_id)->where('status','Approved')->get();
+            if($jobDone){
+                foreach($jobDone as $val) {
+                    $objJobdone = JobDone::where('id',$val->id)->first();
+                    $objJobdone->earning_status = 'Success';
+                    $objJobdone->save();
+                }
+            }
 		try {
             
             $user_transactions->status = 'Cancelled'; 

@@ -76,6 +76,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', 'MyaccountController@controlpanel')->name('controlpanel');
     Route::get('/jobspace', 'DashboardController@index')->name('user.dashboard');
     Route::post('/ajaxjobspace', 'DashboardController@jobspace_filter')->name('ajax_dashboard');
+	Route::post('/myaccountwallet', 'MyaccountController@update_wallet')->name('myaccountwallet');
     
 });
 
@@ -277,6 +278,8 @@ Route::group(['middleware' => 'language'], function () {
 		//Job Spaces
 		Route::prefix('joblists')->group(function () {
 			Route::get('/index', 					[App\Http\Controllers\Admin\JoblistController::class, 'index'])->name('joblists.index');
+			
+			Route::get('/joblogdetail/{id}', 			[App\Http\Controllers\Admin\JoblistController::class, 'view'])->name('jobspaces.logview');
 		});	
 			
 		//Transactions
@@ -314,6 +317,17 @@ Route::group(['middleware' => 'language'], function () {
 			Route::get('/edit/{id}', 				[App\Http\Controllers\Admin\SocialPlatformController::class, 'edit'])->name('socialplatforms.edit');
 			Route::post('/update/{id}', 			[App\Http\Controllers\Admin\SocialPlatformController::class, 'update'])->name('socialplatforms.update');
 			Route::post('/destroy', 				[App\Http\Controllers\Admin\SocialPlatformController::class, 'destroy'])->name('socialplatforms.destroy');
+			
+		});	
+
+		//Promotion
+		Route::prefix('promotion')->group(function () {
+			Route::get('/index', 					[App\Http\Controllers\Admin\PrController::class, 'index'])->name('promotion.index');
+			Route::get('/create', 					[App\Http\Controllers\Admin\PrController::class, 'create'])->name('create');
+			Route::post('/store', 					[App\Http\Controllers\Admin\PrController::class, 'store'])->name('store');
+			Route::get('/edit/{id}', 				[App\Http\Controllers\Admin\PrController::class, 'edit'])->name('edit');
+			Route::post('/update/{id}', 			[App\Http\Controllers\Admin\PrController::class, 'update'])->name('update');
+			Route::post('/destroy', 				[App\Http\Controllers\Admin\PrController::class, 'destroy'])->name('destroy');
 			
 		});	
 		});

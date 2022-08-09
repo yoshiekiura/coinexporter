@@ -37,11 +37,11 @@
                         <table class="table table-report -mt-2" id="transaction_table">
                             <thead>
                                 <tr>
-                                {{-- <th>{{__('default.table.sl')}}</th> --}}
+                                 <th>{{__('default.table.sl')}}</th> 
                                     <th>{{__('Date')}}</th>
                                     <th>{{__('User Name')}}</th>
                                     <th>{{__('User Email')}}</th>
-                                    <th>{{__('Transaction Detail')}}</th>
+                                    <th>{{__('Wallet Address')}}</th>
                                     <th>{{__('Transaction Amount')}}</th>
                                     <th>{{__('Transaction Type')}}</th>
                                     {{--<th>{{__('Approved Amount')}}</th>
@@ -54,16 +54,16 @@
                                         @foreach($transactions_log as $key=>$transaction)
                                         @php
                                             $id = $transaction->user_id;
-                                            $users = App\Models\User::select('users.*')->where('id',$id)->get();
+                                            $user = App\Models\User::select('users.*')->where('id',$id)->first();
                                             @endphp
-                                            @foreach($users as $user)
+                                           
                                          
                                             <tr>
-                                            {{-- <td>{{ $loop->iteration }}</td> --}}   
+                                             <td>{{ $loop->iteration }}</td>   
                                                 <td>{{ date("d-M-Y", strtotime($transaction->created_at)) }}</td>     
                                                 <td>{{ $user->name }}</td> 
                                                 <td>{{ $user->email }}</td> 
-                                                <td>{{ $transaction->description }}</td>
+                                                <td>{{ $user->wallet_address }}</td>
                                                 @if(($transaction->approved_amount) < 0)        
                                                 <td>${{ round((-$transaction->approved_amount),2) }}</td>
                                                 @else
@@ -73,7 +73,7 @@
                                             </tr> 
                                              
                                         @endforeach
-                                        @endforeach
+                                       
                                 </tbody>
                                		
                         </table>

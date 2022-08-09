@@ -36,13 +36,13 @@
                         <table class="table table-report -mt-2" id="jobspaces_table">
                             <thead>
                                 <tr>
-                                {{-- <th>{{__('default.table.sl')}}</th> --}}	
+                                    <th>{{__('default.table.sl')}}</th>
                                     <th>{{__('Name')}}</th>
                                     <th>{{__('Email')}}</th>
-                                    <th>{{__('Job ID')}}</th>
                                     <th>{{__('Job Name')}}</th>
                                     <th>{{__('Earning')}}</th>
                                     <th>{{__('default.table.status')}}</th>
+                                    <th>{{__('default.table.action')}}</th>
                                 </tr>
                             </thead>
                                
@@ -50,20 +50,18 @@
                                         @foreach($jobspaces as $key=>$jobspace)
                                         @php
                                             $id = $jobspace->user_id;
-                                            $users = App\Models\User::select('users.*')->where('id',$id)->get();
+                                            $user = App\Models\User::select('users.*')->where('id',$id)->first();
                                             @endphp
-                                            @foreach($users as $user)
                                          
                                             <tr>
-                                            {{-- <td>{{ $loop->iteration }}</td> --}}        
+                                                <td>{{ $loop->iteration }}</td>    
                                                 <td>{{ $user->name }}</td> 
                                                 <td>{{ $user->email }}</td>         
-                                                <td>{{ $jobspace->id }}</td>         
                                                 <td>{{ $jobspace->campaign_name }}</td>
                                                 <td>${{ $jobspace->campaign_earning }}</td>
                                                 <td>{{ $jobspace->status }}</td>
+                                                <td><a href="{{route('jobspaces.logview', $jobspace->id)}}" class="custom-edit-btn mr-1 disabled"><i class="fa fa-eye mr-1"></i></a></td>
                                             </tr> 
-                                        @endforeach
                                         @endforeach
                                 </tbody>
                                		

@@ -206,10 +206,17 @@
                                     </a>
                                 </li>
                             @endcan
-                        @can('sociallink-list')
+                             @can('sociallink-list')
                                 <li>
                                     <a href="{{ route('sociallinks.index') }}" title="{{__('sidebar.social_link')}}" >
                                         <span class="hide-menu">{{__('sidebar.sociallinks')}}</span>
+                                    </a>
+                                </li>
+                                @endcan
+                                @can('pr-list')
+                                <li>
+                                    <a href="{{ route('promotion.index') }}" title="{{__('sidebar.prlists')}}" >
+                                        <span class="hide-menu">{{__('sidebar.prlists')}}</span>
                                     </a>
                                 </li>
                                 @endcan

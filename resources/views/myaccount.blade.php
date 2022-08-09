@@ -157,13 +157,17 @@
                     <div class="col-lg-12 col-md-12">
                         <div class="pass-box">
                             <div class="row ">
+                                <form action="{{route('myaccountwallet')}}" method="POST">
+                                    @csrf
                                 <div class="col-lg-12 col-md-6">
                                     <div class="pass-title">
                                         <label>PASTE YOUR BSC WALLET ADDRESS ONLY</label>
-                                        <input id="text" type="text" name="" placeholder="Wallet Address" class="form-control paste_text">
-                                        <!-- <button class="btn1 paste" onclick="copyToClipboard('#text')">Paste Text</button> -->
+                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id  }}">
+                                        <input id="wallet_address" type="text" name="wallet_address" placeholder="Wallet Address" class="form-control"><br>
+                                        <button type="submit" class="btn btn-primary">Click here to save wallet address</button>
                                     </div>
                                 </div>
+                                </form>
                                 <div class="col-lg-12 col-md-6">
                                     <div class="pass-title">
                                         <label>CHANGE PASSWORD</label>

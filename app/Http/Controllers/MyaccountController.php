@@ -80,6 +80,17 @@ class MyaccountController extends Controller
        
     }
 
+    public function update_wallet (request $req)
+    {
+        $user = User::find($req->user_id);
+        $user->wallet_address = $req->wallet_address;
+            if ($user->save()) {
+                return redirect()->back()->with('success', 'Wallet Address saved Successfully!');
+            } else {
+                return redirect()->back()->with('error', 'Wallet Address not saved!');
+            }
+                }
+       
     public function controlpanel(request $req){
         //TOTAL ACTUAL BALANCE
         $campaign_earnings = JobDone::where('user_id',Auth::user()->id)->where('status','Approved')->where('earning_status','Success')->sum('campaign_earnings');

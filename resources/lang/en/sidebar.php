@@ -38,7 +38,7 @@ return [
     'user'                  => 'User',
     'userpromotors'         => 'userpromotors',
 
-    'social_link'           => 'Account Officer',
+    'social_link'           => 'Social Media',
     'sociallinks'           => 'Social Link Application',
 
     'employers complain'    => 'Complain',
@@ -59,6 +59,7 @@ return [
     'socialplatform'        => 'Social Platform',
     'socialtype'            => 'Social Type',
     'socialplatformlinks'   => 'Social Platform Link',
+    'prlists'               =>  'PR Lists',
 
     
 ];

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
 use App\Models\JobSpace;
+use App\Models\JobLog;
 use App\Models\JobPaymentCheck;
 use Illuminate\Support\Facades\DB;
 use Brian2694\Toastr\Facades\Toastr;
@@ -45,6 +46,13 @@ class JoblistController extends Controller
         
 		return view('admin.joblists.index',compact('jobspaces'));
 	}
+
+    public function view(Request $request, $id){
+        $jobspaces = JobSpace::where('id',$id)->first();
+        $joblogs = JobLog::where('campaign_id',$id)->get();
+		
+        return view('admin.joblists.job_detail',compact('jobspaces','joblogs'));
+    }
 
    
 }

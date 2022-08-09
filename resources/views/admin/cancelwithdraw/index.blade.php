@@ -36,12 +36,13 @@
                         <table class="table table-report -mt-2" id="transaction_table">
                             <thead>
                                 <tr>
-                                <th>{{__('default.table.sl')}}</th> 	
+                                <th>{{__('default.table.sl')}}</th> 
+                                
+                                    <th>{{__('Date')}}</th>
                                     <th>{{__('Promotors Name')}}</th>
                                     <th>{{__('Promotors Email')}}</th>
                                     <th>{{__('Transaction Amount')}}</th>
-                                    <th>{{__('Transaction Detail')}}</th>
-                                    {{--<th>{{__('Approved Amount')}}</th>--}}
+                                    <th>{{__('Wallet Address')}}</th>
                                     <th>{{__('default.table.status')}}</th>
                                 </tr>
                             </thead>
@@ -55,11 +56,12 @@
                                             
                                          
                                             <tr>
-                                            <td>{{ $loop->iteration }}</td>       
+                                            <td>{{ $loop->iteration }}</td> 
+                                            <td>{{ date("d-M-Y", strtotime($user_transaction->created_at)) }}</td>      
                                                 <td>{{ $user->name }}</td> 
                                                 <td>{{ $user->email }}</td>         
                                                 <td>${{ $user_transaction->transaction_amount }}</td>
-                                                <td>{{ $user_transaction->transaction_detail }}</td>
+                                                <td>{{ $user->wallet_address }}</td>
                                                 <td>{{ $user_transaction->status }}</td>
                                             </tr> 
                                         @endforeach

@@ -1,0 +1,245 @@
+[30-Jul-2022 11:32:50 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.0.2". You are running 5.6.40. in /home/maastrix1472096d/public_html/coinexporter/vendor/composer/platform_check.php on line 25
+[30-Jul-2022 11:32:50 UTC] PHP Stack trace:
+[30-Jul-2022 11:32:50 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 11:32:50 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 11:32:50 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 11:32:50 UTC] PHP   4. require() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:25
+[30-Jul-2022 11:32:50 UTC] PHP   5. trigger_error() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/platform_check.php:25
+[30-Jul-2022 11:33:29 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 11:33:29 UTC] PHP Stack trace:
+[30-Jul-2022 11:33:29 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 11:33:29 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 11:33:29 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 11:33:29 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[30-Jul-2022 12:01:27 UTC] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/maastrix1472096d/public_html/coinexporter/vendor/psr/log/src/LoggerInterface.php on line 30
+[30-Jul-2022 12:01:27 UTC] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[30-Jul-2022 12:01:33 UTC] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/maastrix1472096d/public_html/coinexporter/vendor/psr/log/src/LoggerInterface.php on line 30
+[30-Jul-2022 12:01:33 UTC] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[30-Jul-2022 13:09:56 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 13:09:56 UTC] PHP Stack trace:
+[30-Jul-2022 13:09:56 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 13:09:56 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 13:09:56 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 13:09:56 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[30-Jul-2022 13:10:01 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 13:10:01 UTC] PHP Stack trace:
+[30-Jul-2022 13:10:01 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 13:10:01 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 13:10:01 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 13:10:01 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[30-Jul-2022 13:10:04 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 13:10:04 UTC] PHP Stack trace:
+[30-Jul-2022 13:10:04 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 13:10:04 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 13:10:04 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 13:10:04 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[30-Jul-2022 13:10:04 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 13:10:04 UTC] PHP Stack trace:
+[30-Jul-2022 13:10:04 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 13:10:04 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 13:10:04 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 13:10:04 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[30-Jul-2022 13:10:04 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 13:10:04 UTC] PHP Stack trace:
+[30-Jul-2022 13:10:04 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 13:10:04 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 13:10:04 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 13:10:04 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[30-Jul-2022 13:10:04 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 13:10:04 UTC] PHP Stack trace:
+[30-Jul-2022 13:10:04 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 13:10:04 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 13:10:04 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 13:10:04 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[30-Jul-2022 13:10:20 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 13:10:20 UTC] PHP Stack trace:
+[30-Jul-2022 13:10:20 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 13:10:20 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 13:10:20 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 13:10:20 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[30-Jul-2022 13:10:21 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 13:10:21 UTC] PHP Stack trace:
+[30-Jul-2022 13:10:21 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 13:10:21 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 13:10:21 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 13:10:21 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[30-Jul-2022 13:11:16 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 13:11:16 UTC] PHP Stack trace:
+[30-Jul-2022 13:11:16 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 13:11:16 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 13:11:16 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 13:11:16 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[30-Jul-2022 13:32:27 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 13:32:27 UTC] PHP Stack trace:
+[30-Jul-2022 13:32:27 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 13:32:27 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 13:32:27 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 13:32:27 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[30-Jul-2022 15:20:25 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 15:20:25 UTC] PHP Stack trace:
+[30-Jul-2022 15:20:25 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 15:20:25 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 15:20:25 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 15:20:25 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[30-Jul-2022 15:20:30 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 15:20:30 UTC] PHP Stack trace:
+[30-Jul-2022 15:20:30 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 15:20:30 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 15:20:30 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 15:20:30 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[30-Jul-2022 15:20:39 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 15:20:39 UTC] PHP Stack trace:
+[30-Jul-2022 15:20:39 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 15:20:39 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 15:20:39 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 15:20:39 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[30-Jul-2022 15:21:17 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 15:21:17 UTC] PHP Stack trace:
+[30-Jul-2022 15:21:17 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 15:21:17 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 15:21:17 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 15:21:17 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[30-Jul-2022 15:22:01 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 15:22:01 UTC] PHP Stack trace:
+[30-Jul-2022 15:22:01 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 15:22:01 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 15:22:01 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 15:22:01 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[30-Jul-2022 15:24:54 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 15:24:54 UTC] PHP Stack trace:
+[30-Jul-2022 15:24:54 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 15:24:54 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 15:24:54 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 15:24:54 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[30-Jul-2022 15:24:56 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 15:24:56 UTC] PHP Stack trace:
+[30-Jul-2022 15:24:56 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 15:24:56 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 15:24:56 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 15:24:56 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[30-Jul-2022 15:25:45 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 15:25:45 UTC] PHP Stack trace:
+[30-Jul-2022 15:25:45 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 15:25:45 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 15:25:45 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 15:25:45 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[30-Jul-2022 15:25:46 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 15:25:46 UTC] PHP Stack trace:
+[30-Jul-2022 15:25:46 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 15:25:46 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 15:25:46 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 15:25:46 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[30-Jul-2022 15:25:47 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 15:25:47 UTC] PHP Stack trace:
+[30-Jul-2022 15:25:47 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 15:25:47 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 15:25:47 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 15:25:47 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[30-Jul-2022 15:25:48 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[30-Jul-2022 15:25:48 UTC] PHP Stack trace:
+[30-Jul-2022 15:25:48 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[30-Jul-2022 15:25:48 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[30-Jul-2022 15:25:48 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[30-Jul-2022 15:25:48 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[31-Jul-2022 04:45:59 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[31-Jul-2022 04:45:59 UTC] PHP Stack trace:
+[31-Jul-2022 04:45:59 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[31-Jul-2022 04:45:59 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[31-Jul-2022 04:45:59 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[31-Jul-2022 04:45:59 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[31-Jul-2022 05:06:44 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[31-Jul-2022 05:06:44 UTC] PHP Stack trace:
+[31-Jul-2022 05:06:44 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[31-Jul-2022 05:06:44 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[31-Jul-2022 05:06:44 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[31-Jul-2022 05:06:44 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[31-Jul-2022 05:07:59 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php72/Php72.php on line 185
+[31-Jul-2022 05:07:59 UTC] PHP Stack trace:
+[31-Jul-2022 05:07:59 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[31-Jul-2022 05:07:59 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[31-Jul-2022 05:07:59 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[31-Jul-2022 05:07:59 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[31-Jul-2022 05:07:59 UTC] PHP   5. require() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:55
+[31-Jul-2022 05:07:59 UTC] PHP   6. spl_autoload_call() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:31
+[31-Jul-2022 05:07:59 UTC] PHP   7. Composer\Autoload\ClassLoader->loadClass() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:31
+[31-Jul-2022 05:07:59 UTC] PHP   8. Composer\Autoload\includeFile() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/ClassLoader.php:428
+[31-Jul-2022 05:10:35 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[31-Jul-2022 05:10:35 UTC] PHP Stack trace:
+[31-Jul-2022 05:10:35 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[31-Jul-2022 05:10:35 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:37
+[31-Jul-2022 05:10:35 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[31-Jul-2022 05:10:35 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[31-Jul-2022 05:19:26 UTC] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/maastrix1472096d/public_html/coinexporter/vendor/psr/log/src/LoggerInterface.php on line 30
+[31-Jul-2022 05:19:26 UTC] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[31-Jul-2022 05:40:58 UTC] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/maastrix1472096d/public_html/coinexporter/vendor/psr/log/src/LoggerInterface.php on line 30
+[31-Jul-2022 05:40:58 UTC] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[31-Jul-2022 05:42:02 UTC] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/maastrix1472096d/public_html/coinexporter/vendor/psr/log/src/LoggerInterface.php on line 30
+[31-Jul-2022 05:42:02 UTC] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[31-Jul-2022 05:42:04 UTC] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/maastrix1472096d/public_html/coinexporter/vendor/psr/log/src/LoggerInterface.php on line 30
+[31-Jul-2022 05:42:04 UTC] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[31-Jul-2022 05:42:05 UTC] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/maastrix1472096d/public_html/coinexporter/vendor/psr/log/src/LoggerInterface.php on line 30
+[31-Jul-2022 05:42:05 UTC] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[31-Jul-2022 05:42:52 UTC] PHP Notice:  Undefined variable: app in /home/maastrix1472096d/public_html/coinexporter/public/index.php on line 53
+[31-Jul-2022 05:42:52 UTC] PHP Fatal error:  Uncaught Error: Call to a member function make() on null in /home/maastrix1472096d/public_html/coinexporter/public/index.php:53
+Stack trace:
+#0 {main}
+  thrown in /home/maastrix1472096d/public_html/coinexporter/public/index.php on line 53
+[31-Jul-2022 05:43:14 UTC] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/maastrix1472096d/public_html/coinexporter/vendor/psr/log/src/LoggerInterface.php on line 30
+[31-Jul-2022 05:43:14 UTC] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[31-Jul-2022 05:43:45 UTC] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/maastrix1472096d/public_html/coinexporter/vendor/psr/log/src/LoggerInterface.php on line 30
+[31-Jul-2022 05:43:45 UTC] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[31-Jul-2022 05:44:11 UTC] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/maastrix1472096d/public_html/coinexporter/vendor/psr/log/src/LoggerInterface.php on line 30
+[31-Jul-2022 05:44:11 UTC] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[31-Jul-2022 05:44:32 UTC] PHP Fatal error:  Uncaught Error: Call to a member function make() on int in /home/maastrix1472096d/public_html/coinexporter/public/index.php:51
+Stack trace:
+#0 {main}
+  thrown in /home/maastrix1472096d/public_html/coinexporter/public/index.php on line 51
+[31-Jul-2022 05:45:02 UTC] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/maastrix1472096d/public_html/coinexporter/vendor/psr/log/src/LoggerInterface.php on line 30
+[31-Jul-2022 05:45:02 UTC] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[31-Jul-2022 05:45:48 UTC] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/maastrix1472096d/public_html/coinexporter/vendor/psr/log/src/LoggerInterface.php on line 30
+[31-Jul-2022 05:45:48 UTC] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[31-Jul-2022 05:46:32 UTC] PHP Notice:  Undefined variable: request in /home/maastrix1472096d/public_html/coinexporter/public/index.php on line 54
+[31-Jul-2022 05:46:32 UTC] PHP Notice:  Undefined variable: response in /home/maastrix1472096d/public_html/coinexporter/public/index.php on line 54
+[31-Jul-2022 05:46:32 UTC] PHP Fatal error:  Uncaught Error: Call to a member function route() on null in /home/maastrix1472096d/public_html/coinexporter/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:222
+Stack trace:
+#0 /home/maastrix1472096d/public_html/coinexporter/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(195): Illuminate\Foundation\Http\Kernel->gatherRouteMiddleware(NULL)
+#1 /home/maastrix1472096d/public_html/coinexporter/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(180): Illuminate\Foundation\Http\Kernel->terminateMiddleware(NULL, NULL)
+#2 /home/maastrix1472096d/public_html/coinexporter/public/index.php(54): Illuminate\Foundation\Http\Kernel->terminate(NULL, NULL)
+#3 {main}
+  thrown in /home/maastrix1472096d/public_html/coinexporter/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php on line 222
+[31-Jul-2022 05:46:43 UTC] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/maastrix1472096d/public_html/coinexporter/vendor/psr/log/src/LoggerInterface.php on line 30
+[31-Jul-2022 05:46:43 UTC] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[31-Jul-2022 05:52:33 UTC] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/maastrix1472096d/public_html/coinexporter/vendor/psr/log/src/LoggerInterface.php on line 30
+[31-Jul-2022 05:52:33 UTC] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[31-Jul-2022 05:52:35 UTC] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/maastrix1472096d/public_html/coinexporter/vendor/psr/log/src/LoggerInterface.php on line 30
+[31-Jul-2022 05:52:35 UTC] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[01-Aug-2022 04:32:46 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[01-Aug-2022 04:32:46 UTC] PHP Stack trace:
+[01-Aug-2022 04:32:46 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[01-Aug-2022 04:32:46 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:36
+[01-Aug-2022 04:32:46 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[01-Aug-2022 04:32:46 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[01-Aug-2022 04:33:05 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[01-Aug-2022 04:33:05 UTC] PHP Stack trace:
+[01-Aug-2022 04:33:05 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[01-Aug-2022 04:33:05 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:36
+[01-Aug-2022 04:33:05 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[01-Aug-2022 04:33:05 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[01-Aug-2022 04:33:13 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[01-Aug-2022 04:33:13 UTC] PHP Stack trace:
+[01-Aug-2022 04:33:13 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[01-Aug-2022 04:33:13 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:36
+[01-Aug-2022 04:33:13 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[01-Aug-2022 04:33:13 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[01-Aug-2022 04:33:15 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[01-Aug-2022 04:33:15 UTC] PHP Stack trace:
+[01-Aug-2022 04:33:15 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[01-Aug-2022 04:33:15 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:36
+[01-Aug-2022 04:33:15 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[01-Aug-2022 04:33:15 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38
+[01-Aug-2022 04:33:18 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/maastrix1472096d/public_html/coinexporter/vendor/symfony/polyfill-php80/bootstrap.php on line 23
+[01-Aug-2022 04:33:18 UTC] PHP Stack trace:
+[01-Aug-2022 04:33:18 UTC] PHP   1. {main}() /home/maastrix1472096d/public_html/coinexporter/public/index.php:0
+[01-Aug-2022 04:33:18 UTC] PHP   2. require() /home/maastrix1472096d/public_html/coinexporter/public/index.php:36
+[01-Aug-2022 04:33:18 UTC] PHP   3. ComposerAutoloaderInit871e480d0adcb3ff292ebc002799cddc::getLoader() /home/maastrix1472096d/public_html/coinexporter/vendor/autoload.php:12
+[01-Aug-2022 04:33:18 UTC] PHP   4. composerRequire871e480d0adcb3ff292ebc002799cddc() /home/maastrix1472096d/public_html/coinexporter/vendor/composer/autoload_real.php:38

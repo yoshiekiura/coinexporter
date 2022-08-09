@@ -101,14 +101,14 @@
                                     <tr>
                                         <td align="left">{{$val->id}} </td>
                                         <td>
-                                           @if($val->status == 'Pending') 
+                                           @if($val->status == 'Cancelled') 
                                             ${{$val->transaction_amount}}
                                            @else
                                            {{'$0'}} 
                                            @endif
                                         </td>
                                         <td>
-                                           @if($val->status == 'Approved') 
+                                           @if($val->status == 'Confirmed') 
                                             ${{$val->transaction_amount}}
                                            @else
                                             {{'$0'}} 

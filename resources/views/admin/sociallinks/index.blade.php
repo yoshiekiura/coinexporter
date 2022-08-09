@@ -36,7 +36,7 @@
                         <table class="table table-report -mt-2" id="sociallink_table">
                             <thead>
                                 <tr>
-                                {{-- <th>{{__('default.table.sl')}}</th> --}}	
+                                <th>{{__('default.table.sl')}}</th> 
                                     <th>{{__('Promotors Name')}}</th>
                                     <th>{{__('Promotors Email')}}</th>
                                     <th>{{__('Channel Name')}}</th>
@@ -50,12 +50,12 @@
                                         @foreach($sociallinks as $key=>$sociallink)
                                         @php
                                             $id = $sociallink->user_id;
-                                            $users = App\Models\User::select('users.*')->where('id',$id)->get();
+                                            $user = App\Models\User::select('users.*')->where('id',$id)->first();
                                             @endphp
-                                            @foreach($users as $user)
+                                           
                                          
                                             <tr>
-                                            {{-- <td>{{ $loop->iteration }}</td> --}}        
+                                            <td>{{ $loop->iteration }}</td>         
                                                 <td>{{ $user->name }}</td> 
                                                 <td>{{ $user->email }}</td>         
                                                 <td>{{ $sociallink->channel_name }}</td>
@@ -65,23 +65,22 @@
 
                                                 <td>
                                                 @if($sociallink->status === 'Verified')
-                                                <a href="javascript:void(0)" class="custom-edit-btn mr-1"><i class="fa fa-ban mr-1"></i>{{__('Verified')}}
+                                                <a href="{{route('sociallinks.reject', $sociallink->id)}}" class="custom-edit-btn mr-1" style="background:red"><i class="fe fe-trash mr-1"></i>{{__('Reject')}}
+								                </a>
+                                                @elseif($sociallink->status === 'Rejected')
+                                                <a href="{{route('sociallinks.verify', $sociallink->id)}}" class="custom-edit-btn mr-1"><i class="fe fe-check mr-1"></i>{{__('Verify')}}
 								                </a>
                                                 @else
                                                 <a href="{{route('sociallinks.verify', $sociallink->id)}}" class="custom-edit-btn mr-1"><i class="fe fe-check mr-1"></i>{{__('Verify')}}
 								                </a>
-                                                @endif
-                                                @if($sociallink->status === 'Rejected')
-                                                <a href="javascript:void(0)" class="custom-edit-btn mr-1" style="background:red"><i class="fa fa-ban mr-1"></i>{{__('Rejected')}}
-								                </a>
-                                                @else
                                                 <a href="{{route('sociallinks.reject', $sociallink->id)}}" class="custom-edit-btn mr-1" style="background:red"><i class="fe fe-trash mr-1"></i>{{__('Reject')}}
 								                </a>
                                                 @endif
+                                              
                                                 </td>
                                             </tr> 
                                         @endforeach
-                                        @endforeach
+                                       
                                 </tbody>
                                		
                         </table>
